@@ -1,0 +1,308 @@
+    <!-- Responsive slider - START -->
+    <div class="responsive-slider-parallax" data-spy="responsive-slider" data-parallax="true" data-parallax-direction="-1" data-transitiontime="1000" data-autoplay="true">
+      <div class="slides-container" data-group="slides">
+        <ul>
+          <li>
+            <div class="slide-body" data-group="slide">
+              <div class="container">
+                <div class="wrapper">
+                  <div class="caption header" data-animate="slideAppearRightToLeft" data-delay="0" data-length="300">
+                    <h2>Neat theme</h2>
+                    <p class="sub text-left" data-animate="slideAppearLeftToRight" data-delay="300" data-length="300"><span>Clean and modern design</span></p>
+                    <p class="sub text-left" data-animate="slideAppearLeftToRight" data-delay="500" data-length="300"><span>Lightweight</span></p>
+                    <p class="sub text-left" data-animate="slideAppearLeftToRight" data-delay="700" data-length="300"><span>Standards compliant</span></p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div class="slide-body" data-group="slide">
+              <div class="container">
+                <div class="wrapper">
+                  <div class="caption header text-center" data-animate="slideAppearUpToDown" data-delay="0" data-length="300">
+                    <h2>Twitter Boostrap</h2>
+                    <p class="sub" data-animate="slideAppearDownToUp" data-delay="300" data-length="300"><span>Compatible with version 3</span></p>
+                    <p class="sub" data-animate="slideAppearDownToUp" data-delay="500" data-length="300"><span>Perfectly compatible with grid system</span></p>
+                    <p class="sub" data-animate="slideAppearDownToUp" data-delay="700" data-length="300"><span>Bootstrap compatible Slider and Calendar plugins</span></p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div class="slide-body" data-group="slide">
+              <div class="container">
+                <div class="wrapper">
+                  <div class="caption header text-right" data-animate="slideAppearDownToUp" data-delay="0" data-length="300">
+                    <h2>Html color classes</h2>
+                    <p class="sub" data-animate="slideAppearUpToDown" data-delay="300" data-length="300"><span>"Flat UI" colors palette</span></p>
+                    <p class="sub" data-animate="slideAppearUpToDown" data-delay="500" data-length="300"><span>Made to modify any layout element</span></p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+      <div class="pages-wrapper">
+        <ol class="pages">
+          <li><a data-jump-to="1">1</a></li>
+          <li><a data-jump-to="2">2</a></li>
+          <li><a data-jump-to="3">3</a></li>
+        </ol>
+      </div>
+    </div>
+
+
+    <script src="/slider.js"></script>
+<script src="/event.js"></script>
+        <script type="text/javascript">
+      function matchHeight(objects, cols, nomatch) {
+        if (nomatch === undefined) nomatch = false;
+
+        var i, j, group, height, max, objIndex = 0;
+        var objCatArr = [];
+        var maxHeightArr = [];
+
+        for (i = 0; i < objects.length; i++) {
+          group = Math.floor((i)/cols);
+          if (objCatArr[group] === undefined) {
+            objCatArr[group] = [];
+          }
+          objCatArr[group].push(objects[i]);
+        }
+
+        for (i in objCatArr) {
+          max = 0;
+          for (j in objCatArr[i]) {
+            height = $(objCatArr[i][j]).height();
+            max = Math.max(max, height);
+          }
+          maxHeightArr.push(max);
+          if (!nomatch)
+            $(objCatArr[i]).height(max);
+        }
+
+        return maxHeightArr;
+      };
+    </script>
+    <!-- Responsive slider - END -->
+
+    <!-- Info thumbnails - START -->
+    <section>
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-4 col-md-4">
+            <a class="info-thumbnail-link" href="#">
+            <div class="thumbnail info-thumbnail color-black">
+              <div class="caption">
+                <h3><span class="fa fa-flag color-lead"></span> Font awesome</h3>
+                <p class="description">NEAT template supports as much modern technologies and trends as possible. One of them is font awesome icons. This great set of fonts is avaliable anywere you want on your page. Some of NEAT ui elements are also using font awesome like this info thumbnails.</p>
+              </div>
+            </div>
+            </a>
+          </div>
+          <div class="col-sm-4 col-md-4">
+            <a class="info-thumbnail-link" href="#">
+            <div class="thumbnail info-thumbnail background-lead-light">
+              <div class="caption">
+                <h3><span class="fa fa-group"></span> Color classes</h3>
+                <p class="description">You can use template elements as you have them in the examples but if you feel creative you can compose our own color combinations in ui elements. You have beutiful set of flat ui colors to work with just use <i>color-{color-name}</i> or <i>background-{color-name}</i> to change text color or background of any element on the page.</p>
+              </div>
+            </div>
+            </a>
+          </div>
+          <div class="col-sm-4 col-md-4">
+            <div class="thumbnail info-thumbnail color-black">
+              <div class="caption">
+                <h3><span class="fa fa-cogs color-lead"></span> Not a link</h3>
+                <p class="description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin venenatis velit nibh, sit amet commodo sapien tristique at. Interdum et malesuada fames ac ante ipsum primis in faucibus. Cras bibendum erat at ultricies rhoncus.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Info thumbnails - END -->
+
+    <!-- Info row - START -->
+    <section class="background-clouds">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="info-row">
+              <div class="content info">
+                <h1 class="info-head">Info row</h1>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque laoreet, lectus vitae hendrerit consequat, tellus sapien tincidunt massa, sit amet convallis libero massa at magna. Aliquam ullamcorper metus eget ultricies auctor. Nulla et iaculis lectus, nec pharetra libero. Vivamus eget urna risus. Nam gravida feugiat consequat. In a risus sit amet dui venenatis sodales.</p>
+              </div>
+              <div class="content link">
+                <a href="#" class="btn btn-lead btn-lg pull-right">Read more</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Info row - END -->
+
+    <!-- Info thumbnails - START -->
+    <section>
+      <div class="container">
+        <h1>Information thumbmnails</h1>
+        <div class="row">
+          <div class="col-sm-4 col-md-4">
+            <div class="info-thumbnail-link">
+            <div class="thumbnail info-thumbnail with-icon background-clouds color-text">
+              <img src="/img/img1.jpg" alt="...">
+              <div class="icon">
+                <span class="fa-stack">
+                  <i class="fa fa-circle fa-stack-2x color-lead"></i>
+                  <i class="fa fa-flag fa-stack-1x color-white"></i>
+                </span>
+              </div>
+              <div class="caption bordered background-white">
+                <h3>Font awesome</h3>
+                <p class="description">NEAT template supports as much modern technologies and trends as possible. One of them is font awesome icons. This great set of fonts is avaliable anywere you want on your page. Some of NEAT ui elements are also using font awesome like this info thumbnails.</p>
+                <p class="buttons"><a href="#" class="btn btn-lead">Read more</a></p>
+              </div>
+            </div>
+            </div>
+          </div>
+          <div class="col-sm-4 col-md-4">
+            <div class="info-thumbnail-link">
+            <div class="thumbnail info-thumbnail with-icon background-clouds color-text">
+              <img src="/img/img2.jpg" alt="...">
+              <div class="icon">
+                <span class="fa-stack">
+                  <i class="fa fa-circle fa-stack-2x color-lead"></i>
+                  <i class="fa fa-inbox fa-stack-1x color-white"></i>
+                </span>
+              </div>
+              <div class="caption bordered background-white">
+                <h3>Color classes</h3>
+                <p class="description">You can use template elements as you have them in the examples but if you feel creative you can compose our own color combinations in ui elements. You have beutiful set of flat ui colors to work with just use <i>color-{color-name}</i> or <i>background-{color-name}</i> to change text color or background of any element on the page.</p>
+                <p class="buttons"><a href="#" class="btn btn-lead">Read more</a></p>
+              </div>
+            </div>
+            </div>
+          </div>
+          <div class="col-sm-4 col-md-4">
+            <div class="info-thumbnail-link">
+            <div class="thumbnail info-thumbnail with-icon background-clouds color-text">
+              <img src="/img/img3.jpg" alt="...">
+              <div class="icon">
+                <span class="fa-stack">
+                  <i class="fa fa-circle fa-stack-2x color-alizarin"></i>
+                  <i class="fa fa-eye fa-stack-1x color-white"></i>
+                </span>
+              </div>
+              <div class="caption bordered background-white">
+                <h3>Some title</h3>
+                <p class="description color-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin venenatis velit nibh, sit amet commodo sapien tristique at. Interdum et malesuada fames ac ante ipsum primis in faucibus. Cras bibendum erat at ultricies rhoncus.</p>
+                <p class="buttons"><a href="#" class="btn btn-lead">Read more</a></p>
+              </div>
+            </div>
+          </div>
+          </div>
+        </div>
+        <h1>Information thumbmnails alternatives</h1>
+        <div class="row">
+          <div class="col-sm-4 col-md-4">
+            <div class="info-thumbnail-link">
+            <div class="thumbnail info-thumbnail with-icon background-clouds color-black">
+              <img src="/img/img1.jpg" alt="...">
+              <div class="icon">
+                <span class="fa-stack">
+                  <i class="fa fa-circle fa-stack-2x color-alizarin"></i>
+                  <i class="fa fa-flag fa-stack-1x color-white"></i>
+                </span>
+              </div>
+              <div class="caption">
+                <h3><span class="fa fa-flag color-alizarin"></span> Font awesome</h3>
+                <p class="description">NEAT template supports as much modern technologies and trends as possible. One of them is font awesome icons. This great set of fonts is avaliable anywere you want on your page. Some of NEAT ui elements are also using font awesome like this info thumbnails.</p>
+                <p class="buttons"><a href="#" class="btn btn-lead">Read more</a></p>
+              </div>
+            </div>
+            </div>
+          </div>
+          <div class="col-sm-4 col-md-4">
+            <div class="info-thumbnail-link">
+            <div class="thumbnail info-thumbnail with-icon background-carrot">
+              <img src="/img/img2.jpg" alt="...">
+              <div class="icon">
+                <span class="fa-stack">
+                  <i class="fa fa-circle fa-stack-2x color-emerald"></i>
+                  <i class="fa fa-flag fa-stack-1x color-white"></i>
+                </span>
+              </div>
+              <div class="caption">
+                <h3>Color classes</h3>
+                <p class="description">You can use template elements as you have them in the examples but if you feel creative you can compose our own color combinations in ui elements. You have beutiful set of flat ui colors to work with just use <i>color-{color-name}</i> or <i>background-{color-name}</i> to change text color or background of any element on the page.</p>
+                <p class="buttons"><a href="#" class="btn btn-lead">Read more</a></p>
+              </div>
+            </div>
+            </div>
+          </div>
+          <div class="col-sm-4 col-md-4">
+            <div class="thumbnail info-thumbnail with-icon background-clouds color-text">
+              <img src="/img/img3.jpg" alt="...">
+              <div class="icon">
+                <span class="fa-stack">
+                  <i class="fa fa-circle fa-stack-2x color-lead-dark"></i>
+                  <i class="fa fa-flag fa-stack-1x color-white"></i>
+                </span>
+              </div>
+              <div class="caption bordered background-white">
+                <h3>No hover effect</h3>
+                <p class="description color-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin venenatis velit nibh, sit amet commodo sapien tristique at. Interdum et malesuada fames ac ante ipsum primis in faucibus. Cras bibendum erat at ultricies rhoncus.</p>
+                <p class="buttons"><a href="#" class="btn btn-lead">Read more</a></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- Info thumbnails - END -->
+
+    <section class="image-bg color-white" style="background-image: url(/image-bg.jpg)">
+      <div class="container">
+        <div class="reduce-top-margin">
+          <h1 class="no-border">They trusted us</h1>
+          <div class="row">
+            <div class="col-xs-6 col-sm-4 col-md-2">
+              <a href="http://w3widget.com" class="thumbnail gallery-thumbnail">
+                <img class="img-circle" src="/img/w3w-logo.png" alt="...">
+              </a>
+            </div>
+            <div class="col-xs-6 col-sm-4 col-md-2">
+              <a href="http://w3widget.com" class="thumbnail gallery-thumbnail">
+                <img class="img-circle" src="/img/w3w-logo-2.png" alt="...">
+              </a>
+            </div>
+            <div class="col-xs-6 col-sm-4 col-md-2">
+              <a href="http://w3widget.com" class="thumbnail gallery-thumbnail">
+                <img class="img-circle" src="/img/w3w-logo-3.png" alt="...">
+              </a>
+            </div>
+            <div class="col-xs-6 col-sm-4 col-md-2">
+              <a href="http://w3widget.com" class="thumbnail gallery-thumbnail">
+                <img class="img-circle" src="/img/w3w-logo-4.png" alt="...">
+              </a>
+            </div>
+            <div class="col-xs-6 col-sm-4 col-md-2">
+              <a href="http://w3widget.com" class="thumbnail gallery-thumbnail">
+                <img class="img-circle" src="/img/w3w-logo.png" alt="...">
+              </a>
+            </div>
+            <div class="col-xs-6 col-sm-4 col-md-2">
+              <a href="http://w3widget.com" class="thumbnail gallery-thumbnail">
+                <img class="img-circle" src="/img/w3w-logo-3.png" alt="...">
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
