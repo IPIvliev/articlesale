@@ -1,14 +1,19 @@
 Articlesale::Application.routes.draw do
-  get "static_pages/index"
+  get "copyrighters/home"
 
-  get "static_pages/about"
+  get "clients/home"
 
-  get "static_pages/help"
+  get "users/signup_client"
 
-  get "static_pages/services"
+  get "users/signup_copy"
 
-  get "static_pages/articles"
+get "index.html" => "static_pages#index"
+
+match "/about.html", to: 'static_pages#about'
+match "/articles.html", to: 'static_pages#articles'
+match "/help.html", to: 'static_pages#help'
+match "/services/copyrighters.html", to: 'static_pages#copyrighters'
+match "/services/clients.html", to: 'static_pages#clients'
  
-  root :to => 'static_pages#index'
-
+root :to => 'static_pages#index'
 end

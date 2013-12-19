@@ -8,47 +8,23 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="index.html"><img src="img/logo.png" alt="logo">Neat</a>
+          <a class="navbar-brand" href="/index.html"><img src="/logo.png" alt="logo">Биржа текстов</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse navbar-ex1-collapse">
           <ul class="nav navbar-nav navbar-right">
-            <li class="active"><a href="index.html">Home</a></li>
-            <li><a href="aboutus.html">About us</a></li>
+            <li class="<%=is_active('index')%>"><a href="/index.html">Главная</a></li>
+            <li class="<%=is_active('about')%>"><a href="/about.html">О бирже</a></li>
             <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Pages <b class="caret"></b></a>
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Услуги <b class="caret"></b></a>
               <ul class="dropdown-menu">
-                <li><a href="pricing.html">Pricing</a></li>
-                <li><a href="services.html">Services</a></li>
-                <li><a href="faq.html">FAQ</a></li>
-                <li><a href="gallery.html">Gallery</a></li>
-                <li class="divider"></li>
-                <li><a href="registration.html">Registration</a></li>
-                <li><a href="login.html">Login</a></li>
-                <li><a href="register-login.html">Register/Login</a></li>
-                <li class="divider"></li>
-                <li><a href="404.html">Error 404</a></li>
-                <li class="divider"></li>
-                <li><a href="article.html">Article</a></li>
-                <li><a href="typography.html">Typography</a></li>
+                <li><a href="/services/copyrighters.html">Для копирайтеров</a></li>
+                <li><a href="/services/clients.html">Для заказчиков</a></li>
               </ul>
             </li>
-            <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Blog <b class="caret"></b></a>
-              <ul class="dropdown-menu">
-                <li><a href="entry-list.html">List of entries</a></li>
-                <li><a href="entry.html">Entry</a></li>
-              </ul>
-            </li>
-            <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Portfolio <b class="caret"></b></a>
-              <ul class="dropdown-menu">
-                <li><a href="portfolio.html">Portfolio</a></li>
-                <li><a href="portfolio-item.html">Portfolio Item</a></li>
-              </ul>
-            </li>
-            <li><a href="contact.html">Contact</a></li>
+            <li class="<%=is_active('articles')%>"><a href="/articles.html">Статьи</a></li>
+            <li class="<%=is_active('help')%>"><a href="/help.html">Помощь</a></li>
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="fa fa-search"></span></a>
               <ul class="dropdown-menu">
@@ -57,7 +33,7 @@
                     <div class="input-group">
                       <input type="text" class="form-control">
                       <span class="input-group-btn">
-                        <button class="btn btn-default" type="submit">Search</button>
+                        <button class="btn btn-default" type="submit">Поиск</button>
                       </span>
                     </div>
                   </form>
@@ -70,18 +46,17 @@
                 <li>
                   <form role="form">
                     <div class="form-group">
-                      <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
+                      <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Введите email">
                     </div>
                     <div class="form-group">
-                      <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                      <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Введите пароль">
                     </div>
                     <div class="checkbox">
                       <label>
-                        <input type="checkbox"> Remember me
+                        <input type="checkbox"> Запомнить меня
                       </label>
                     </div>
-                    <button type="submit" class="btn btn-default">Login</button>
-                    <span class="color-white"><button type="button" class="btn btn-link pull-right">Register</button></span>
+                    <button type="submit" class="btn btn-default">Логин</button>
                   </form>
                 </li>
               </ul>
