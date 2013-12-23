@@ -1,13 +1,13 @@
 Articlesale::Application.routes.draw do
-  get "copyrighters/home"
-
-  get "clients/home"
-
   get "users/signup_client"
-
   get "users/signup_copy"
 
 get "index.html" => "static_pages#index"
+
+get "/clients/home.html" => "clients#home"
+get "/clients/copy.html" => "clients#copy"
+get "/clients/articles.html" => "clients#articles"
+get "/clients/pay.html" => "clients#pay"
 
 match "/about.html", to: 'static_pages#about'
 match "/articles.html", to: 'static_pages#articles'

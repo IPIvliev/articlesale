@@ -1,0 +1,38 @@
+<% provide(:title, 'Спиосок копирайтеров') %>
+
+<!-- Breadcrumbs - START -->
+<div class="background-clouds breadcrumbs-container">
+  <div class="container">
+    <ol class="breadcrumb">
+      <li class="active">Список копирайтеров</li>
+    </ol>
+  </div>
+</div>
+<!-- Breadcrumbs - END -->
+
+  <section>
+      <div class="container">
+        <div class="row">
+<%= render "leftmenu" %>
+          <div class="col-md-9">
+            <div class="row">
+              <div class="col-md-12">
+                <h1>Список копирайтеров</h1>
+                <div class="thumbnail info-thumbnail padding1 background-clouds color-black">
+                  <div class="caption background-white">
+
+<% pay_url = Robokassa.client.init_payment_url(order.id, order.amount, "Order #{order}", '', 'ru', order.user.email, {}) %>
+<%= link_to "Оплатить через сервис ROBOX", pay_url %>
+
+
+                  </div>
+                </div>
+
+              </div>
+
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
