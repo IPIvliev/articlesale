@@ -1,13 +1,29 @@
 Articlesale::Application.routes.draw do
+  get "omniauth_callbacks/facebook"
+
+  get "omniauth_callbacks/vkontakte"
+
+  devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
+
+  resources :users, :only => [:index, :destroy]
+
   get "users/signup_client"
   get "users/signup_copy"
 
 get "index.html" => "static_pages#index"
 
-get "/clients/home.html" => "clients#home"
+get "/clients/projects.html" => "clients#projects"
 get "/clients/copy.html" => "clients#copy"
 get "/clients/articles.html" => "clients#articles"
 get "/clients/pay.html" => "clients#pay"
+get "/clients/profile.html" => "clients#profile"
+get "/clients/messages.html" => "clients#messages"
+get "/clients/wait.html" => "clients#wait"
+get "/clients/correct.html" => "clients#correct"
+get "/clients/work.html" => "clients#work"
+get "/clients/complite.html" => "clients#complite"
+
+get "/copyrighters/profile.html" => "copyrighters#profile"
 
 match "/about.html", to: 'static_pages#about'
 match "/articles.html", to: 'static_pages#articles'
