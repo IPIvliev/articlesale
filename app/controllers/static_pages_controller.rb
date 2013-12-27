@@ -11,6 +11,4 @@ class StaticPagesController < ApplicationController
   def services
   end
 
-  def articles
-  end
 end

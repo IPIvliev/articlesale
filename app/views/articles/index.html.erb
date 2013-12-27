@@ -1,0 +1,27 @@
+<% provide(:title, 'Статьи') %>
+
+<!-- Breadcrumbs - START -->
+<div class="background-clouds breadcrumbs-container">
+  <div class="container">
+    <ol class="breadcrumb">
+      <li><a href="/index.html">Главная</a></li>
+      <li class="active">Стаsdfтьи</li>
+    </ol>
+  </div>
+</div>
+<!-- Breadcrumbs - END -->
+
+ <section>
+      <div class="container">
+        <div class="row">
+          <div class="col-md-9">
+
+<%= render @articles %>
+
+          </div>
+<%= render '/shared/rightcolumn' %>
+        </div>
+      </div>
+    </section>
+
+ <%= render '/shared/popular' %>
