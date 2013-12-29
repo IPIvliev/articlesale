@@ -4,4 +4,10 @@ class UsersController < ApplicationController
 
   def signup_copy
   end
+
+    def facebook
+  end
+
+  def vkontakte
+  end
 end

@@ -19,10 +19,11 @@
             <div class="thumbnail info-thumbnail background-lead">
               <div class="caption">
                 <h3><span class="fa fa-user"></span> Регистрация</h3>
-                <form role="form">
+<%= form_for(:user, :url => registration_path(:user)) do |f| %>
                   <div class="form-group">
-                    <label for="exampleInputName3">Имя</label>
-                    <input type="text" class="form-control" id="exampleInputName3" placeholder="Введите имя">
+                    <label>Имя</label>
+                    <%= f.email_field :name, :class => "form-control", :placeholder => "Введите имя" %>
+                    
                   </div>
                   <div class="form-group">
                     <label for="exampleInputSecondName3">Фамилие</label>
@@ -41,7 +42,8 @@
                     <input type="password" class="form-control" id="exampleInputPassword23" placeholder="Введите пароль ещё раз">
                   </div>
                   <button type="submit" class="btn btn-default">Регистрация</button>
-                </form>
+                <% end %>
+
               </div>
             </div>
           </div>
