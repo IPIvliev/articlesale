@@ -10,9 +10,10 @@
   </div>
 </div>
 <!-- Breadcrumbs - END -->
-
+<%= devise_error_messages! %>
     <section>
       <div class="container">
+      	  <%= devise_error_messages! %>
         <h1>Регистрация для заказчиков контента</h1>
         <div class="row">
           <div class="col-sm-7 col-md-offset-1 col-md-6">
@@ -56,6 +57,11 @@
                     <label for="exampleInputPassword3">Пароль</label>
                     <%= f.password_field :password, :class => "form-control", :placeholder => "Ваш пароль" %>
                   </div>
+                <div class="form-group">
+                  <label>
+                  	<%= link_to "Забыли пароль?", new_password_path('user') %>
+                  </label>
+              	</div>
                   <div class="checkbox">
                     <label>
                       Запомнить меня <%= f.check_box :remember_me %>
@@ -63,6 +69,7 @@
                   </div>
                   <%= f.submit 'Войти', :class => "btn btn-default" %>
                 <% end %>
+
               </div>
             </div>
           </div>

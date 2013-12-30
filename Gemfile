@@ -14,14 +14,13 @@ gem 'thin'
 gem 'robokassa'
 
 # Users
-
-
-# Messages
 gem 'devise'
 gem "cancan"
 gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'omniauth-vkontakte'
+
+# Messages
 
 # Text 
 gem 'bootstrap-wysihtml5-rails'

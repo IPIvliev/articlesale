@@ -14,6 +14,8 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse navbar-ex1-collapse">
           <ul class="nav navbar-nav navbar-right">
+
+            <% if !user_signed_in? %>
             <li class="<%=is_active('index')%>"><a href="/index.html">Главная</a></li>
             <li class="<%=is_active('about')%>"><a href="/about.html">О бирже</a></li>
             <li class="dropdown">
@@ -44,23 +46,27 @@
               <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="fa fa-lock"></span></a>
               <ul class="dropdown-menu">
                 <li>
-                  <form role="form">
+                  <%= form_for("user", :url => user_session_path) do |f| %>
                     <div class="form-group">
-                      <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Введите email">
+                      
+                      <%= f.email_field :email, :class => "form-control", :placeholder => "Введите email" %>
                     </div>
                     <div class="form-group">
-                      <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Введите пароль">
+                      <%= f.password_field :password, :class => "form-control", :placeholder => "Введите пароль" %>
                     </div>
                     <div class="checkbox">
-                      <label>
-                        <input type="checkbox"> Запомнить меня
+                      <label> Запомнить меня
+                        <%= f.check_box :remember_me %>
                       </label>
                     </div>
-                    <button type="submit" class="btn btn-default">Логин</button>
-                  </form>
+                    <%= f.submit 'Войти', :class => "btn btn-default" %>
+                  <% end %>
                 </li>
               </ul>
             </li>
+            <% else %>
+<li><%= link_to('Logout', destroy_user_session_path, :method => :delete) %> </li>
+<% end %>
           </ul>
         </div><!-- /.navbar-collapse -->
       </div>

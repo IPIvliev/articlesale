@@ -1,12 +1,14 @@
 Articlesale::Application.routes.draw do
   resources :articles
 
+  resources :messages
 
   get "omniauth_callbacks/facebook"
 
   get "omniauth_callbacks/vkontakte"
 
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
+
 
   resources :users, :only => [:index, :destroy]
 
@@ -20,7 +22,6 @@ get "/clients/copy.html" => "clients#copy"
 get "/clients/articles.html" => "clients#articles"
 get "/clients/pay.html" => "clients#pay"
 get "/clients/profile.html" => "clients#profile"
-get "/clients/messages.html" => "clients#messages"
 get "/clients/wait.html" => "clients#wait"
 get "/clients/correct.html" => "clients#correct"
 get "/clients/work.html" => "clients#work"

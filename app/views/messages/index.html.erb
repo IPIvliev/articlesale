@@ -13,7 +13,7 @@
   <section>
       <div class="container">
         <div class="row">
-<%= render "leftmenu" %>
+<%= render "/clients/leftmenu" %>
           <div class="col-md-9">
             <div class="row">
               <div class="col-md-12">
@@ -35,7 +35,6 @@
       <table class="table table-hover">
         <thead>
           <tr>
-            <%= render mailbox.inbox %>
             <th>Аватар</th>
             <th>Имя</th>
             <th>Новых сообщений</th>
@@ -51,7 +50,6 @@
           </tr>
         </tbody>
       </table>
-<%= link_to 'Start Conversation', :new_conversation %>
                   </div>
                 </div>
 
