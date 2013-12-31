@@ -1,4 +1,4 @@
-<% provide(:title, @article.name) %>
+<% provide(:title, @message.user.username) %>
 
 
 <!-- Breadcrumbs - START -->
@@ -7,7 +7,7 @@
     <ol class="breadcrumb">
       <li><a href="/index.html">Главная</a></li>
       <li><%= link_to "Статьи", "/articles.html" %></li>
-      <li class="active"><%= @article.name %></li>
+      <li class="active"><%= @message.user.username %></li>
     </ol>
   </div>
 </div>
@@ -17,35 +17,16 @@
       <div class="container">
         <div class="row">
           <div class="col-md-9">
-            <div class="blog-entry">
-              <div class="blog-entry-content no-border">
-                <h1><%= @article.name %></h1>
-                <div class="date"><%= Russian::strftime(@article.created_at, "%d %B %Y") %>, <a href="">4 <sup><span class="fa fa-comment-o"></span></sup></a></div>
-                <div class="content">
-                  <p>Sed porta ac ipsum ut mollis. Integer id vestibulum dui, at dapibus orci. Nunc adipiscing, orci sit amet ultricies sagittis, arcu orci feugiat lorem, nec feugiat magna erat id lectus. Cras tristique eu sapien ut aliquam. Cras pharetra nisl sapien, ut tincidunt nunc feugiat at. Donec massa nisl, tincidunt eu nulla quis, tristique facilisis nibh. Praesent viverra tempor lectus et consectetur.</p>
-
-                  <img class="pull-left" src="img/placeholder-heli.jpg" alt="..." style="width: 400px">
-
-                  <p>Pellentesque imperdiet diam ut augue vulputate eleifend vitae id lorem. Aliquam a congue lectus, nec sollicitudin risus. Vivamus id nisi tincidunt, tempus orci sed, vestibulum eros. Nulla facilisi. Nam eu ornare libero. Suspendisse adipiscing neque et egestas bibendum. Morbi vulputate non tellus eu dapibus. Maecenas tempor scelerisque pulvinar. Donec dictum pulvinar rhoncus. Sed ornare quis orci eget viverra. Sed tincidunt id turpis interdum congue. Nam quis scelerisque lacus. Suspendisse id metus nibh.</p>
-
-                  <p>Suspendisse vel lectus gravida, sollicitudin massa vitae, varius nisi. Ut magna lacus, feugiat eu accumsan at, fringilla eu nisl. Aliquam quis erat egestas, faucibus tellus id, fermentum purus. Donec consectetur vehicula eleifend. Duis auctor nisl nisl, vitae consequat enim semper sed. Sed eu mauris sit amet mi sagittis auctor. Praesent sit amet interdum augue. Proin metus purus, sodales vitae consequat ut, rutrum in odio. Curabitur posuere iaculis egestas. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-
-                  <p>Aenean volutpat rhoncus placerat. Suspendisse commodo, felis et eleifend molestie, nisl arcu mattis sem, laoreet euismod odio nisl sit amet metus. Proin laoreet non diam sit amet tempor. Etiam et tincidunt lorem. Nullam at sollicitudin diam. Duis cursus tristique bibendum. Vestibulum in nunc ullamcorper, fringilla tellus sed, pretium arcu. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Etiam suscipit, risus a imperdiet dictum, nunc nisl condimentum purus, nec volutpat velit nisl eu lacus. Vivamus lobortis placerat diam a congue.</p>
-
-                  <p>Sed posuere odio et leo semper faucibus. Cras ullamcorper viverra elit eget pellentesque. Aliquam erat volutpat. Nullam lectus sem, consequat id egestas id, scelerisque id odio. Mauris condimentum massa ac elementum elementum. Pellentesque consectetur quam sit amet leo vestibulum, et aliquam sapien blandit. Donec diam mi, imperdiet id viverra id, viverra in est. Cras quis hendrerit nisi, quis lobortis mi.</p>
-                </div>
-              </div>
-            </div>
             <h3>Comments: 4 <sup><span class="fa fa-comment-o"></span></sup></h3>
             <ul class="media-list">
               <li class="media blog-entry">
                 <div class="pull-left">
-                  <img class="media-object" src="img/author.jpg" alt="...">
+                  <img class="media-object" src="/unnamed.jpg" alt="<%= @message.user.username %>">
                 </div>
                 <div class="media-body">
                   <div class="blog-entry-content">
                     <h4>Entry title</h4>
-                    <div class="date">2013.11.30 16:34</div>
+                    <div class="date"><%= Russian::strftime(@message.created_at, "%d %B %Y %H:%M") %></div>
                     <div class="content">
                       <p>Sed porta ac ipsum ut mollis. Integer id vestibulum dui, at dapibus orci. Nunc adipiscing, orci sit amet ultricies sagittis, arcu orci feugiat lorem, nec feugiat magna erat id lectus. </p>
                     </div>

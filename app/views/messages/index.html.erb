@@ -22,8 +22,8 @@
                 <div class="thumbnail info-thumbnail padding1 background-clouds color-black">
                   <div class="caption background-white">
 <h4>Последнее сообщение</h4>
-<p>Текста последнего сообщения. Текста последнего сообщения. Текста последнего сообщения. Текста последнего сообщения. Текста последнего сообщения.</p>
-<p><strong>Иванов Иван</strong> 12.04.2013</p>
+<p><%= @lastmessage.text %></p>
+<p><strong><%= @lastmessage.user.username %></strong> <%= @lastmessage.created_at %></p>
 
                   </div>
                 </div>
@@ -42,12 +42,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>1</td>
-            <td>Column content</td>
-            <td>Column content</td>
-            <td>Column content</td>
-          </tr>
+<%= render @messages %>
         </tbody>
       </table>
                   </div>

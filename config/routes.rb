@@ -12,9 +12,6 @@ Articlesale::Application.routes.draw do
 
   resources :users, :only => [:index, :destroy]
 
-  get "users/signup_client"
-  get "users/signup_copy"
-
 get "index.html" => "static_pages#index"
 
 get "/clients/projects.html" => "clients#projects"
