@@ -10,4 +10,5 @@ class ClientsController < ApplicationController
   def profile
 
   end
+
 end

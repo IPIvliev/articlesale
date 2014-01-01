@@ -2,8 +2,8 @@
 
 
             <div class="list-group bright background-clouds color-text">
-              <div class="list-group-item"><h3>Меню клиента</h3></div>
-              <a href="/copyrighters/profile.html" class="list-group-item">Личный кабинет</a>
+              <div class="list-group-item"><h3>Меню копирайтера</h3></div>
+              <%= link_to "Личный кабинет", current_user, :class => "list-group-item" %>
               <a href="/copyrighters/messages.html" class="list-group-item">Сообщения</a>
               <a href="/copyrighters/pull.html" class="list-group-item">Вывести средства</a>
               <a href="/copyrighters/copy.html" class="list-group-item">Список копирайтеров</a>

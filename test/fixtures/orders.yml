@@ -1,0 +1,25 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  name: MyString
+  keywords: MyString
+  description: MyString
+  pictures: 1
+  resolution: 1
+  file: MyString
+  amount: 1
+  finish_date: 2014-01-01 20:25:34
+  category_id: 1
+  status: 1
+
+two:
+  name: MyString
+  keywords: MyString
+  description: MyString
+  pictures: 1
+  resolution: 1
+  file: MyString
+  amount: 1
+  finish_date: 2014-01-01 20:25:34
+  category_id: 1
+  status: 1

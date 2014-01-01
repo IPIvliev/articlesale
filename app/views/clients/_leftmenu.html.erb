@@ -3,7 +3,7 @@
 
             <div class="list-group bright background-clouds color-text">
               <div class="list-group-item"><h3>Меню клиента</h3></div>
-              <a href="/clients/profile.html" class="list-group-item">Личный кабинет</a>
+              <%= link_to "Личный кабинет", current_user, :class => "list-group-item" %>
               <%= link_to "Сообщения", messages_path, :class => "list-group-item" %>
               <a href="/clients/pay.html" class="list-group-item">Пополнить счёт</a>
               <a href="/clients/copy.html" class="list-group-item">Список копирайтеров</a>
@@ -12,7 +12,7 @@
             <ul class="list-group background-lead color-white">
               <li class="list-group-item">
                 <span class="badge background-white color-lead">14</span>
-                <a href="/clients/home.html">Ваши проекты</a>
+                <a href="/projects">Ваши проекты</a>
               </li>
               <li class="list-group-item">
                 <span class="badge background-white color-lead">14</span>

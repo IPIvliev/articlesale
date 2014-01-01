@@ -11,13 +11,19 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131231081827) do
+ActiveRecord::Schema.define(:version => 20140101162534) do
 
   create_table "articles", :force => true do |t|
     t.string   "name"
     t.string   "text"
     t.integer  "user_id"
     t.string   "image"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "categories", :force => true do |t|
+    t.string   "name"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
@@ -29,6 +35,33 @@ ActiveRecord::Schema.define(:version => 20131231081827) do
     t.boolean  "read"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+  end
+
+  create_table "orders", :force => true do |t|
+    t.string   "name"
+    t.string   "keywords"
+    t.string   "description"
+    t.integer  "pictures"
+    t.integer  "resolution"
+    t.string   "file"
+    t.integer  "amount"
+    t.datetime "finish_date"
+    t.integer  "category_id"
+    t.integer  "status"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  create_table "posts", :force => true do |t|
+    t.string   "name"
+    t.string   "text"
+    t.boolean  "finish"
+    t.string   "category_id"
+    t.integer  "user_id"
+    t.float    "price"
+    t.integer  "order_id"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
   end
 
   create_table "projects", :force => true do |t|
@@ -55,6 +88,7 @@ ActiveRecord::Schema.define(:version => 20131231081827) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
+    t.string   "role"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

@@ -13,7 +13,7 @@
   <section>
       <div class="container">
         <div class="row">
-<%= render "leftmenu" %>
+<%= render "/clients/leftmenu" %>
           <div class="col-md-9">
             <div class="row">
               <div class="col-md-12">
@@ -63,7 +63,7 @@
                 <h1>Создать новый проект</h1>
                 <div class="thumbnail info-thumbnail padding1 background-clouds color-black">
                   <div class="caption background-white">
-<%= form_for @project,  :url => {:controller => 'projects', :action => 'new_project'}, :class => "form-horizontal" do |f| %>
+<%= form_for @project,  :class => "form-horizontal" do |f| %>
 
       <div class="form-group">
         <%= f.text_field :name, :class => "form-control", :placeholder => "Наименование Вашего проекта..." %>

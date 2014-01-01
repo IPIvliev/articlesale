@@ -2,15 +2,15 @@
 <html>
 <head>
   <title><%= full_title(yield(:title)) %></title>
-  <%= stylesheet_link_tag    "application", :media => "all" %>
+
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
   <meta name="keywords" content="копирайтинг, копирайт, купить статью, заказать статью, биржа статей, написать статью, купить текст, заказать текст, контент, купить контент, куплю тексты, биржа копирайтинга, заработать в Интернете" />
   <meta name="description" content="На бирже текстов вы можете купить тексты и статьи" />
 </head>
 	<body>
-	    <%= render 'static_pages/header' %>
+
 	<%= yield %>
-	    <%= render 'static_pages/footer' %>
+
 	</body>
 </html>

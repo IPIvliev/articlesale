@@ -10,4 +10,8 @@ class UsersController < ApplicationController
 
   def vkontakte
   end
+
+  def show
+  	
+  end
 end

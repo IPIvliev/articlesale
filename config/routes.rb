@@ -1,4 +1,6 @@
 Articlesale::Application.routes.draw do
+resources :projects
+
   resources :articles
 
   resources :messages
@@ -10,11 +12,13 @@ Articlesale::Application.routes.draw do
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
 
 
-  resources :users, :only => [:index, :destroy]
+  resources :users, :only => [:index, :show, :destroy]
 
 get "index.html" => "static_pages#index"
 
 get "/clients/projects.html" => "clients#projects"
+match "clients/projects", to: 'clients#new_project'
+
 get "/clients/copy.html" => "clients#copy"
 get "/clients/articles.html" => "clients#articles"
 get "/clients/pay.html" => "clients#pay"
