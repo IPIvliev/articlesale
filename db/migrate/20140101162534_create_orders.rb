@@ -10,9 +10,11 @@ class CreateOrders < ActiveRecord::Migration
       t.integer :amount
       t.datetime :finish_date
       t.integer :category_id
-      t.integer :status
+      t.integer :project_id
+      t.integer :status, :default => 0
 
       t.timestamps
     end
+    add_index :orders, [:project_id, :created_at]
   end
 end

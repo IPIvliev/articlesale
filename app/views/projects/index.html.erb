@@ -45,10 +45,10 @@
   <% current_user.projects.each do |project| %>
           <tr>
             <td><%= project.id %></td>
-            <td><%= project.name %></td>
+            <td><%= link_to project.name, project_path(project) %></td>
+            <td><%= "#{project.orders.count} / #{project.orders.where(:status => 3).count}" %></td>
             <td>Column content</td>
-            <td>Column content</td>
-            <td>Column content</td>
+            <td><%= link_to "<i class=icon-trash></i>Удалить".html_safe, project, method: :delete, :class => "red", data: { confirm: "Вы уверены?" } %></td>
           </tr>
   <% end %>
         </tbody>

@@ -1,0 +1,112 @@
+<% provide(:title, 'Все проекты ') %>
+
+<!-- Breadcrumbs - START -->
+<div class="background-clouds breadcrumbs-container">
+  <div class="container">
+    <ol class="breadcrumb">
+      <li><%= link_to "Ваши проекты", projects_path %></li>
+      <li><%= link_to @order.project.name, @order.project %></li>
+      <li class="active"><%= @order.name %></li>
+    </ol>
+  </div>
+</div>
+<!-- Breadcrumbs - END -->
+
+  <section>
+      <div class="container">
+        <div class="row">
+<%= render "/clients/leftmenu" %>
+          <div class="col-md-9">
+            <div class="row">
+
+              <div class="col-md-12">
+                <h1>Заказ <%= ".::Выполнен" if @post %> </h1>
+                <div class="thumbnail info-thumbnail padding1 background-clouds color-black">
+                	<div class="caption background-white">
+                    <table class="table table-bordered">
+                      <thead>
+                        <h4><%= @order.name %></h4>
+                          <tr>
+                            <th>Кол-во знаков</th>
+                            <th>Ключевые слова</th>
+                            <th>Кол-во картинок</th>
+                            <th>Статус</th>
+                          </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td><%= @order.amount %></td>
+                          <td><%= @order.keywords %></td>
+                          <td><%= @order.pictures %></td>
+                          <td><%= @order.complite? %></td>
+                        </tr>
+                        <tr>
+                          <td COLSPAN="4"><%= @order.description %></td>
+                        </tr>
+                      </tbody>
+                    </table>
+                	</div>
+
+                  <% if @order.status == 3 %>
+                  <div class="caption background-white">
+                    <%= form_for @order, :url => {:controller => 'projects', :action => 'edit_status'} do |f| %>
+                      <div class="form-group">
+                        <%= f.select :status, [["Принять", 4], ["Отправить на корректировку", 1], ["В ожидании одобрения", 3]], :selected => "#{@order.status}" %>
+                      </div>
+                      <%= f.submit "Изменить", :class => "btn btn-primary" %>
+                    <% end %>
+                  </div>
+                  <% end %>
+
+                  <% if @order.status == 4 || @order.status == 3 || @order.status == 1 %>
+                  <div class="caption background-white">
+                    <%= form_for @message do |f| %>
+                      <div class="form-group">
+                        <%= f.text_field :text, :placeholder => "Сообщение автору вашего заказа" %>
+                        <%= f.text_field :whom %>
+                        <%= f.hidden_field :user_id, :value => current_user.id %>
+                      </div>
+                      <%= f.submit "Отправить", :class => "btn btn-primary" %>
+                    <% end %>
+                  </div>
+                  <% end %>
+
+                </div>
+			  </div>
+        <% if @post %>
+        <div class="col-md-12">
+                <h1>Текст материала</h1>
+                <div class="thumbnail info-thumbnail padding1 background-clouds color-black">
+                  <div class="caption background-white">
+
+                    <table class="table table-bordered">
+                      <thead>
+                        <h4><%= @post.name %></h4>
+                          <tr>
+                            <th>Кол-во знаков</th>
+                            <th>Автор</th>
+                            <th>Стоимость</th>
+                            <th>Дата написания</th>
+                          </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td><%= @post %></td>
+                          <td><%= link_to @post.user.username, @post.user %></td>
+                          <td><%= @post.price %></td>
+                          <td><%= @post.finish %></td>
+                        </tr>
+                      </tbody>
+                    </table>
+<p><%= @post.text %></p>
+                  </div>
+                </div>
+        </div>
+        <% end %>
+
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>

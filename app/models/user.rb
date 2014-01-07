@@ -14,4 +14,6 @@ class User < ActiveRecord::Base
 
   has_many :messages
   has_many :projects
+  has_many :orders, :through => :projects
+  has_many :posts
 end

@@ -1,5 +1,11 @@
 Articlesale::Application.routes.draw do
-resources :projects
+resources :projects do
+	post :create_order, :on => :member
+	resources :orders, :only => [:show], :to => "projects#showorder"
+
+match "orders/:id/edit", to: 'projects#edit_status'
+match "orders/:id/delete", to: 'projects#delete'
+end
 
   resources :articles
 
@@ -22,7 +28,7 @@ match "clients/projects", to: 'clients#new_project'
 get "/clients/copy.html" => "clients#copy"
 get "/clients/articles.html" => "clients#articles"
 get "/clients/pay.html" => "clients#pay"
-get "/clients/profile.html" => "clients#profile"
+get "/clients/check.html" => "clients#check"
 get "/clients/wait.html" => "clients#wait"
 get "/clients/correct.html" => "clients#correct"
 get "/clients/work.html" => "clients#work"
