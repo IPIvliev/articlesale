@@ -22,7 +22,8 @@
                 <div class="thumbnail info-thumbnail padding1 background-clouds color-black">
                   <div class="caption background-white">
 <h4>Последнее сообщение</h4>
-<p><%=  %></p>
+<p><%= current_user.users.count %></p>
+<p><%= current_user.whoms.count %></p>
 <p><strong><%=  %></strong> <%=  %></p>
 
                   </div>
@@ -47,7 +48,7 @@
             <td><%=  %></td>
             <td>
               <% if discussion.user == current_user %>
-                <%= link_to User.find(discussion.whom).username, discussion_path %>
+                <%= link_to User.find(discussion.whom).username, discussion_path(discussion) %>
               <% else %>
                 <%= discussion.user.username %>
               <% end %>

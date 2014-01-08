@@ -12,8 +12,28 @@ class User < ActiveRecord::Base
 
   ROLES = %w[admin copy client]
 
-  has_many :messages
+  has_many :discussions, foreign_key: "user_id"
+  has_many :messages, :through => :discussions
+  has_many :users, through: :discussions
+  has_many :reverse_discussions, foreign_key: "whom_id", class_name:  "Discussion"
+                            
+  has_many :whoms, through: :reverse_discussions
+
+
   has_many :projects
   has_many :orders, :through => :projects
   has_many :posts
+
+
+  def speaking?(other_user)
+    discussions.find_by_whom_id(other_user.id)
+  end
+
+  def speak!(other_user)
+    discussions.create!(:whom_id => other_user.id)
+  end
+
+  def unfollow!(other_user)
+    discussions.find_by_whom_id(other_user.id).destroy
+  end
 end

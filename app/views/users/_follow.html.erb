@@ -1,0 +1,4 @@
+<%= form_for(current_user.discussions.build(whom_id: @user.id)) do |f| %>
+  <div><%= f.hidden_field :whom_id %></div>
+  <%= f.submit "Добавить в список контактов", class: "btn btn-large btn-primary" %>
+<% end %>

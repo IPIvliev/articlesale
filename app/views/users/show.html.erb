@@ -30,6 +30,16 @@
                 <div class="thumbnail info-thumbnail padding1 background-clouds color-black">
                   <div class="caption background-white">
 
+
+  <div id="follow_form">
+  <% if current_user.speaking?(@user) %>
+    <%= render 'unfollow' %>
+  <% else %>
+    <%= render 'follow' %>
+  <% end %>
+  </div>
+
+
       <table class="table table-hover">
         <thead>
           <tr>

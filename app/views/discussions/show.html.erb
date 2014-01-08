@@ -1,0 +1,56 @@
+<% provide(:title, @discussion.user.username) %>
+
+
+<!-- Breadcrumbs - START -->
+<div class="background-clouds breadcrumbs-container">
+  <div class="container">
+    <ol class="breadcrumb">
+      <li><a href="/index.html">Главная</a></li>
+      <li><%= link_to "Сообщения", discussions_path %></li>
+      <li class="active"><%= @discussion.user.username %></li>
+    </ol>
+  </div>
+</div>
+<!-- Breadcrumbs - END -->
+
+  <section>
+      <div class="container">
+        <div class="row">
+          <%= render "/clients/leftmenu" %>
+          <div class="col-md-9">
+            <h3>Сообщений: <%= @discussion.amount %> <sup><span class="fa fa-comment-o"></span></sup></h3>
+            <ul class="media-list">
+
+
+              <% @discussion.messages.each do |message| %>
+              <li class="media blog-entry">
+                <div class="pull-left">
+                  <img class="media-object" src="/unnamed.jpg" alt="<%= message.user.username %>">
+                </div>
+                <div class="media-body">
+                  <div class="blog-entry-content">
+                    <h4><%= message.user.username %></h4>
+                    <div class="date"><%= Russian::strftime(message.created_at, "%d %B %Y %H:%M") %></div>
+                    <div class="content">
+                      <p><%= message.text %></p>
+                    </div>
+                  </div>
+                </div>
+              </li>
+              <% end %>
+
+<%= form_for @message, :url => {:action => "newmessage"} do |f| %>
+<%= f.hidden_field :user_id, :value => current_user.id %>
+<%= f.hidden_field :whom, :value => @discussion.whom.id %>
+<%= f.hidden_field :discussion_id, :value => @discussion.id %>
+<%= f.text_field :text, placeholder: "Текст вашего сообщения пользоватею #{@discussion.whom.username}" %>
+
+<%= f.submit %>
+<% end %>
+
+
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>

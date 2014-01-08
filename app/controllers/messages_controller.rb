@@ -1,16 +1,21 @@
 class MessagesController < ApplicationController
 
 def index
-	@messages = Message.all
-	@lastmessage = Message.all.last
+	@discussions = Discussion.where("user_id = ? OR whom = ?", current_user, current_user)
+
 end
  
  def show
  	@message = Message.find(params[:id])
+
+ end
+
+ def new
+ 	#@message = Message.new
  end
 
  def create
- 	Message.create(:text => params[:message][:text], :whom => params[:message][:whom], :user_id => params[:message][:user_id])
- 	redirect_to messages_path
+ 	#Message.create(:text => params[:message][:text], :whom => params[:message][:whom], :user_id => params[:message][:user_id])
+ 	redirect_to discussions_path
  end
 end

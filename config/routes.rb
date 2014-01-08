@@ -9,7 +9,10 @@ end
 
   resources :articles
 
-  resources :messages
+resources :discussions do 
+  resources :messages, :on => :member
+  post :newmessage, :on => :member
+end
 
   get "omniauth_callbacks/facebook"
 

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140101162534) do
+ActiveRecord::Schema.define(:version => 20140108101857) do
 
   create_table "articles", :force => true do |t|
     t.string   "name"
@@ -28,13 +28,26 @@ ActiveRecord::Schema.define(:version => 20140101162534) do
     t.datetime "updated_at", :null => false
   end
 
+  create_table "discussions", :force => true do |t|
+    t.integer  "amount"
+    t.integer  "user_id"
+    t.integer  "whom_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "discussions", ["user_id", "whom_id"], :name => "index_discussions_on_user_id_and_whom_id", :unique => true
+  add_index "discussions", ["user_id"], :name => "index_discussions_on_user_id"
+  add_index "discussions", ["whom_id"], :name => "index_discussions_on_whom_id"
+
   create_table "messages", :force => true do |t|
     t.integer  "user_id"
     t.integer  "whom"
     t.string   "text"
-    t.boolean  "read"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.boolean  "read",          :default => false
+    t.datetime "created_at",                       :null => false
+    t.datetime "updated_at",                       :null => false
+    t.integer  "discussion_id"
   end
 
   create_table "orders", :force => true do |t|
