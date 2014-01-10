@@ -4,9 +4,9 @@
             <div class="list-group bright background-clouds color-text">
               <div class="list-group-item"><h3>Меню копирайтера</h3></div>
               <%= link_to "Личный кабинет", current_user, :class => "list-group-item" %>
-              <a href="/copyrighters/messages.html" class="list-group-item">Сообщения</a>
+              <%= link_to "Сообщения", discussions_path, :class => "list-group-item" %>
               <a href="/copyrighters/pull.html" class="list-group-item">Вывести средства</a>
-              <a href="/copyrighters/copy.html" class="list-group-item">Список копирайтеров</a>
+              <%= link_to "Список копирайтеров", users_path, :class => "list-group-item" %>
               <a href="/copyrighters/articles.html" class="list-group-item">Готовые тексты по категориям</a>
             </div>
             <ul class="list-group background-lead color-white">

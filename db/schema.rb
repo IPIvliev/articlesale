@@ -29,11 +29,11 @@ ActiveRecord::Schema.define(:version => 20140108101857) do
   end
 
   create_table "discussions", :force => true do |t|
-    t.integer  "amount"
+    t.integer  "amount",     :default => 0
     t.integer  "user_id"
     t.integer  "whom_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",                :null => false
+    t.datetime "updated_at",                :null => false
   end
 
   add_index "discussions", ["user_id", "whom_id"], :name => "index_discussions_on_user_id_and_whom_id", :unique => true

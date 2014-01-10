@@ -1,4 +1,4 @@
-<% provide(:title, @discussion.user.username) %>
+<% provide(:title, "#{@discussion.user.username} и #{@discussion.whom.username}") %>
 
 
 <!-- Breadcrumbs - START -->
@@ -7,7 +7,7 @@
     <ol class="breadcrumb">
       <li><a href="/index.html">Главная</a></li>
       <li><%= link_to "Сообщения", discussions_path %></li>
-      <li class="active"><%= @discussion.user.username %></li>
+      <li class="active"><%= "#{@discussion.user.username} и #{@discussion.whom.username}" %></li>
     </ol>
   </div>
 </div>
@@ -29,7 +29,7 @@
                 </div>
                 <div class="media-body">
                   <div class="blog-entry-content">
-                    <h4><%= message.user.username %></h4>
+                    <h4><%= link_to message.user.username, message.user, :target => "blank" %></h4>
                     <div class="date"><%= Russian::strftime(message.created_at, "%d %B %Y %H:%M") %></div>
                     <div class="content">
                       <p><%= message.text %></p>
@@ -41,11 +41,13 @@
 
 <%= form_for @message, :url => {:action => "newmessage"} do |f| %>
 <%= f.hidden_field :user_id, :value => current_user.id %>
-<%= f.hidden_field :whom, :value => @discussion.whom.id %>
-<%= f.hidden_field :discussion_id, :value => @discussion.id %>
-<%= f.text_field :text, placeholder: "Текст вашего сообщения пользоватею #{@discussion.whom.username}" %>
+<%= f.number_field :whom, :value => @discussion.speaker(current_user) %>
+<%= f.number_field :discussion_id, :value => @discussion.id %>
+<div class="form-group">
+  <%= f.text_area :text, :size => "130x8", placeholder: "Текст вашего сообщения пользователю #{@discussion.whom.username}" %>
+</div>
 
-<%= f.submit %>
+<%= f.submit :value => "Отправить сообщение", :class => "btn btn-primary" %>
 <% end %>
 
 

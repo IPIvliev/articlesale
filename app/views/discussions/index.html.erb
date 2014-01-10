@@ -48,14 +48,14 @@
             <td><%=  %></td>
             <td>
               <% if discussion.user == current_user %>
-                <%= link_to User.find(discussion.whom).username, discussion_path(discussion) %>
+                <%= link_to discussion.whom.username, discussion_path(discussion) %>
               <% else %>
-                <%= discussion.user.username %>
+                <%= link_to discussion.user.username, discussion_path(discussion) %>
               <% end %>
 
             </td>
-            <td><%= discussion.messages.where(:read => false).count %></td>
-            <td><%= discussion.amount %></td>
+            <td><%= discussion.messages.where("read == ? AND user_id != ?", false, current_user).count %></td>
+            <td><%= discussion.amount %> </td>
           </tr>
 <% end %>
         </tbody>

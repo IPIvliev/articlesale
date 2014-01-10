@@ -65,7 +65,7 @@
               </ul>
             </li>
             <% else %>
-            <li><%= link_to('Личный кабинет', current_user) %> </li>
+            <li><%= link_to "Личный кабинет #{current_user.username}", current_user %> </li>
               <li><%= link_to('Logout', destroy_user_session_path, :method => :delete) %> </li>
             <% end %>
           </ul>

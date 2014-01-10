@@ -26,20 +26,55 @@
           <div class="col-md-9">
             <div class="row">
               <div class="col-md-12">
-                <h1>Личный кабинет</h1>
+
+              <% if current_user != @user %>
+                <h1>Сообщения</h1>
                 <div class="thumbnail info-thumbnail padding1 background-clouds color-black">
                   <div class="caption background-white">
 
 
   <div id="follow_form">
   <% if current_user.speaking?(@user) %>
-    <%= render 'unfollow' %>
+
+  <%= render 'unfollow' %>
+
+    <%= form_for @message, :url => {:controller => "discussions", :action => "newmessage"} do |f| %>
+<%= f.hidden_field :user_id, :value => current_user.id %>
+<%= f.hidden_field :whom, :value => @user.id %>
+<%= f.hidden_field :discussion_id, :value => current_user.discussions.find_by_whom_id(@user.id).id %>
+<div class="form-group">
+  <%= f.text_area :text, :size => "60x8", placeholder: "Текст вашего сообщения пользователю #{@user.username}" %>
+</div>
+<%= f.submit :value => "Отправить сообщение", :class => "btn btn-primary" %>
+<% end %>
+
+<% elsif @user.speaking?(current_user) %>
+
+    <%= form_for @message, :url => {:controller => "discussions", :action => "newmessage"} do |f| %>
+<%= f.hidden_field :user_id, :value => current_user.id %>
+<%= f.hidden_field :whom, :value => @user.id %>
+<%= f.hidden_field :discussion_id, :value => @user.discussions.find_by_whom_id(current_user.id).id %>
+<div class="form-group">
+  <%= f.text_area :text, :size => "130x8", placeholder: "Текст вашего сообщения пользователю #{@user.username}" %>
+</div>
+<%= f.submit :value => "Отправить сообщение", :class => "btn btn-primary" %>
+<% end %>
+
   <% else %>
     <%= render 'follow' %>
+
   <% end %>
   </div>
+<br>
 
+  </div>
+</div>
+<% end %>
+<br>
 
+                <h1>Личный кабинет</h1>
+                <div class="thumbnail info-thumbnail padding1 background-clouds color-black">
+                  <div class="caption background-white">
       <table class="table table-hover">
         <thead>
           <tr>
