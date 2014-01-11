@@ -1,0 +1,7 @@
+<% if current_user.role == "client" %>
+    <%= render "clients/leftmenu" %>
+  <% elsif current_user.role == "copy" %>
+    <%= render "copyrighters/leftmenu" %>
+  <% elsif current_user.role == "admin" %>
+    <%= render "admins/leftmenu" %>
+<% end %>

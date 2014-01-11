@@ -5,7 +5,18 @@
   <div class="container">
     <ol class="breadcrumb">
       <li class="active">Ваши проекты</li>
+            <li class="navbar-right">
+              <% if !Message.where("read == ? AND whom == ?", false, current_user).empty? %>
+                <%= link_to "Новые сообщения (#{Message.where("read == ? AND whom == ?", false, current_user).count})", Message.where("read == ? AND whom == ?", false, current_user).discussion %>
+              <% else %>
+                <%= "У Вас нет новых сообщений" %>
+              <% end %>
+
+            </li>
+            <li class="navbar-right"><a href="/about.html">О бирже</a></li>
     </ol>
+
+
   </div>
 </div>
 <!-- Breadcrumbs - END -->
@@ -13,7 +24,7 @@
   <section>
       <div class="container">
         <div class="row">
-<%= render "/clients/leftmenu" %>
+          <%= render "shared/whatmenu" %>
           <div class="col-md-9">
             <div class="row">
               <div class="col-md-12">

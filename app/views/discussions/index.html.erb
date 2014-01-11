@@ -13,7 +13,7 @@
   <section>
       <div class="container">
         <div class="row">
-<%= render "/clients/leftmenu" %>
+          <%= render "shared/whatmenu" %>
           <div class="col-md-9">
             <div class="row">
               <div class="col-md-12">
@@ -21,17 +21,23 @@
 
                 <div class="thumbnail info-thumbnail padding1 background-clouds color-black">
                   <div class="caption background-white">
-<h4>Последнее сообщение</h4>
-<p><%= current_user.users.count %></p>
-<p><%= current_user.whoms.count %></p>
-<p><strong><%=  %></strong> <%=  %></p>
+<% if @lastmessage %>
 
+  <h4>Последнее сообщение</h4>
+  <p><%= @lastmessage.text %></p>
+  <p>от <strong><%= link_to @lastmessage.user.username, @lastmessage.user %></strong> <%= Russian::strftime(@lastmessage.created_at, "%d %B %Y %H:%M") %> <%= ".:: Новое сообщение" if @lastmessage.read == false %></p>
+      <% else %>
+<h4>Вам пока не написали ни одного сообщения.</h4>
+<% end %>
                   </div>
                 </div>
+
 <br>
 
                 <div class="thumbnail info-thumbnail padding1 background-clouds color-black">
                   <div class="caption background-white">
+
+        <% if !@discussions.empty? %>            
 <h4>Все сообщения</h4>
       <table class="table table-hover">
         <thead>
@@ -60,8 +66,14 @@
 <% end %>
         </tbody>
       </table>
+            <% else %>
+<h4>У Вас пока нет ни одного собеседника.</h4>
+<% end %>
+
                   </div>
                 </div>
+
+
 
               </div>
 

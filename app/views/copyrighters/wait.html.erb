@@ -25,22 +25,28 @@
         <thead>
           <tr>
             <th>ID</th>
+            <th>Заказчик</th>
             <th>Наименование</th>
-            <th>Дата заказа</th>
+            <th>Категория</th>
+            <th>Дата завершения</th>
             <th>Стоимость</th>
-            <th>Автор</th>
-            <th>Статус</th>
+            <th>Кол-во знаков</th>
+            <th>Действие</th>
           </tr>
         </thead>
         <tbody>
+  <% @orders.each do |order| %>
           <tr>
-            <td>1</td>
-            <td>Column content</td>
-            <td>Column content</td>
-            <td>Column content</td>
-            <td>Column content</td>
-            <td>Column content</td>
+            <td><%= order.id %></td>
+            <td><%= link_to order.project.user.username, order.project.user %></td>
+            <td><%= link_to order.name, project_order_url(order.project, order) %></td>
+            <td><%= order.category %></td>
+            <td><%= order.finish_date %></td>
+            <td><%= price_is(order.amount) %> руб.</td>
+            <td><%= order.amount %></td>
+            <td>Взять заказ</td>
           </tr>
+  <% end %>
         </tbody>
       </table>
 

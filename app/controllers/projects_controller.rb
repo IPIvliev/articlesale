@@ -43,6 +43,7 @@ class ProjectsController < ApplicationController
     @order = Order.find(params[:id])
     @post = @order.post
     @message = Message.new
+    @user = @post.user if @post
 
     render "projects/order/show"
   end

@@ -13,7 +13,7 @@
   <section>
       <div class="container">
         <div class="row">
-<%= render "leftmenu" %>
+          <%= render "leftmenu" %>
           <div class="col-md-9">
             <div class="row">
               <div class="col-md-12">
@@ -42,15 +42,13 @@
           </tr>
         </thead>
         <tbody>
-  <% current_user.projects.each do |project| %>
           <tr>
-            <td><%= project.id %></td>
-            <td><%= project.name %></td>
+            <td>1</td>
+            <td>Column content</td>
             <td>Column content</td>
             <td>Column content</td>
             <td>Column content</td>
           </tr>
-  <% end %>
         </tbody>
       </table>
 
@@ -63,14 +61,13 @@
                 <h1>Создать новый проект</h1>
                 <div class="thumbnail info-thumbnail padding1 background-clouds color-black">
                   <div class="caption background-white">
-<%= form_for @project,  :url => {:controller => 'projects', :action => 'new_project'}, :class => "form-horizontal" do |f| %>
-
+<form class="form-horizontal" role="form">
       <div class="form-group">
-        <%= f.text_field :name, :class => "form-control", :placeholder => "Наименование Вашего проекта..." %>
-      </div>
-      <%= f.submit "Создать", :class => "btn btn-primary" %>
+<input class="form-control" id="focusedInput" type="text" placeholder="Наименование Вашего проекта...">
+</div>
+    <button type="submit" class="btn btn-primary">Создать</button>
 
-    <% end %>
+    </form>
             </div>
           </div>
         </div>

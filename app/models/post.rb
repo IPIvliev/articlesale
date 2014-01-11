@@ -3,4 +3,12 @@ class Post < ActiveRecord::Base
 
   belongs_to :order
   belongs_to :user
+  belongs_to :category
+  def sale
+  	return 99 if text.gsub(/\s+/, '').length <= 500
+  	return 199 if text.gsub(/\s+/, '').length <= 1200
+  	return 299 if text.gsub(/\s+/, '').length <= 2300
+  	return 399 if text.gsub(/\s+/, '').length <= 4400
+  end
+
 end

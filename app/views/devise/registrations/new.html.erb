@@ -10,11 +10,10 @@
   </div>
 </div>
 <!-- Breadcrumbs - END -->
-
     <section>
       <div class="container">
-      	  <%= devise_error_messages! %>
-        <h1>Регистрация для заказчиков контента</h1>
+          <%= devise_error_messages! %>
+        <h1>Регистрация на бирже текстов</h1>
         <div class="row">
           <div class="col-sm-7 col-md-offset-1 col-md-6">
             <div class="thumbnail info-thumbnail background-lead">
@@ -30,10 +29,19 @@
                     <label for="exampleInputEmail13">Email</label>
                     <%= f.email_field :email, :class => "form-control", :placeholder => "Ваша электронная почта" %>
                   </div>
-                                    <div class="form-group">
-                    <label for="exampleInputPassword13">Пароль</label>
-                    <%= f.collection_select :role, User::ROLES, :to_s, :humanize %>
+
+                  <div class="form-group">
+                    <label for="exampleInputPassword13">Вы заказчик или копирайтер?</label>
+                    <div class="radio">
+                      <%= f.radio_button(:role, "client") %>
+                      <%= f.label(:role, "Заказчик") %>
+                    </div>
+                    <div class="radio">
+                      <%= f.radio_button(:role, "copy") %>
+                      <%= f.label(:role, "Копирайтер") %>
+                    </div>
                   </div>
+
                   <div class="form-group">
                     <label for="exampleInputPassword13">Пароль</label>
                     <%= f.password_field :password, :class => "form-control", :placeholder => "Введите пароль" %>
@@ -61,6 +69,11 @@
                     <label for="exampleInputPassword3">Пароль</label>
                     <%= f.password_field :password, :class => "form-control", :placeholder => "Ваш пароль" %>
                   </div>
+                <div class="form-group">
+                  <label>
+                    <%= link_to "Забыли пароль?", new_password_path('user') %>
+                  </label>
+                </div>
                   <div class="checkbox">
                     <label>
                       Запомнить меня <%= f.check_box :remember_me %>
@@ -68,6 +81,7 @@
                   </div>
                   <%= f.submit 'Войти', :class => "btn btn-default" %>
                 <% end %>
+
               </div>
             </div>
           </div>

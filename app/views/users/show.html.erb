@@ -8,6 +8,14 @@
       <li><a href="/index.html">Главная</a></li>
       <li><%= link_to "Пользователи", users_path %></a></li>
       <li class="active"><%= @user.username %></li>
+                  <li class="navbar-right">
+              <% if !Message.where("read == ? AND whom == ?", false, current_user).empty? %>
+                <%= link_to "Новые сообщения (#{Message.where("read == ? AND whom == ?", false, current_user).count})", Message.where("read == ? AND whom == ?", false, current_user).first.discussion %>
+              <% else %>
+                <%= "У Вас нет новых сообщений" %>
+              <% end %>
+
+            </li>
     </ol>
   </div>
 </div>
@@ -16,13 +24,7 @@
  <section>
       <div class="container">
         <div class="row">
-<% if current_user.role == "client" %>
-<%= render "/clients/leftmenu" %>
-<% elsif current_user.role == "copy" %>
-<%= render "/copyrighters/leftmenu" %>
-<% elsif current_user.role == "admin" %>
-<%= render "/admins/leftmenu" %>
-<% end %>
+          <%= render "shared/whatmenu" %>
           <div class="col-md-9">
             <div class="row">
               <div class="col-md-12">
@@ -36,7 +38,7 @@
   <div id="follow_form">
   <% if current_user.speaking?(@user) %>
 
-  <%= render 'unfollow' %>
+  <%= render 'unfollow' %><br>
 
     <%= form_for @message, :url => {:controller => "discussions", :action => "newmessage"} do |f| %>
 <%= f.hidden_field :user_id, :value => current_user.id %>

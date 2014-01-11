@@ -8,7 +8,7 @@ class CreatePosts < ActiveRecord::Migration
       t.integer :user_id
       t.integer :amount
       t.datetime :finish_date
-      t.float :price
+      t.decimal :price, :precision => 6, :scale => 2
       t.integer :order_id
 
       t.timestamps

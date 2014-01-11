@@ -5,6 +5,7 @@ class Order < ActiveRecord::Base
 
   belongs_to :project
   belongs_to :user
+  belongs_to :category
   has_one :post
 
   def complite?

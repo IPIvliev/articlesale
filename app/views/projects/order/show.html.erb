@@ -15,10 +15,9 @@
   <section>
       <div class="container">
         <div class="row">
-<%= render "/clients/leftmenu" %>
+          <%= render "shared/whatmenu" %>
           <div class="col-md-9">
             <div class="row">
-
               <div class="col-md-12">
                 <h1>Заказ <%= ".::Выполнен" if @post %> </h1>
                 <div class="thumbnail info-thumbnail padding1 background-clouds color-black">
@@ -58,18 +57,7 @@
                   </div>
                   <% end %>
 
-                  <% if @order.status == 4 || @order.status == 3 || @order.status == 1 %>
-                  <div class="caption background-white">
-                    <%= form_for @message do |f| %>
-                      <div class="form-group">
-                        <%= f.text_field :text, :placeholder => "Сообщение автору вашего заказа" %>
-                        <%= f.text_field :whom %>
-                        <%= f.hidden_field :user_id, :value => current_user.id %>
-                      </div>
-                      <%= f.submit "Отправить", :class => "btn btn-primary" %>
-                    <% end %>
-                  </div>
-                  <% end %>
+    
 
                 </div>
 			  </div>
@@ -91,15 +79,62 @@
                       </thead>
                       <tbody>
                         <tr>
-                          <td><%= @post %></td>
+                          <td><%= @post.text.gsub(/\s+/, '').length %></td>
                           <td><%= link_to @post.user.username, @post.user %></td>
                           <td><%= @post.price %></td>
-                          <td><%= @post.finish %></td>
+                          <td><%= Russian::strftime(@post.updated_at, "%d %B %Y %H:%M") %></td>
                         </tr>
                       </tbody>
                     </table>
 <p><%= @post.text %></p>
                   </div>
+                </div>
+
+
+
+              <% if @order.status == 4 || @order.status == 3 || @order.status == 1 %>
+              <br>
+                              <h1>Отправить сообщение автору статьи</h1>
+                <div class="thumbnail info-thumbnail padding1 background-clouds color-black">
+                  <div class="caption background-white">
+
+   <% if @user && current_user.speaking?(@user) %>
+
+    <%= form_for @message, :url => {:controller => "discussions", :action => "newmessage"} do |f| %>
+<%= f.hidden_field :user_id, :value => current_user.id %>
+<%= f.hidden_field :whom, :value => @user.id %>
+<%= f.hidden_field :discussion_id, :value => current_user.discussions.find_by_whom_id(@user.id).id %>
+<div class="form-group">
+  <%= f.text_area :text, :size => "130x8", placeholder: "Текст вашего сообщения пользователю #{@post.user.username}" %>
+</div>
+<%= f.submit :value => "Отправить сообщение", :class => "btn btn-primary" %>
+<% end %>
+
+<% elsif @user && @user.speaking?(current_user) %>
+
+    <%= form_for @message, :url => {:controller => "discussions", :action => "newmessage"} do |f| %>
+<%= f.hidden_field :user_id, :value => current_user.id %>
+<%= f.hidden_field :whom, :value => @user.id %>
+<%= f.hidden_field :discussion_id, :value => @user.discussions.find_by_whom_id(current_user.id).id %>
+<div class="form-group">
+  <%= f.text_area :text, :size => "130x8", placeholder: "Текст вашего сообщения пользователю #{@post.user.username}" %>
+</div>
+<%= f.submit :value => "Отправить сообщение", :class => "btn btn-primary" %>
+<% end %>
+
+  <% elsif @user %>
+    <%= render 'users/follow' %>
+
+  <% end %>
+
+
+</div></div>
+                  </div>
+                  <% end %>
+
+
+
+
                 </div>
         </div>
         <% end %>

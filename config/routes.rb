@@ -28,8 +28,7 @@ get "index.html" => "static_pages#index"
 get "/clients/projects.html" => "clients#projects"
 match "clients/projects", to: 'clients#new_project'
 
-get "/clients/copy.html" => "clients#copy"
-get "/clients/articles.html" => "clients#articles"
+get "/clients/articles.html" => "projects#articles"
 get "/clients/pay.html" => "clients#pay"
 get "/clients/check.html" => "clients#check"
 get "/clients/wait.html" => "clients#wait"
@@ -37,7 +36,13 @@ get "/clients/correct.html" => "clients#correct"
 get "/clients/work.html" => "clients#work"
 get "/clients/complite.html" => "clients#complite"
 
-get "/copyrighters/profile.html" => "copyrighters#profile"
+get "/copyrighters/complite.html" => "copyrighters#complite"
+get "/copyrighters/correct.html" => "copyrighters#correct"
+get "/copyrighters/newpost.html" => "copyrighters#newpost"
+get "/copyrighters/push.html" => "copyrighters#push"
+get "/copyrighters/wait.html" => "copyrighters#wait"
+get "/copyrighters/work.html" => "copyrighters#work"
+get "/copyrighters/articles.html" => "projects#articles"
 
 match "/about.html", to: 'static_pages#about'
 match "/articles.html", to: 'articles#index'

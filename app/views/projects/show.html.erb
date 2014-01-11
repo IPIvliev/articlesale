@@ -14,7 +14,7 @@
   <section>
       <div class="container">
         <div class="row">
-<%= render "/clients/leftmenu" %>
+          <%= render "shared/whatmenu" %>
           <div class="col-md-9">
             <div class="row">
 
@@ -41,7 +41,7 @@
               <td><%= order.id %></td>
               <td><%= link_to order.name, project_order_url(@project, order) %></td>
               <td><%= order.amount %></td>
-              <td>199 руб.</td>
+              <td><%= price_is(order.amount) %> руб.</td>
               <td><%= order.complite? %></td>
               <td>Изменить, Удалить</td>
             </tr>

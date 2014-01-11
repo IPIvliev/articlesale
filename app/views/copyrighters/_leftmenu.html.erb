@@ -5,26 +5,33 @@
               <div class="list-group-item"><h3>Меню копирайтера</h3></div>
               <%= link_to "Личный кабинет", current_user, :class => "list-group-item" %>
               <%= link_to "Сообщения", discussions_path, :class => "list-group-item" %>
-              <a href="/copyrighters/pull.html" class="list-group-item">Вывести средства</a>
+              <a href="/copyrighters/push.html" class="list-group-item">Вывести средства</a>
               <%= link_to "Список копирайтеров", users_path, :class => "list-group-item" %>
               <a href="/copyrighters/articles.html" class="list-group-item">Готовые тексты по категориям</a>
             </div>
+
             <ul class="list-group background-lead color-white">
               <li class="list-group-item">
-                <span class="badge background-white color-lead">14</span>
-                <a href="/clients/home.html">Новые заказы</a>
+                <a href="/copyrighters/newpost.html">Выставить текст на продажу</a>
+              </li>
+            </ul>
+
+            <ul class="list-group background-lead color-white">
+              <li class="list-group-item">
+                <%= "<span class='badge background-white color-lead'>#{Order.where(:status => 0).count}</span>".html_safe if !Order.where(:status => 0).empty? %>
+                <a href="/copyrighters/wait.html">Новые заказы</a>
               </li>
               <li class="list-group-item">
-                <span class="badge background-white color-lead">4</span>
-                <a href="/clients/complite.html">Выполненные заказы</a>
+                <%= "<span class='badge background-white color-lead'>#{Order.where(:status => 0).count}</span>".html_safe if !current_user.posts.where(:finish => true).empty? %>
+                <a href="/copyrighters/complite.html">Выполненные заказы</a>
               </li>
               <li class="list-group-item">
-                <span class="badge background-white color-lead">1</span>
-                <a href="/clients/work.html"> Заказы в работе </a>
+                <span class="badge background-white color-lead"></span>
+                <a href="/copyrighters/work.html"> Заказы в работе </a>
               </li>
               <li class="list-group-item">
-                <span class="badge background-white color-lead">1</span>
-                <a href="/clients/correct.html">Заказы на корректировке</a>
+                <span class="badge background-white color-lead"></span>
+                <a href="/copyrighters/correct.html">Заказы на корректировке</a>
               </li>
             </ul>
           </div>

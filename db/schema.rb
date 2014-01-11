@@ -71,15 +71,15 @@ ActiveRecord::Schema.define(:version => 20140108101857) do
   create_table "posts", :force => true do |t|
     t.string   "name"
     t.string   "text"
-    t.boolean  "finish",      :default => false
+    t.boolean  "finish",                                    :default => false
     t.string   "category_id"
     t.integer  "user_id"
     t.integer  "amount"
     t.datetime "finish_date"
-    t.float    "price"
+    t.decimal  "price",       :precision => 6, :scale => 2
     t.integer  "order_id"
-    t.datetime "created_at",                     :null => false
-    t.datetime "updated_at",                     :null => false
+    t.datetime "created_at",                                                   :null => false
+    t.datetime "updated_at",                                                   :null => false
   end
 
   create_table "projects", :force => true do |t|
