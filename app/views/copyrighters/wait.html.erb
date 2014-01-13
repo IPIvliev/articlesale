@@ -41,10 +41,15 @@
             <td><%= link_to order.project.user.username, order.project.user %></td>
             <td><%= link_to order.name, project_order_url(order.project, order) %></td>
             <td><%= order.category %></td>
-            <td><%= order.finish_date %></td>
+            <td><%= Russian::strftime(order.finish_date, "%d %B %Y") %></td>
             <td><%= price_is(order.amount) %> руб.</td>
             <td><%= order.amount %></td>
-            <td>Взять заказ</td>
+            <td>
+              <%= form_for @newpost, :url => {:controller => "projects", :action => "create_post"} do |f| %>
+                <%= f.hidden_field :order_id, :value => order.id %>
+                <%= f.submit "Выполнить заказ", class: "btn btn-large btn-primary" %>
+              <% end %>
+            </td>
           </tr>
   <% end %>
         </tbody>

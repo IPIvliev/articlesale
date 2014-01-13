@@ -29,6 +29,7 @@
             <th>Проект</th>
             <th>Стоимость</th>
             <th>Автор</th>
+            <th>Выполнение заказа</th>
             <th>Статус</th>
           </tr>
         </thead>
@@ -38,9 +39,10 @@
             <td><%= order.id %></td>
             <td><%= link_to order.name, project_order_url(order.project, order) %></td>
             <td><%= link_to order.project.name, order.project %></td>
-            <td>Column content</td>
-            <td>Column content</td>
-            <td><%= order.complite? %></td>
+            <td><%= price_is(order.amount) %></td>
+            <td><%= order.post.user.username %></td>
+            <td><%= Russian::strftime(order.finish_date, "%d %B %Y") %></td>
+            <td><%= percentage(order.post) %></td>
           </tr>
           <% end %>
         </tbody>

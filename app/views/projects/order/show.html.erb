@@ -88,7 +88,7 @@
                   </div>
                 </div>
 
-              <% if @order.status == 4 || @order.status == 3 || @order.status == 1 %>
+              <% if @order.status == 4 || @order.status == 3 || @order.status == 1 || @order.status == 2 %>
                 <br>
                 <h1>Отправить сообщение автору статьи</h1>
                 <div class="thumbnail info-thumbnail padding1 background-clouds color-black">
@@ -113,23 +113,21 @@
                           </div>
                           <%= f.submit :value => "Отправить сообщение", :class => "btn btn-primary" %>
                         <% end %>
+                      <% elsif @user.id == 900 %>
+
+
                       <% elsif @user %>
                         <%= render 'users/follow' %>
                       <% end %>
                     <% end %>
                   </div>
                 </div>
-              
 
-<% elsif current_user.role == "copy" %>
-<%= form_for @newpost, :url => {:controller => "projects", :action => "create_post"} do |f| %>
-  <%= f.hidden_field :order_id, :value => @order.id %>
-  <%= f.submit "Выполнить заказ", class: "btn btn-large btn-primary" %>
-<% end %>
- 
-
-
-
+                  <% elsif current_user.role == "copy" %>
+                    <%= form_for @newpost, :url => {:controller => "projects", :action => "create_post"} do |f| %>
+                      <%= f.hidden_field :order_id, :value => @order.id %>
+                      <%= f.submit "Выполнить заказ", class: "btn btn-large btn-primary" %>
+                    <% end %>
                   </div>
                   <% end %>
                 </div>

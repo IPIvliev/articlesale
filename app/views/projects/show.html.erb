@@ -92,7 +92,7 @@
 				        	<%= f.select :amount, ["500", "1200", "2300", "4400"] %>
 				      	</div>
 				      	<div class="form-group">
-				        	<%= f.number_field :finish_date, :class => "form-control", :placeholder => "Срок выполнения (в днях)" %>
+				        	<%= f.date_select :finish_date, :class => "form-control", :placeholder => "Срок выполнения (в днях)" %>
 				      	</div>
 
 
@@ -120,10 +120,12 @@
                   <label>Количество знаков:</label>
 				        	<%= f.select :amount, ["500", "1200", "2300", "4400"], :selected => "#{@project.orders.last.amount}" %>
 				      	</div>
-				      	<div class="form-group">
-				        	<%= f.number_field :finish_date, :class => "form-control", :value => "#{@project.orders.last.finish_date}" %>
-				      	</div>
-				      	    <%= f.submit "Создать", :class => "btn btn-primary" %>
+                <div class="form-group">
+                  <label>До какого числа необходимо выполнить работу:</label>
+                  <%= f.date_select :finish_date, :class => "form-control", :placeholder => "Срок выполнения (в днях)" %>
+                </div>
+
+			      	    <%= f.submit "Создать", :class => "btn btn-primary" %>
 				      <% end %>
 <% end %>
                   </div>

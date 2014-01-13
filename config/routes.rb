@@ -6,10 +6,11 @@ resources :projects do
 
   end
 match "orders/:id/create_post", :to => 'projects#create_post'
+
 match "orders/:id/edit", to: 'projects#edit_status'
 match "orders/:id/delete", to: 'projects#delete'
 end
-
+match "wait/create_post", :to => 'projects#create_post'
   resources :articles
 
 resources :discussions do 

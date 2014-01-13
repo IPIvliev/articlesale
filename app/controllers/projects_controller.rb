@@ -52,8 +52,8 @@ class ProjectsController < ApplicationController
 
   def create_post
     @post = current_user.posts.build(params[:post])
-    Order.find(params[:id]).update_attribute(:status, 2)
+    Order.find(params[:post][:order_id]).update_attribute(:status, 2)
     @post.save
-    redirect_to project_order_path(params[:id])
+    redirect_to project_order_path(params[:post][:order_id])
   end
 end
