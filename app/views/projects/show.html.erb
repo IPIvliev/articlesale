@@ -84,9 +84,11 @@
 				        	<%= f.number_field :pictures, :class => "form-control", :placeholder => "Кол-во картинок" %>
 				      	</div>
 				      	<div class="form-group">
+                  <label>Разрешение изображения:</label>
 				        	<%= f.select :resolution, [["320*240", 1], ["640*480", 2], ["800*600", 3], ["1024*600", 4]] %>
 				      	</div>
 				      	<div class="form-group">
+                  <label>Количество знаков:</label>
 				        	<%= f.select :amount, ["500", "1200", "2300", "4400"] %>
 				      	</div>
 				      	<div class="form-group">
@@ -111,9 +113,11 @@
 				        	<%= f.number_field :pictures, :class => "form-control", :value => "#{@project.orders.last.pictures}" %>
 				      	</div>
 				      	<div class="form-group">
+                  <label>Разрешение изображения:</label>
 				        	<%= f.select :resolution, [["320*240", 1], ["640*480", 2], ["800*600", 3], ["1024*600", 4]], :selected => "#{@project.orders.last.resolution}" %>
 				      	</div>
 				      	<div class="form-group">
+                  <label>Количество знаков:</label>
 				        	<%= f.select :amount, ["500", "1200", "2300", "4400"], :selected => "#{@project.orders.last.amount}" %>
 				      	</div>
 				      	<div class="form-group">

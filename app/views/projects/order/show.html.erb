@@ -57,8 +57,6 @@
                   </div>
                   <% end %>
 
-    
-
                 </div>
 			  </div>
         <% if @post %>
@@ -79,7 +77,7 @@
                       </thead>
                       <tbody>
                         <tr>
-                          <td><%= @post.text.gsub(/\s+/, '').length %></td>
+                          <td><%= @post.text.gsub(/\s+/, '').length if !@post.text.nil? %></td>
                           <td><%= link_to @post.user.username, @post.user %></td>
                           <td><%= @post.price %></td>
                           <td><%= Russian::strftime(@post.updated_at, "%d %B %Y %H:%M") %></td>
@@ -90,58 +88,54 @@
                   </div>
                 </div>
 
-
-
               <% if @order.status == 4 || @order.status == 3 || @order.status == 1 %>
-              <br>
-                              <h1>Отправить сообщение автору статьи</h1>
+                <br>
+                <h1>Отправить сообщение автору статьи</h1>
                 <div class="thumbnail info-thumbnail padding1 background-clouds color-black">
                   <div class="caption background-white">
+                    <% if @user && current_user.speaking?(@user) %>
+                        <%= form_for @message, :url => {:controller => "discussions", :action => "newmessage"} do |f| %>
+                          <%= f.hidden_field :user_id, :value => current_user.id %>
+                          <%= f.hidden_field :whom, :value => @user.id %>
+                          <%= f.hidden_field :discussion_id, :value => current_user.discussions.find_by_whom_id(@user.id).id %>
+                          <div class="form-group">
+                            <%= f.text_area :text, :size => "130x8", placeholder: "Текст вашего сообщения пользователю #{@post.user.username}" %>
+                          </div>
+                          <%= f.submit :value => "Отправить сообщение", :class => "btn btn-primary" %>
+                        <% end %>
+                      <% elsif @user && @user.speaking?(current_user) %>
+                        <%= form_for @message, :url => {:controller => "discussions", :action => "newmessage"} do |f| %>
+                          <%= f.hidden_field :user_id, :value => current_user.id %>
+                          <%= f.hidden_field :whom, :value => @user.id %>
+                          <%= f.hidden_field :discussion_id, :value => @user.discussions.find_by_whom_id(current_user.id).id %>
+                          <div class="form-group">
+                            <%= f.text_area :text, :size => "130x8", placeholder: "Текст вашего сообщения пользователю #{@post.user.username}" %>
+                          </div>
+                          <%= f.submit :value => "Отправить сообщение", :class => "btn btn-primary" %>
+                        <% end %>
+                      <% elsif @user %>
+                        <%= render 'users/follow' %>
+                      <% end %>
+                    <% end %>
+                  </div>
+                </div>
+              
 
-   <% if @user && current_user.speaking?(@user) %>
-
-    <%= form_for @message, :url => {:controller => "discussions", :action => "newmessage"} do |f| %>
-<%= f.hidden_field :user_id, :value => current_user.id %>
-<%= f.hidden_field :whom, :value => @user.id %>
-<%= f.hidden_field :discussion_id, :value => current_user.discussions.find_by_whom_id(@user.id).id %>
-<div class="form-group">
-  <%= f.text_area :text, :size => "130x8", placeholder: "Текст вашего сообщения пользователю #{@post.user.username}" %>
-</div>
-<%= f.submit :value => "Отправить сообщение", :class => "btn btn-primary" %>
+<% elsif current_user.role == "copy" %>
+<%= form_for @newpost, :url => {:controller => "projects", :action => "create_post"} do |f| %>
+  <%= f.hidden_field :order_id, :value => @order.id %>
+  <%= f.submit "Выполнить заказ", class: "btn btn-large btn-primary" %>
 <% end %>
-
-<% elsif @user && @user.speaking?(current_user) %>
-
-    <%= form_for @message, :url => {:controller => "discussions", :action => "newmessage"} do |f| %>
-<%= f.hidden_field :user_id, :value => current_user.id %>
-<%= f.hidden_field :whom, :value => @user.id %>
-<%= f.hidden_field :discussion_id, :value => @user.discussions.find_by_whom_id(current_user.id).id %>
-<div class="form-group">
-  <%= f.text_area :text, :size => "130x8", placeholder: "Текст вашего сообщения пользователю #{@post.user.username}" %>
-</div>
-<%= f.submit :value => "Отправить сообщение", :class => "btn btn-primary" %>
-<% end %>
-
-  <% elsif @user %>
-    <%= render 'users/follow' %>
-
-  <% end %>
+ 
 
 
-</div></div>
+
                   </div>
                   <% end %>
-
-
-
-
                 </div>
-        </div>
-        <% end %>
-
-
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </section>
+</section>

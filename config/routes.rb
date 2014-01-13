@@ -1,8 +1,11 @@
 Articlesale::Application.routes.draw do
 resources :projects do
 	post :create_order, :on => :member
-	resources :orders, :only => [:show], :to => "projects#showorder"
 
+  resources :orders, :only => [:show], :to => "projects#showorder" do
+
+  end
+match "orders/:id/create_post", :to => 'projects#create_post'
 match "orders/:id/edit", to: 'projects#edit_status'
 match "orders/:id/delete", to: 'projects#delete'
 end
@@ -21,7 +24,9 @@ end
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
 
 
-  resources :users, :only => [:index, :show, :destroy]
+  resources :users, :only => [:index, :show, :destroy] do
+    resources :posts
+  end
 
 get "index.html" => "static_pages#index"
 

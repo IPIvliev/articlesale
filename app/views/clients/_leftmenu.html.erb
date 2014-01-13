@@ -9,7 +9,7 @@
             </div>
             <ul class="list-group background-lead color-white">
               <li class="list-group-item">
-                <span class="badge background-white color-lead"><%= current_user.projects.count %></span>
+                <%= "<span class='badge background-white color-lead'>#{current_user.projects.count}</span>".html_safe if !current_user.projects.empty? %></span>
                 <a href="/projects">Ваши проекты</a>
               </li>
               <li class="list-group-item">

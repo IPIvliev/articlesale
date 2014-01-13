@@ -26,7 +26,7 @@
                 <a href="/copyrighters/complite.html">Выполненные заказы</a>
               </li>
               <li class="list-group-item">
-                <span class="badge background-white color-lead"></span>
+                <%= "<span class='badge background-white color-lead'>#{current_user.posts.where("finish == ? AND order_id == ?", false, 2).count}</span>".html_safe if !current_user.posts.where("finish == ? AND order_id == ?", false, 2).empty? %>
                 <a href="/copyrighters/work.html"> Заказы в работе </a>
               </li>
               <li class="list-group-item">

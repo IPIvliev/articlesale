@@ -30,7 +30,7 @@ class ProjectsController < ApplicationController
     @project = Project.find(params[:id])
     @order = @project.orders.build(params[:order])
     @order.save
-    redirect_to "/projects"
+    redirect_to project_path(params[:id])
   end
 
   def edit_status
@@ -45,6 +45,15 @@ class ProjectsController < ApplicationController
     @message = Message.new
     @user = @post.user if @post
 
+    @newpost = Post.new
+
     render "projects/order/show"
+  end
+
+  def create_post
+    @post = current_user.posts.build(params[:post])
+    Order.find(params[:id]).update_attribute(:status, 2)
+    @post.save
+    redirect_to project_order_path(params[:id])
   end
 end
