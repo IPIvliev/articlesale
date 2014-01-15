@@ -4,6 +4,7 @@ class CreatePosts < ActiveRecord::Migration
       t.string :name
       t.string :text
       t.boolean :finish, :default => false
+      t.boolean :correct, :default => false
       t.string :category_id
       t.integer :user_id
       t.integer :amount

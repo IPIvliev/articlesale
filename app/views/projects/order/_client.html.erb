@@ -1,7 +1,6 @@
 <!-- Если заказ ожидает одобрения -->
 
 <!-- Окончание. Если заказ ожидает одобрения -->
-  </div>
 
 
 <!-- Если заказ кто-то взял и начал писать статью -->
@@ -32,7 +31,7 @@
       <p><%= @post.text %></p>
     </div>
   
-<% if @order.status == 3 %>
+  <% if @order.status == 3 %>
     <div class="caption background-white">
       <%= form_for @order, :url => {:controller => 'projects', :action => 'edit_status'} do |f| %>
         <div class="form-group">
@@ -41,15 +40,15 @@
         <%= f.submit "Изменить", :class => "btn btn-primary" %>
       <% end %>
     </div>
-  </div>
-
-<% end %>
+  <% end %>
+ </div>
   <!-- Отправить сообщение, если появилась статья -->
   <br>
-  <div class="caption background-white">
-  <h1>Отправить сообщение автору статьи</h1>
+
   <div class="thumbnail info-thumbnail padding1 background-clouds color-black">
     <div class="caption background-white">
+  <h1>Отправить сообщение автору статьи</h1>
+
     <!-- Если заказчик уже общался с автором статьи -->
     <% if @user && current_user.speaking?(@user) %>
       <%= form_for @message, :url => {:controller => "discussions", :action => "newmessage"} do |f| %>
@@ -81,3 +80,4 @@
   </div>
 <% end %>
 <!-- Окончание. Если заказ кто-то взял и начал писать статью -->
+</div>

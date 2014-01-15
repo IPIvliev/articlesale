@@ -1,13 +1,16 @@
-        <% if !@post %>
+    <% if !@post %>
+      <div class="col-md-12">
+        <h1>Текст материала</h1>
+        <div class="thumbnail info-thumbnail padding1 background-clouds color-black">
           <div class="caption background-white">    
             <%= form_for @newpost, :url => {:controller => "projects", :action => "create_post"} do |f| %>
               <%= f.hidden_field :order_id, :value => @order.id %>
               <%= f.submit "Выполнить заказ", class: "btn btn-large btn-primary" %>
             <% end %>
           </div>
-        <% end %>
         </div>
       </div>
+    <% end %>
 
 <% if @post %>
 <div class="col-md-12">
@@ -36,20 +39,38 @@
       <p><%= @post.text %></p>
     </div>
   </div>
+</div>
 <% end %>
 
 <% if @post.user == current_user %>
       <div class="col-md-12">
-        <h1>Написать статью</h1>
+        <h1>
+          <% if @post.text.gsub(/\s+/, '').length >= 1 %> 
+            <%= "Редактировать статью" %>
+          <% else %>
+            <%= "Написать статью" %>
+          <% end %>
+          </h1>
         <div class="thumbnail info-thumbnail padding1 background-clouds color-black">
           <div class="caption background-white">
             <%= form_for @post, :url => {:controller => "projects", :action => "edit_post"} do |f| %>
               <%= f.hidden_field :id, :value => @post.id %>
               <%= f.hidden_field :order_id, :value => @order.id %>
-              <%= f.text_field :name, :placeholder => "Название статьи" %>
-              <%= f.text_area :text, :placeholder => "Текст статьи" %>
+              <div class="form-group">
+                <%= f.text_field :name, :size => "120", :placeholder => "Название статьи" %>
+              </div>
+              <div class="form-group">
+                <%= f.text_area :text, :size => "120x8", :placeholder => "Текст статьи" %>
+              </div>
               <%= f.submit :value => "Сохранить", :class => "btn btn-primary" %>
             <% end %>
+          </div>
+
+          <div class="caption background-white">
+            <blockquote>
+              <p>Текст можно отправить заказчику только после сохранения статьи и только в том случае, если размер статьи соответствует заказанному количеству знаков.</p>
+              <small>Администратор <cite title="Source Title">Биржи текстов</cite></small>
+            </blockquote>
           </div>
 
           <% if !@post.text.nil? && @post.text.gsub(/\s+/, '').length >= @post.order.amount %>

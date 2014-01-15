@@ -44,9 +44,9 @@ ActiveRecord::Schema.define(:version => 20140108101857) do
     t.integer  "user_id"
     t.integer  "whom"
     t.string   "text"
-    t.boolean  "read"
-    t.datetime "created_at",    :null => false
-    t.datetime "updated_at",    :null => false
+    t.boolean  "read",          :default => false
+    t.datetime "created_at",                       :null => false
+    t.datetime "updated_at",                       :null => false
     t.integer  "discussion_id"
   end
 
@@ -72,6 +72,7 @@ ActiveRecord::Schema.define(:version => 20140108101857) do
     t.string   "name"
     t.string   "text"
     t.boolean  "finish",                                    :default => false
+    t.boolean  "correct",                                   :default => false
     t.string   "category_id"
     t.integer  "user_id"
     t.integer  "amount"

@@ -9,4 +9,8 @@ class CopyrightersController < ApplicationController
   def work
   	@posts = current_user.posts.where(:finish => false)
   end
+
+  def complite
+  	@posts = current_user.posts.where(:finish => true)
+  end
 end
