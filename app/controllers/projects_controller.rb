@@ -56,4 +56,18 @@ class ProjectsController < ApplicationController
     @post.save
     redirect_to project_order_path(params[:post][:order_id])
   end
+
+  def edit_post
+    @post = Post.find(params[:post][:id])
+    @post.update_attributes(params[:post])
+    @post.save
+    redirect_to project_order_path(params[:post][:order_id])
+  end
+
+  def edit_post_status
+    @order = Order.find(params[:id])
+    @order.update_attribute(:status, 3)
+    @order.post.update_attribute(:finish, true)
+    redirect_to project_order_path(@order)
+  end
 end

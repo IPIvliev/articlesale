@@ -22,15 +22,15 @@
                 <a href="/copyrighters/wait.html">Новые заказы</a>
               </li>
               <li class="list-group-item">
-                <%= "<span class='badge background-white color-lead'>#{Order.where(:status => 0).count}</span>".html_safe if !current_user.posts.where(:finish => true).empty? %>
-                <a href="/copyrighters/complite.html">Выполненные заказы</a>
+                <%= "<span class='badge background-white color-lead'>#{current_user.posts.where(:finish => true).count}</span>".html_safe if !current_user.posts.where(:finish => true).empty? %>
+                <a href="/copyrighters/complite.html">Законченные статьи</a>
               </li>
               <li class="list-group-item">
                 <%= "<span class='badge background-white color-lead'>#{current_user.posts.where(:finish => false).count}</span>".html_safe if !current_user.posts.where(:finish =>  false).empty? %>
                 <a href="/copyrighters/work.html"> Заказы в работе </a>
               </li>
               <li class="list-group-item">
-                <span class="badge background-white color-lead"></span>
+                <%= "<span class='badge background-white color-lead'>#{current_user.posts.where(:finish => true).orders.count}</span>".html_safe if !current_user.posts.where(:finish => true).orders.empty? %>
                 <a href="/copyrighters/correct.html">Заказы на корректировке</a>
               </li>
             </ul>

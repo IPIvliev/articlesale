@@ -1,0 +1,68 @@
+        <% if !@post %>
+          <div class="caption background-white">    
+            <%= form_for @newpost, :url => {:controller => "projects", :action => "create_post"} do |f| %>
+              <%= f.hidden_field :order_id, :value => @order.id %>
+              <%= f.submit "Выполнить заказ", class: "btn btn-large btn-primary" %>
+            <% end %>
+          </div>
+        <% end %>
+        </div>
+      </div>
+
+<% if @post %>
+<div class="col-md-12">
+  <h1>Текст статьи</h1>
+  <div class="thumbnail info-thumbnail padding1 background-clouds color-black">
+    <div class="caption background-white">
+      <table class="table table-bordered">
+        <thead>
+          <h4><%= @post.name %></h4>
+          <tr>
+            <th>Кол-во знаков</th>
+            <th>Автор</th>
+            <th>Стоимость</th>
+            <th>Дата написания</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><%= @post.text.gsub(/\s+/, '').length if !@post.text.nil? %></td>
+            <td><%= link_to @post.user.username, @post.user %></td>
+            <td><%= @post.price %></td>
+            <td><%= Russian::strftime(@post.updated_at, "%d %B %Y %H:%M") %></td>
+          </tr>
+        </tbody>
+      </table>
+      <p><%= @post.text %></p>
+    </div>
+  </div>
+<% end %>
+
+<% if @post.user == current_user %>
+      <div class="col-md-12">
+        <h1>Написать статью</h1>
+        <div class="thumbnail info-thumbnail padding1 background-clouds color-black">
+          <div class="caption background-white">
+            <%= form_for @post, :url => {:controller => "projects", :action => "edit_post"} do |f| %>
+              <%= f.hidden_field :id, :value => @post.id %>
+              <%= f.hidden_field :order_id, :value => @order.id %>
+              <%= f.text_field :name, :placeholder => "Название статьи" %>
+              <%= f.text_area :text, :placeholder => "Текст статьи" %>
+              <%= f.submit :value => "Сохранить", :class => "btn btn-primary" %>
+            <% end %>
+          </div>
+
+          <% if !@post.text.nil? && @post.text.gsub(/\s+/, '').length >= @post.order.amount %>
+            <div class="caption background-white">
+              <%= form_for @post, :url => {:controller => "projects", :action => "edit_post_status"} do |f| %>
+                <%= f.submit :value => "Отправить заказчику", :class => "btn btn-primary" %>
+              <% end %>
+            </div>
+          <% else %>
+            <div class="caption background-white">
+              <strong>Размер текста меньше необходимого. Вы пока не можете отправить статью заказчику.</strong>
+            </div>
+          <% end %>
+        </div>
+      </div>
+<% end %>

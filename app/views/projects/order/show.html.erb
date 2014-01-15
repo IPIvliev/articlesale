@@ -12,128 +12,56 @@
 </div>
 <!-- Breadcrumbs - END -->
 
-  <section>
-      <div class="container">
+<section>
+  <div class="container">
+    <div class="row">
+      <%= render "shared/whatmenu" %>
+      <div class="col-md-9">
         <div class="row">
-          <%= render "shared/whatmenu" %>
-          <div class="col-md-9">
-            <div class="row">
-              <div class="col-md-12">
-                <h1>Заказ <%= ".::Выполнен" if @post %> </h1>
-                <div class="thumbnail info-thumbnail padding1 background-clouds color-black">
-                	<div class="caption background-white">
-                    <table class="table table-bordered">
-                      <thead>
-                        <h4><%= @order.name %></h4>
-                          <tr>
-                            <th>Кол-во знаков</th>
-                            <th>Ключевые слова</th>
-                            <th>Кол-во картинок</th>
-                            <th>Статус</th>
-                          </tr>
-                      </thead>
-                      <tbody>
-                        <tr>
-                          <td><%= @order.amount %></td>
-                          <td><%= @order.keywords %></td>
-                          <td><%= @order.pictures %></td>
-                          <td><%= @order.complite? %></td>
-                        </tr>
-                        <tr>
-                          <td COLSPAN="4"><%= @order.description %></td>
-                        </tr>
-                      </tbody>
-                    </table>
-                	</div>
-
-                  <% if @order.status == 3 %>
-                  <div class="caption background-white">
-                    <%= form_for @order, :url => {:controller => 'projects', :action => 'edit_status'} do |f| %>
-                      <div class="form-group">
-                        <%= f.select :status, [["Принять", 4], ["Отправить на корректировку", 1], ["В ожидании одобрения", 3]], :selected => "#{@order.status}" %>
-                      </div>
-                      <%= f.submit "Изменить", :class => "btn btn-primary" %>
-                    <% end %>
-                  </div>
-                  <% end %>
-
-                </div>
-			  </div>
-        <% if @post %>
-        <div class="col-md-12">
-                <h1>Текст материала</h1>
-                <div class="thumbnail info-thumbnail padding1 background-clouds color-black">
-                  <div class="caption background-white">
-
-                    <table class="table table-bordered">
-                      <thead>
-                        <h4><%= @post.name %></h4>
-                          <tr>
-                            <th>Кол-во знаков</th>
-                            <th>Автор</th>
-                            <th>Стоимость</th>
-                            <th>Дата написания</th>
-                          </tr>
-                      </thead>
-                      <tbody>
-                        <tr>
-                          <td><%= @post.text.gsub(/\s+/, '').length if !@post.text.nil? %></td>
-                          <td><%= link_to @post.user.username, @post.user %></td>
-                          <td><%= @post.price %></td>
-                          <td><%= Russian::strftime(@post.updated_at, "%d %B %Y %H:%M") %></td>
-                        </tr>
-                      </tbody>
-                    </table>
-<p><%= @post.text %></p>
-                  </div>
-                </div>
-
-              <% if @order.status == 4 || @order.status == 3 || @order.status == 1 || @order.status == 2 %>
-                <br>
-                <h1>Отправить сообщение автору статьи</h1>
-                <div class="thumbnail info-thumbnail padding1 background-clouds color-black">
-                  <div class="caption background-white">
-                    <% if @user && current_user.speaking?(@user) %>
-                        <%= form_for @message, :url => {:controller => "discussions", :action => "newmessage"} do |f| %>
-                          <%= f.hidden_field :user_id, :value => current_user.id %>
-                          <%= f.hidden_field :whom, :value => @user.id %>
-                          <%= f.hidden_field :discussion_id, :value => current_user.discussions.find_by_whom_id(@user.id).id %>
-                          <div class="form-group">
-                            <%= f.text_area :text, :size => "130x8", placeholder: "Текст вашего сообщения пользователю #{@post.user.username}" %>
-                          </div>
-                          <%= f.submit :value => "Отправить сообщение", :class => "btn btn-primary" %>
-                        <% end %>
-                      <% elsif @user && @user.speaking?(current_user) %>
-                        <%= form_for @message, :url => {:controller => "discussions", :action => "newmessage"} do |f| %>
-                          <%= f.hidden_field :user_id, :value => current_user.id %>
-                          <%= f.hidden_field :whom, :value => @user.id %>
-                          <%= f.hidden_field :discussion_id, :value => @user.discussions.find_by_whom_id(current_user.id).id %>
-                          <div class="form-group">
-                            <%= f.text_area :text, :size => "130x8", placeholder: "Текст вашего сообщения пользователю #{@post.user.username}" %>
-                          </div>
-                          <%= f.submit :value => "Отправить сообщение", :class => "btn btn-primary" %>
-                        <% end %>
-                      <% elsif @user.id == 900 %>
-
-
-                      <% elsif @user %>
-                        <%= render 'users/follow' %>
-                      <% end %>
-                    <% end %>
-                  </div>
-                </div>
-
-                  <% elsif current_user.role == "copy" %>
-                    <%= form_for @newpost, :url => {:controller => "projects", :action => "create_post"} do |f| %>
-                      <%= f.hidden_field :order_id, :value => @order.id %>
-                      <%= f.submit "Выполнить заказ", class: "btn btn-large btn-primary" %>
-                    <% end %>
-                  </div>
-                  <% end %>
-                </div>
+          <div class="col-md-12">
+            <h1>Заказ <%= ".::Выполнен" if @post && @post.finish == true && @order.status == 4 %> </h1>
+            <div class="thumbnail info-thumbnail padding1 background-clouds color-black">
+              <div class="caption background-white">
+                <table class="table table-bordered">
+                  <thead>
+                    <h4><%= @order.name %></h4>
+                    <tr>
+                      <th>Кол-во знаков</th>
+                      <th>Ключевые слова</th>
+                      <th>Кол-во картинок</th>
+                      <th>Статус</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><%= @order.amount %></td>
+                      <td><%= @order.keywords %></td>
+                      <td><%= @order.pictures %></td>
+                      <td><%= @order.complite? %></td>
+                    </tr>
+                    <tr>
+                      <td COLSPAN="4"><%= @order.description %></td>
+                    </tr>
+                  </tbody>
+                </table>
               </div>
-            </div>
-          </div>
-        </div>
+
+        
+      <!-- Если пользователь - клиент -->
+      <% if current_user.role == "client" %>
+        <%= render "projects/order/client" %>
+      <% end %>
+      <!-- Окончание. Если пользователь - клиент -->
+
+      <!-- Если пользователь - клиент -->
+      <% if current_user.role == "copy" %>
+        <%= render "projects/order/copy" %>
+      <% end %>
+      <!-- Окончание. Если пользователь - клиент -->
+
+
+
       </div>
+    </div>
+  </div>
 </section>
