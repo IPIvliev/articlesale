@@ -21,28 +21,28 @@
                 <div class="thumbnail info-thumbnail padding1 background-clouds color-black">
                   <div class="caption background-white">
 
-      <table class="table table-hover">
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>Наименование</th>
-            <th>Дата заказа</th>
-            <th>Стоимость</th>
-            <th>Автор</th>
-            <th>Статус</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>1</td>
-            <td>Column content</td>
-            <td>Column content</td>
-            <td>Column content</td>
-            <td>Column content</td>
-            <td>Column content</td>
-          </tr>
-        </tbody>
-      </table>
+               <table class="table table-hover">
+                  <thead>
+                    <tr>
+                      <th>ID</th>
+                      <th>Наименование</th>
+                      <th>Дата заказа</th>
+                      <th>Стоимость</th>
+                      <th>Выполнение</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <% @posts.each do |post| %>
+                      <tr>
+                        <td><%= post.id %></td>
+                        <td><%= link_to post.order.name, project_order_path(post.order.project, post.order) %></td>
+                        <td><%= Russian::strftime(post.order.finish_date, "%d %B %Y") %></td>
+                        <td><%= price_is(post.order.amount) %> руб.</td>
+                        <td><%= percentage(post) %></td>
+                      </tr>
+                    <% end %>
+                  </tbody>
+                </table>
 
                   </div>
                 </div>

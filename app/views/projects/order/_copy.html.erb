@@ -45,7 +45,7 @@
 <% if @post.user == current_user %>
       <div class="col-md-12">
         <h1>
-          <% if @post.text.gsub(/\s+/, '').length >= 1 %> 
+          <% if !@post.text.nil? %>
             <%= "Редактировать статью" %>
           <% else %>
             <%= "Написать статью" %>

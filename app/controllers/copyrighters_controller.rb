@@ -13,4 +13,8 @@ class CopyrightersController < ApplicationController
   def complite
   	@posts = current_user.posts.where(:finish => true)
   end
+
+  def correct
+    @posts = current_user.posts.where(:finish => true).orders
+  end
 end

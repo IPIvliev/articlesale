@@ -57,7 +57,7 @@
           <tr>
             <td>1</td>
             <td><%= link_to copy.username, copy %></td>
-            <td>Column content</td>
+            <td><%= copy.posts.where(:finish => true).count %></td>
             <td>Column content</td>
           </tr>
           <% end %>
