@@ -4,6 +4,7 @@
             <div class="list-group bright background-clouds color-text">
               <div class="list-group-item"><h3>Меню копирайтера</h3></div>
               <%= link_to "Личный кабинет", current_user, :class => "list-group-item" %>
+              
               <%= link_to "Сообщения", discussions_path, :class => "list-group-item" %>
               <a href="/copyrighters/push.html" class="list-group-item">Вывести средства</a>
               <%= link_to "Список копирайтеров", users_path, :class => "list-group-item" %>

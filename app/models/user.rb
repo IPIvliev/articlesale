@@ -39,6 +39,12 @@ class User < ActiveRecord::Base
     discussions.find_by_whom_id(other_user.id).destroy
   end
 
+  def role?
+    return "Заказчик" if role == "client"
+    return "Копирайтер" if role == "copy"
+    return "Администратор" if role == "admin"
+  end
+
   #Все сообщения, где current_user отправитель или получатель
  # def mes
     #joined_tables = Message.joins(:discussions).joins(:whoms)

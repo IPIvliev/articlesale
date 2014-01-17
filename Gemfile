@@ -20,6 +20,9 @@ gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'omniauth-vkontakte'
 
+# Images
+gem 'carrierwave'
+gem 'rmagick', '2.13.2'
 
 # Text 
 gem 'bootstrap-wysihtml5-rails'

@@ -1,3 +1,188 @@
 // Place all the styles related to the Users controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.profile-picture{
+	border:1px solid #CCC;
+	background-color:#FFF;
+	padding:4px;display:inline-block;
+	max-width:100%;
+	-moz-box-sizing:border-box;
+	box-shadow:1px 1px 1px rgba(0,0,0,0.15)
+}
+.profile-activity{
+	padding:10px 4px;
+	border-bottom:1px dotted #d0d8e0;
+	position:relative;border-left:1px dotted #FFF;
+	border-right:1px dotted #FFF
+}
+.editable{
+	border-bottom:1px dashed #BBB;
+	cursor:pointer;
+	font-weight:normal
+}
+img.editable{
+	border:1px dotted #BBB
+}
+.editable:hover{
+	border-color:#08c;
+	color:#08c
+}
+img.editable:hover{
+	opacity:.75;
+	filter:alpha(opacity=75)
+}
+.label{
+	border-radius:0;
+	text-shadow:none;
+	font-size:11px;
+	font-weight:normal;
+	padding:1px 5px 3px;
+	background-color:#abbac3!important
+}
+.label-info{
+	background-color:#3a87ad!important
+}
+.label-large{
+	font-size:13px;
+	padding:3px 8px 5px
+}
+.label-large.arrowed-in{
+	margin-left:12px
+}
+.label.arrowed,.label.arrowed-in{position:relative;margin-left:9px}
+.label.arrowed:before,.label.arrowed-in:before{display:inline-block;content:"";
+position:absolute;left:-14px;top:0;border:9px solid transparent;border-width:9px 7px;
+border-right-color:#abbac3}.label.arrowed-in:before{border-color:#abbac3;
+	border-left-color:transparent!important;left:-9px}
+	.label.arrowed-right,.label.arrowed-in-right{position:relative;margin-right:9px}
+	.label.arrowed-right:after,.label.arrowed-in-right:after{
+		display:inline-block;content:"";position:absolute;right:-14px;top:0;border:9px solid transparent;
+		border-width:9px 7px;border-left-color:#abbac3}
+		.label.arrowed-in-right:after{border-color:#abbac3;border-right-color:transparent!important;right:-9px}
+		.label-info.arrowed:before{border-right-color:#3a87ad}
+		.label-info.arrowed-in:before{border-color:#3a87ad}
+		.label-info.arrowed-right:after{border-left-color:#3a87ad}
+.label-info.arrowed-in-right:after{border-color:#3a87ad}
+
+
+.label.arrowed-in-right{
+	position:relative;margin-right:9px
+}
+.label.arrowed-in-right:after{
+	display:inline-block;
+	content:"";
+	position:absolute;
+	right:-14px;top:0;
+	border:9px solid transparent;
+	border-width:9px 7px;
+	border-left-color:#abbac3
+}
+.label.arrowed-in-right:after{
+	border-color:#abbac3;
+	border-right-color:transparent!important;
+	right:-9px
+}
+.label-info.arrowed:before{
+	border-right-color:#3a87ad
+}
+.label-info.arrowed-in:before{
+	border-color:#3a87ad
+}
+.label-info.arrowed-right:after{
+	border-left-color:#3a87ad
+}
+.label-info.arrowed-in-right:after{
+	border-color:#3a87ad
+}
+.inline{display:inline-block!important}
+.position-relative{position:relative}
+.user-profile .user-title-label:hover{text-decoration:none}
+.user-profile .user-title-label+.dropdown-menu{margin-left:-12px}
+.user-title-label+.dropdown-menu{margin-left:auto;margin-right:-12px}
+
+.light-green{color:#b0d877!important}
+.blue{color:#478fca!important}
+.green{color:#69aa46!important}
+.light-blue{color:#93cbf9!important}
+.white{color:#fff!important}
+.red{color:#dd5a43!important}
+.light-orange{color:#fcac6f!important}
+
+.bigger-120{font-size:120%}
+.align-left{text-align:left}
+.dropdown-menu:before,.dropdown-menu.dropdown-caret:before{
+	border-bottom:7px solid rgba(0,0,0,0.2);
+	border-left:7px solid transparent;border-right:7px solid transparent;content:"";
+	display:inline-block;left:9px;position:absolute;top:-7px}
+.widget-toolbar>.dropdown>.dropdown-menu:after,.dropdown-menu.dropdown-caret:after{
+		border-bottom:6px solid #fff;
+		border-left:6px solid transparent;border-right:6px solid transparent;content:"";
+		display:inline-block;left:10px;position:absolute;top:-6px}
+.widget-toolbar>.dropdown>.dropdown-menu.pull-right:before,.dropdown-menu.pull-right.dropdown-caret:before{
+	left:auto;right:9px}
+.widget-toolbar>.dropdown>.dropdown-menu.pull-right:after,.dropdown-menu.pull-right.dropdown-caret:after{
+	left:auto;right:10px
+}
+
+.rtl .dropdown-light .dropdown-submenu:hover>a:after,.rtl .dropdown-lighter .dropdown-submenu:hover>a:after{
+	border-right-color:#444}
+.dropdown-navbar>li.nav-header{text-shadow:none;padding-top:7px;padding-bottom:7px;
+	font-size:13px;font-weight:bold;text-transform:none;border-bottom:1px solid}
+.dropdown-navbar>li.nav-header{text-shadow:none;padding-top:7px;padding-bottom:7px;
+		font-size:13px;font-weight:bold;text-transform:none;border-bottom:1px solid}
+.dropdown-navbar>li>[class*="icon-"],.dropdown-navbar>li>a>[class*="icon-"]{
+	margin-right:5px!important;color:#555;font-size:14px}
+
+
+.hr{display:block;height:0;overflow:hidden;font-size:0;border-top:1px solid #e3e3e3;margin:12px 0}
+.hr-12,.hr12{margin:12px 0}
+.hr.dotted{border-top-style:dotted}
+
+.grid2{width:48%;padding:0 2%}
+.bigger-175{font-size:175%}
+.bigger-110{font-size:110%}
+.bigger-150{font-size:150%}
+.smaller-90{font-size:90%}
+.middle{vertical-align:middle}
+.space-4{
+	max-height:0;
+	overflow:hidden;
+	margin:12px 0;
+	margin:4px 0
+}
+.width-80{width:80%!important}
+.space-20{max-height:0;overflow:hidden;margin:12px 0;margin:20px 0}
+.center,.align-center{text-align:center}
+
+.btn.btn-app{
+	display:inline-block;width:100px;
+	margin:2px;position:relative;font-size:18px;font-weight:normal;color:#FFF;
+	text-align:center;text-shadow:0 -1px -1px rgba(0,0,0,0.2)!important;border:0;
+	border-radius:12px;padding:12px 0 8px
+}
+.profile-user-info{margin:0 12px}
+.profile-info-row{position:relative}
+.profile-info-name{
+	position:absolute;width:110px;text-align:right;padding:6px 10px 6px 0;
+	left:0;top:0;bottom:0;font-weight:normal;color:#667e99;background-color:transparent;
+	border-top:1px dotted #d5e4f1
+}
+.profile-info-value{
+	padding:6px 4px 6px 6px;
+	margin-left:120px;
+	border-top:1px dotted #d5e4f1
+}
+
+.profile-info-value>span+span.editable-container:before{display:none}
+.profile-info-row:first-child .profile-info-name{border-top:0}
+.profile-info-row:first-child .profile-info-value{border-top:0}
+.profile-user-info-striped{border:1px solid #dcebf7}
+.profile-user-info-striped .profile-info-name{
+	color:#336199;background-color:#edf3f4;
+	border-top:1px solid #f7fbff
+}
+.profile-user-info-striped .profile-info-value{
+	border-top:1px dotted #dcebf7;
+	padding-left:12px
+}

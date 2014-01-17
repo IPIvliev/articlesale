@@ -29,6 +29,181 @@
             <div class="row">
               <div class="col-md-12">
 
+
+                <h1>Личный кабинет</h1>
+
+    <link rel="stylesheet" href="/css/font-awesome.min.css" />
+
+      <div class="thumbnail info-thumbnail padding1 background-clouds color-black">
+        <div class="caption background-white">
+
+
+
+              <!--PAGE CONTENT BEGINS-->
+                  <div class="row">
+                    <div class="col-md-3 center">
+
+
+                    <div>
+                      <span class="profile-picture">
+                        <img id="avatar" class="editable" alt="Alex's Avatar" src="assets/avatars/profile-pic.jpg" />
+                      </span>
+
+                      <div class="space-4"></div>
+
+                      <div class="width-80 label label-info label-large arrowed-in arrowed-in-right">
+                        <div class="inline position-relative">
+                          <a href="#" class="user-title-label dropdown-toggle" data-toggle="dropdown">
+                            <i class="icon-circle light-green middle"></i>
+                            &nbsp;
+                            <span class="white middle bigger-120"><%= @user.username %></span>
+                          </a>
+
+                          <ul class="align-left dropdown-menu dropdown-caret dropdown-lighter">
+                            <li class="nav-header"> Изменить статус </li>
+
+                            <li>
+                              <a href="#">
+                                <i class="icon-circle green"></i>
+                                &nbsp;
+                                <span class="green">Свободен</span>
+                              </a>
+                            </li>
+
+                            <li>
+                              <a href="#">
+                                <i class="icon-circle red"></i>
+                                &nbsp;
+                                <span class="red">Занят</span>
+                              </a>
+                            </li>
+
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="space-6"></div>
+
+                    <div class="profile-contact-info">
+                      <div class="profile-contact-links align-left">
+
+                        <a class="btn btn-link" href="#">
+                          <i class="icon-globe bigger-125 blue"></i>
+                          www.alexdoe.com
+                        </a>
+                         <a class="btn red btn-link" href="#">
+                            <%= "<i class='icon-cogs bigger-125 red'></i>Изменить профайл".html_safe if current_user == @user %>
+                        </a>
+                      </div>
+
+                      <div class="space-6"></div>
+
+                      <div class="profile-social-links center">
+                        <a href="#" class="tooltip-info" title="" data-original-title="Visit my Facebook">
+                          <i class="middle icon-facebook-sign icon-2x blue"></i>
+                        </a>
+
+                        <a href="#" class="tooltip-info" title="" data-original-title="Visit my Twitter">
+                          <i class="middle icon-twitter-sign icon-2x light-blue"></i>
+                        </a>
+
+                        <a href="#" class="tooltip-error" title="" data-original-title="Visit my Pinterest">
+                          <i class="middle icon-pinterest-sign icon-2x red"></i>
+                        </a>
+                      </div>
+                    </div>
+
+                    <div class="hr hr12 dotted"></div>
+
+                    <div class="clearfix">
+                      <div class="grid2">
+                        <span class="bigger-175 blue">25</span>
+
+                        <br />
+                        Рейтинг
+                      </div>
+
+                    </div>
+
+                    <div class="hr hr12 dotted"></div>
+                  </div>
+
+                  <div class="col-md-9">
+                    <div class="center">
+                      <span class="btn btn-app btn-small btn-success">
+                        <span class="bigger-175"> <%= @user.projects.count %></span>
+
+                        <br />
+                        <span class="smaller-90"> Проектов </span>
+                      </span>
+
+                      <span class="btn btn-app btn-small btn-primary">
+                        <span class="bigger-175"> <%= @user.orders.count %> </span>
+
+                        <br />
+                        <span class="smaller-90"> Заказов </span>
+                      </span>
+
+                      <span class="btn btn-app btn-small btn-warning">
+                        <span class="bigger-175"> <%= @user.discussions.count %></span>
+
+                        <br />
+                        <span class="smaller-90"> Контактов </span>
+                      </span>
+
+                    </div>
+
+                    <div class="space-20"></div>
+
+                    <div class="profile-user-info profile-user-info-striped">
+                      <div class="profile-info-row">
+                        <div class="profile-info-name"> Имя </div>
+
+                        <div class="profile-info-value">
+                          <span class="editable" id="username"><%= @user.username %></span>
+                        </div>
+                      </div>
+
+                      <div class="profile-info-row">
+                        <div class="profile-info-name"> Location </div>
+
+                        <div class="profile-info-value">
+                          <i class="icon-map-marker light-orange bigger-110"></i>
+                          <span class="editable" id="country">Netherlands</span>
+                        </div>
+                      </div>
+
+                      <div class="profile-info-row">
+                        <div class="profile-info-name"> Статус </div>
+
+                        <div class="profile-info-value">
+                          <span><%= @user.role? %></span>
+                        </div>
+                      </div>
+
+                      <div class="profile-info-row">
+                        <div class="profile-info-name"> Дата регистрации </div>
+
+                        <div class="profile-info-value">
+                          <span><%= Russian::strftime(@user.created_at, "%d %B %Y") %></span>
+                        </div>
+                      </div>
+
+                      <div class="profile-info-row">
+                        <div class="profile-info-name"> Посещение </div>
+
+                        <div class="profile-info-value">
+                          <span><%= time_ago_in_words(@user.last_sign_in_at) %></span>
+                        </div>
+                      </div>
+
+                    </div>
+
+
+</div></div></div></div></div>
+
+
               <% if current_user != @user %>
                 <h1>Сообщения</h1>
                 <div class="thumbnail info-thumbnail padding1 background-clouds color-black">
@@ -45,7 +220,7 @@
 <%= f.hidden_field :whom, :value => @user.id %>
 <%= f.hidden_field :discussion_id, :value => current_user.discussions.find_by_whom_id(@user.id).id %>
 <div class="form-group">
-  <%= f.text_area :text, :size => "60x8", placeholder: "Текст вашего сообщения пользователю #{@user.username}" %>
+  <%= f.text_area :text, :size => "130x8", placeholder: "Текст вашего сообщения пользователю #{@user.username}" %>
 </div>
 <%= f.submit :value => "Отправить сообщение", :class => "btn btn-primary" %>
 <% end %>
@@ -74,88 +249,8 @@
 <% end %>
 <br>
 
-                <h1>Личный кабинет</h1>
-                <div class="thumbnail info-thumbnail padding1 background-clouds color-black">
-                  <div class="caption background-white">
-      <table class="table table-hover">
-        <thead>
-          <tr>
-            <th>Аватар</th>
-            <th>Имя</th>
-            <th>Выполненные заказы</th>
-            <th>Уровень</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>1</td>
-            <td>Column content</td>
-            <td>Column content</td>
-            <td>Column content</td>
-          </tr>
-        </tbody>
-      </table>
 
-                  </div>
-                </div>
-                <br>
-                <h1>Сатьи в ожидании</h1>
-                <div class="thumbnail info-thumbnail padding1 background-clouds color-black">
-                  <div class="caption background-white">
 
-      <table class="table table-hover">
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>Наименование</th>
-            <th>Дата заказа</th>
-            <th>Стоимость</th>
-            <th>Автор</th>
-            <th>Статус</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>1</td>
-            <td>Column content</td>
-            <td>Column content</td>
-            <td>Column content</td>
-            <td>Column content</td>
-            <td>Column content</td>
-          </tr>
-        </tbody>
-      </table>
-
-                  </div>
-                </div>
-
-                <br>
-                <h1>Архив статей</h1>
-                <div class="thumbnail info-thumbnail padding1 background-clouds color-black">
-                  <div class="caption background-white">
-
-      <table class="table table-hover">
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>Наименование</th>
-            <th>Дата заказа</th>
-            <th>Стоимость</th>
-            <th>Автор</th>
-            <th>Статус</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>1</td>
-            <td>Column content</td>
-            <td>Column content</td>
-            <td>Column content</td>
-            <td>Column content</td>
-            <td>Column content</td>
-          </tr>
-        </tbody>
-      </table>
 
                   </div>
                 </div>
