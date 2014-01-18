@@ -1,0 +1,44 @@
+<% if @user.role == "client" %>
+                      <span class="btn btn-app btn-small btn-success">
+                        <span class="bigger-175"> <%= @user.projects.count %></span>
+
+                        <br />
+                        <span class="smaller-90"> Проектов </span>
+                      </span>
+
+                      <span class="btn btn-app btn-small btn-primary">
+                        <span class="bigger-175"> <%= @user.orders.count %> </span>
+
+                        <br />
+                        <span class="smaller-90"> Заказов </span>
+                      </span>
+
+                      <span class="btn btn-app btn-small btn-warning">
+                        <span class="bigger-175"> <%= @user.discussions.count %></span>
+
+                        <br />
+                        <span class="smaller-90"> Контактов </span>
+                      </span>
+
+<% elsif @user.role == "copy" %>
+                      <span class="btn btn-app btn-small btn-success">
+                        <span class="bigger-175"> <%= @user.posts.where(:finish => true).count %></span>
+
+                        <br />
+                        <span class="smaller-90"> Статьи </span>
+                      </span>
+
+                      <span class="btn btn-app btn-small btn-primary">
+                        <span class="bigger-175"> <%= @user.posts.where(:finish => false).count %> </span>
+
+                        <br />
+                        <span class="smaller-90"> В работе </span>
+                      </span>
+
+                      <span class="btn btn-app btn-small btn-warning">
+                        <span class="bigger-175"> <%= @user.discussions.count %></span>
+
+                        <br />
+                        <span class="smaller-90"> Контактов </span>
+                      </span>
+<% end %>

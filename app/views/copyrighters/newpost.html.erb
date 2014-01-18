@@ -34,21 +34,30 @@
       <table class="table table-hover">
         <thead>
           <tr>
-            <th>#</th>
+            <th>ID</th>
             <th>Наименование</th>
-            <th>Заказы</th>
-            <th>Потрачено</th>
-            <th>Действия</th>
+            <th>Категория</th>
+            <th>Дата создания</th>
+            <th>Стоимость</th>
+            <th>Кол-во знаков</th>
+            <th>Статус</th>
           </tr>
         </thead>
         <tbody>
+  <% @posts.each do |post| %>
           <tr>
-            <td>1</td>
-            <td>Column content</td>
-            <td>Column content</td>
-            <td>Column content</td>
-            <td>Column content</td>
+            <td><%= post.id %></td>
+            <td><%= link_to post.name, post_url(post) %></td>
+            <td><%= post.category %></td>
+            <td><%= Russian::strftime(post.created_at, "%d %B %Y") %></td>
+            <td><%= price_is(post.sale) %> руб.</td>
+            <td><%= post.text.gsub(/\s+/, '').length %></td>
+            <td>
+              <%= "Статья в разработке" if post.finish == false %>
+              <%= "Статья выставлена на продажу" if post.finish == true %>
+            </td>
           </tr>
+  <% end %>
         </tbody>
       </table>
 
@@ -58,16 +67,18 @@
 
 
               <div class="col-md-12">
-                <h1>Создать новый проект</h1>
+                <h1>Создать новую статью</h1>
                 <div class="thumbnail info-thumbnail padding1 background-clouds color-black">
                   <div class="caption background-white">
-<form class="form-horizontal" role="form">
-      <div class="form-group">
-<input class="form-control" id="focusedInput" type="text" placeholder="Наименование Вашего проекта...">
-</div>
-    <button type="submit" class="btn btn-primary">Создать</button>
-
-    </form>
+<%= form_for @newpost, :url => {:controller => "copyrighters", :action => "newpost"} do |f| %>
+              <div class="form-group">
+                <%= f.text_field :name, :size => "120", :placeholder => "Название статьи" %>
+              </div>
+              <div class="form-group">
+                <%= f.text_area :text, :size => "120x8", :placeholder => "Текст статьи" %>
+              </div>
+              <%= f.submit :value => "Сохранить", :class => "btn btn-primary" %>
+    <% end %>
             </div>
           </div>
         </div>

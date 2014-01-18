@@ -93,7 +93,7 @@
                           www.alexdoe.com
                         </a>
                          <a class="btn red btn-link" href="#">
-                            <%= "<i class='icon-cogs bigger-125 red'></i>Изменить профайл".html_safe if current_user == @user %>
+                            <%= "<i class='icon-cogs bigger-125 red'></i> Изменить профайл".html_safe if current_user == @user %>
                         </a>
                       </div>
 
@@ -112,6 +112,7 @@
                           <i class="middle icon-pinterest-sign icon-2x red"></i>
                         </a>
                       </div>
+
                     </div>
 
                     <div class="hr hr12 dotted"></div>
@@ -130,27 +131,10 @@
                   </div>
 
                   <div class="col-md-9">
+
                     <div class="center">
-                      <span class="btn btn-app btn-small btn-success">
-                        <span class="bigger-175"> <%= @user.projects.count %></span>
 
-                        <br />
-                        <span class="smaller-90"> Проектов </span>
-                      </span>
-
-                      <span class="btn btn-app btn-small btn-primary">
-                        <span class="bigger-175"> <%= @user.orders.count %> </span>
-
-                        <br />
-                        <span class="smaller-90"> Заказов </span>
-                      </span>
-
-                      <span class="btn btn-app btn-small btn-warning">
-                        <span class="bigger-175"> <%= @user.discussions.count %></span>
-
-                        <br />
-                        <span class="smaller-90"> Контактов </span>
-                      </span>
+                      <%= render 'users/usershow/info' %>
 
                     </div>
 
