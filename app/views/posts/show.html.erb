@@ -1,0 +1,101 @@
+<% provide(:title, 'Все проекты ') %>
+
+<!-- Breadcrumbs - START -->
+<div class="background-clouds breadcrumbs-container">
+  <div class="container">
+    <ol class="breadcrumb">
+      <li><%= link_to "Новые статьи без заказа", "/copyrighters/newpost.html" %>
+      <li class="active"><%= @post.name %></li>
+    </ol>
+  </div>
+</div>
+<!-- Breadcrumbs - END -->
+
+<section>
+  <div class="container">
+    <div class="row">
+      <%= render "shared/whatmenu" %>
+      <div class="col-md-9">
+        <div class="row">
+<div class="col-md-12">
+  <h1>Текст статьи</h1>
+  <div class="thumbnail info-thumbnail padding1 background-clouds color-black">
+    <div class="caption background-white">
+      <table class="table table-bordered">
+        <thead>
+          <h4><%= @post.name %></h4>
+          <tr>
+            <th>Кол-во знаков</th>
+            <th>Автор</th>
+            <th>Стоимость</th>
+            <th>Дата написания</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><%= @post.text.gsub(/\s+/, '').length if !@post.text.nil? %></td>
+            <td><%= link_to @post.user.username, @post.user %></td>
+            <td><%= @post.price %></td>
+            <td><%= Russian::strftime(@post.updated_at, "%d %B %Y %H:%M") %></td>
+          </tr>
+        </tbody>
+      </table>
+      <p><%= @post.text %></p>
+    </div>
+  </div>
+</div>
+
+
+<% if @post.user == current_user %>
+      <div class="col-md-12">
+        <h1>
+          <% if !@post.text.nil? %>
+            <%= "Редактировать статью" %>
+          <% else %>
+            <%= "Написать статью" %>
+          <% end %>
+          </h1>
+        <div class="thumbnail info-thumbnail padding1 background-clouds color-black">
+          <div class="caption background-white">
+            <%= form_for @post do |f| %>
+              <%= f.hidden_field :id, :value => @post.id %>
+              <div class="form-group">
+                <%= f.text_field :name, :size => "120", :placeholder => "Название статьи" %>
+              </div>
+              <div class="form-group">
+                <%= f.text_area :text, :size => "120x8", :placeholder => "Текст статьи" %>
+              </div>
+              <%= f.submit :value => "Сохранить", :class => "btn btn-primary" %>
+            <% end %>
+          </div>
+
+          <div class="caption background-white">
+            <blockquote>
+              <p>Текст можно отправить только после сохранения статьи.</p>
+              <small>Администратор <cite title="Source Title">Биржи текстов</cite></small>
+            </blockquote>
+          </div>
+
+          <% if !@post.text.nil? %>
+            <div class="caption background-white">
+              <%= form_for @post, :url => {:controller => "posts", :action => "edit_post_status"} do |f| %>
+                <%= f.submit :value => "Отправить на проверку", :class => "btn btn-primary" %>
+              <% end %>
+            </div>
+          <% else %>
+            <div class="caption background-white">
+              <strong>Вы пока не можете отправить статью.</strong>
+            </div>
+          <% end %>
+        </div>
+      </div>
+<% end %>
+
+
+
+          </div>
+
+      </div>
+    </div>
+  </div>
+</section>

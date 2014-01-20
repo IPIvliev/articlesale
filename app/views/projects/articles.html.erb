@@ -38,47 +38,32 @@
                   </div>
                 </div>
                 <br>
+
+                <% @posts.each do |post| %>
                 <div class="thumbnail info-thumbnail padding1 background-clouds color-black">
                   <div class="caption background-white">
 
                     <table class="table table-bordered">
                       <thead>
-                        <h4>Название статьи</h4>
+                        <h4><%= post.name %></h4>
                       </thead>
                       <tbody>
                         <tr>
-                          <td>2 125 символов</td>
-                          <td><a href="#">Инокентий</a></td>
-                          <td>199 рублей</td>
-                          <td>Автомобили</td>
+                          <td><%= post.text.gsub(/\s+/, '').length %> символов</td>
+                          <td><%= link_to post.user.username, post.user %></td>
+                          <td><%= post.sale %> рублей</td>
+                          <td><%= post.category %></td>
                         </tr>
                       </tbody>
                     </table>
-                    <p>Краткое описание, очень краткое описание содержания статьи. Можно это ещё названить синонимом выражения "краткое описание" - аннотация статьи.</p>
+                    <p><%= truncate( raw( sanitize(post.text, :tags => %w(table tr td), :attributes => %w(id class style) ) ), :length => 130, :omission => "...") %></p>
                     <p><a href="#" class="btn btn-success" style="float: right; display: inline;">Купить</a></p><br>
                   </div>
                 </div>
-<br>
-                <div class="thumbnail info-thumbnail padding1 background-clouds color-black">
-                  <div class="caption background-white">
+                <div class="space-20"></div>
+                <% end %>
 
-                    <table class="table table-bordered">
-                      <thead>
-                        <h4>Название статьи</h4>
-                      </thead>
-                      <tbody>
-                        <tr>
-                          <td>2 125 символов</td>
-                          <td><a href="#">Инокентий</a></td>
-                          <td>199 рублей</td>
-                          <td>Автомобили</td>
-                        </tr>
-                      </tbody>
-                    </table>
-                    <p>Краткое описание, очень краткое описание содержания статьи. Можно это ещё названить синонимом выражения "краткое описание" - аннотация статьи.</p>
-                    <p><a href="#" class="btn btn-success" style="float: right; display: inline;">Купить</a></p><br>
-                  </div>
-                </div>
+
 
               </div>
             </div>

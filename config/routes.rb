@@ -1,4 +1,7 @@
 Articlesale::Application.routes.draw do
+resources :posts
+match "posts/:id/edit_post_status", :to => 'posts#edit_post_status'
+
 resources :projects do
 	post :create_order, :on => :member
 
@@ -16,6 +19,8 @@ end
 match "wait/create_post", :to => 'projects#create_post'
 
   resources :articles
+
+match "newpost/createpost", :to => 'posts#createpost'
 
 resources :discussions do 
   resources :messages, :on => :member

@@ -22,4 +22,5 @@ class CopyrightersController < ApplicationController
     @posts = current_user.posts.where(:order_id => nil)
     @newpost = Post.new
   end
+
 end

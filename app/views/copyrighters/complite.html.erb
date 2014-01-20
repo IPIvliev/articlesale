@@ -34,11 +34,19 @@
                   <tbody>
                     <% @posts.each do |post| %>
                       <tr>
-                        <td><%= post.id %></td>
-                        <td><%= link_to post.name, project_order_path(post.order.project, post.order) %></td>
-                        <td><%= Russian::strftime(post.order.finish_date, "%d %B %Y") %></td>
-                        <td><%= price_is(post.order.amount) %> руб.</td>
-                        <td><%= post.order.complite? %></td>
+                        <% if post.order %>
+                          <td><%= post.id %></td>
+                          <td><%= link_to post.name, project_order_path(post.order.project, post.order) %></td>
+                          <td><%= Russian::strftime(post.order.finish_date, "%d %B %Y") %></td>
+                          <td><%= price_is(post.order.amount) %> руб.</td>
+                          <td><%= post.order.complite? %></td>
+                        <% else %>
+                          <td><%= post.id %></td>
+                          <td><%= link_to post.name, posts_path(post) %></td>
+                          <td><%= Russian::strftime(post.created_at, "%d %B %Y") %></td>
+                          <td><%= post.sale %> руб.</td>
+                          <td><%= post.complite? %></td>
+                        <% end %>                        
                       </tr>
                     <% end %>
                   </tbody>

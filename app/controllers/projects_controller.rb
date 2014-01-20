@@ -71,4 +71,8 @@ class ProjectsController < ApplicationController
     @order.post.update_attribute(:finish, true)
     redirect_to project_order_path(@order)
   end
+
+  def articles
+    @posts = Post.where(:order_id => nil).where(:finish => true)
+  end
 end

@@ -92,9 +92,7 @@
                           <i class="icon-globe bigger-125 blue"></i>
                           www.alexdoe.com
                         </a>
-                         <a class="btn red btn-link" href="#">
-                            <%= "<i class='icon-cogs bigger-125 red'></i> Изменить профайл".html_safe if current_user == @user %>
-                        </a>
+                            <%= link_to "<i class='icon-cogs bigger-125 red'></i> Изменить профайл".html_safe, edit_user_registration_url, :class => "btn red btn-link" if current_user == @user %>
                       </div>
 
                       <div class="space-6"></div>
@@ -140,6 +138,7 @@
 
                     <div class="space-20"></div>
 
+
                     <div class="profile-user-info profile-user-info-striped">
                       <div class="profile-info-row">
                         <div class="profile-info-name"> Имя </div>
@@ -150,11 +149,13 @@
                       </div>
 
                       <div class="profile-info-row">
-                        <div class="profile-info-name"> Location </div>
+                        <div class="profile-info-name"> Место работы </div>
 
                         <div class="profile-info-value">
                           <i class="icon-map-marker light-orange bigger-110"></i>
-                          <span class="editable" id="country">Netherlands</span>
+                          <span class="editable" id="country">Россия,</span>
+                          <span class="editable" id="city"> Нижний Новгород</span>
+
                         </div>
                       </div>
 
@@ -184,6 +185,17 @@
 
                     </div>
 
+<div class="space-20"></div>
+                      <div class="profile-user-info profile-user-info-striped">
+                      <div class="profile-info-row">
+                        <div class="profile-info-name"> На счёте </div>
+
+                        <div class="profile-info-value">
+                          <span class="editable" id="username">10 203 руб.</span>
+                        </div>
+                      </div>
+
+                    </div>
 
 </div></div></div></div></div>
 

@@ -47,15 +47,12 @@
   <% @posts.each do |post| %>
           <tr>
             <td><%= post.id %></td>
-            <td><%= link_to post.name, post_url(post) %></td>
+            <td><%= link_to post.name, post_path(post) %></td>
             <td><%= post.category %></td>
             <td><%= Russian::strftime(post.created_at, "%d %B %Y") %></td>
             <td><%= price_is(post.sale) %> руб.</td>
             <td><%= post.text.gsub(/\s+/, '').length %></td>
-            <td>
-              <%= "Статья в разработке" if post.finish == false %>
-              <%= "Статья выставлена на продажу" if post.finish == true %>
-            </td>
+            <td><%= post.complite? %></td>
           </tr>
   <% end %>
         </tbody>
@@ -70,7 +67,7 @@
                 <h1>Создать новую статью</h1>
                 <div class="thumbnail info-thumbnail padding1 background-clouds color-black">
                   <div class="caption background-white">
-<%= form_for @newpost, :url => {:controller => "copyrighters", :action => "newpost"} do |f| %>
+<%= form_for @newpost, :url => {:controller => "posts", :action => "createpost"} do |f| %>
               <div class="form-group">
                 <%= f.text_field :name, :size => "120", :placeholder => "Название статьи" %>
               </div>

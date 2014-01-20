@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 class Post < ActiveRecord::Base
   attr_accessible :category_id, :finish, :name, :order_id, :price, :text, :user_id
 
@@ -14,6 +16,11 @@ class Post < ActiveRecord::Base
     else
       return 0 if text.nil?
     end
+  end
+
+  def complite?
+    return "Статья в разработке" if finish == false
+    return "Статья выставлена на продажу" if finish == true
   end
 
 end

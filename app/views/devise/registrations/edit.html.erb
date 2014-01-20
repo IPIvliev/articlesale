@@ -1,29 +1,280 @@
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
+<!-- Breadcrumbs - START -->
+<div class="background-clouds breadcrumbs-container">
+  <div class="container">
+    <ol class="breadcrumb">
+      <li><a href="/index.html">Главная</a></li>
+      <li><%= link_to "Пользователи", users_path %></a></li>
+      <li class="active"><%= @user.username %></li>
+                  <li class="navbar-right">
+              <% if !Message.where("read == ? AND whom == ?", false, current_user).empty? %>
+                <%= link_to "Новые сообщения (#{Message.where("read == ? AND whom == ?", false, current_user).count})", Message.where("read == ? AND whom == ?", false, current_user).first.discussion %>
+              <% else %>
+                <%= "У Вас нет новых сообщений" %>
+              <% end %>
 
-<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f| %>
+            </li>
+    </ol>
+  </div>
+</div>
+<!-- Breadcrumbs - END -->
+
+ <section>
+      <div class="container">
+        <div class="row">
+          <%= render "shared/whatmenu" %>
+          <div class="col-md-9">
+            <div class="row">
+              <div class="col-md-12">
+
+
+                <h1>Личный кабинет</h1>
+
+    <link rel="stylesheet" href="/css/font-awesome.min.css" />
+
+      <div class="thumbnail info-thumbnail padding1 background-clouds color-black">
+        <div class="caption background-white">
+
+
+              <!--PAGE CONTENT BEGINS-->
+                  <div class="row">
+                    <div class="col-md-3 center">
+
+
+                    <div>
+                      <span class="profile-picture">
+                        <img id="avatar" class="editable" alt="Alex's Avatar" src="assets/avatars/profile-pic.jpg" />
+                      </span>
+
+                      <div class="space-4"></div>
+
+                      <div class="width-80 label label-info label-large arrowed-in arrowed-in-right">
+                        <div class="inline position-relative">
+                          <a href="#" class="user-title-label dropdown-toggle" data-toggle="dropdown">
+                            <i class="icon-circle light-green middle"></i>
+                            &nbsp;
+                            <span class="white middle bigger-120"><%= @user.username %></span>
+                          </a>
+
+                          <ul class="align-left dropdown-menu dropdown-caret dropdown-lighter">
+                            <li class="nav-header"> Изменить статус </li>
+
+                            <li>
+                              <a href="#">
+                                <i class="icon-circle green"></i>
+                                &nbsp;
+                                <span class="green">Свободен</span>
+                              </a>
+                            </li>
+
+                            <li>
+                              <a href="#">
+                                <i class="icon-circle red"></i>
+                                &nbsp;
+                                <span class="red">Занят</span>
+                              </a>
+                            </li>
+
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="space-6"></div>
+
+                    <div class="profile-contact-info">
+                      <div class="profile-contact-links align-left">
+
+                        <a class="btn btn-link" href="#">
+                          <i class="icon-globe bigger-125 blue"></i>
+                          www.alexdoe.com
+                        </a>
+
+                      </div>
+
+                      <div class="space-6"></div>
+
+                      <div class="profile-social-links center">
+                        <a href="#" class="tooltip-info" title="" data-original-title="Visit my Facebook">
+                          <i class="middle icon-facebook-sign icon-2x blue"></i>
+                        </a>
+
+                        <a href="#" class="tooltip-info" title="" data-original-title="Visit my Twitter">
+                          <i class="middle icon-twitter-sign icon-2x light-blue"></i>
+                        </a>
+
+                        <a href="#" class="tooltip-error" title="" data-original-title="Visit my Pinterest">
+                          <i class="middle icon-pinterest-sign icon-2x red"></i>
+                        </a>
+                      </div>
+
+                    </div>
+
+                    <div class="hr hr12 dotted"></div>
+
+                    <div class="clearfix">
+                      <div class="grid2">
+                        <span class="bigger-175 blue">25</span>
+
+                        <br />
+                        Рейтинг
+                      </div>
+
+                    </div>
+
+                    <div class="hr hr12 dotted"></div>
+                  </div>
+
+                  <div class="col-md-9">
+
+                    <div class="center">
+
+                      <%= render 'users/usershow/info' %>
+
+                    </div>
+
+                    <div class="space-20"></div>
+
+
+                    <div class="profile-user-info profile-user-info-striped">
+          <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f| %>
   <%= devise_error_messages! %>
+                      <div class="profile-info-row">
+                        <div class="profile-info-name"> Имя </div>
 
-  <div><%= f.label :email %><br />
-  <%= f.email_field :email, :autofocus => true %></div>
+                        <div class="profile-info-value">
+                          <span class="editable" id="username"><%= f.text_field :username %></span>
+                        </div>
+                      </div>
 
-  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+                      <div class="profile-info-row">
+                        <div class="profile-info-name"> E-mail </div>
+
+                        <div class="profile-info-value">
+                          <span id="email">  <%= f.email_field :email %></span>
+                        </div>
+                      </div>
+ <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
     <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
   <% end %>
+                      <div class="profile-info-row">
+                        <div class="profile-info-name"> Место работы </div>
 
-  <div><%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
-  <%= f.password_field :password, :autocomplete => "off" %></div>
+                        <div class="profile-info-value">
+                          <i class="icon-map-marker light-orange bigger-110"></i>
+                          <span class="editable" id="country">Россия,</span>
+                          <span class="editable" id="city"> Нижний Новгород</span>
 
-  <div><%= f.label :password_confirmation %><br />
-  <%= f.password_field :password_confirmation %></div>
+                        </div>
+                      </div>
 
-  <div><%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
-  <%= f.password_field :current_password %></div>
+                      <div class="profile-info-row">
+                        <div class="profile-info-name"> Статус </div>
 
-  <div><%= f.submit "Update" %></div>
+                        <div class="profile-info-value">
+                                            <div class="form-group">
+                    <label for="exampleInputPassword13">Вы заказчик или копирайтер?</label>
+                    <div class="radio">
+                      <%= f.radio_button(:role, "client") %>
+                      <%= f.label(:role, "Заказчик") %>
+                    </div>
+                    <div class="radio">
+                      <%= f.radio_button(:role, "copy") %>
+                      <%= f.label(:role, "Копирайтер") %>
+                    </div>
+                  </div>
+                        </div>
+                      </div>
+
+                      <div class="profile-info-row">
+                        <div class="profile-info-name"> Новый пароль </div>
+
+                        <div class="profile-info-value">
+                          <span><%= f.password_field :password, :autocomplete => "off" %></span>
+                        </div>
+                      </div>
+
+                      <div class="profile-info-row">
+                        <div class="profile-info-name"> Подтвердить пароль </div>
+
+                        <div class="profile-info-value">
+                          <span> <%= f.password_field :password_confirmation %></span><br><br>
+                        </div>
+                      </div>
+
+                      <div class="profile-info-row">
+                        <div class="profile-info-name"> Текущий пароль </div>
+
+                        <div class="profile-info-value">
+                          <span> <%= f.password_field :current_password %></span><br>(нужен для подтверждения изменений)
+                        </div>
+                      </div>
+                    <%= f.submit :value => "Сохранить" %>
+     <% end %>
+
+                    </div>
+               
+
+
+</div></div></div></div></div>
+
+
+              <% if current_user != @user %>
+                <h1>Сообщения</h1>
+                <div class="thumbnail info-thumbnail padding1 background-clouds color-black">
+                  <div class="caption background-white">
+
+
+  <div id="follow_form">
+  <% if current_user.speaking?(@user) %>
+
+  <%= render 'unfollow' %><br>
+
+    <%= form_for @message, :url => {:controller => "discussions", :action => "newmessage"} do |f| %>
+<%= f.hidden_field :user_id, :value => current_user.id %>
+<%= f.hidden_field :whom, :value => @user.id %>
+<%= f.hidden_field :discussion_id, :value => current_user.discussions.find_by_whom_id(@user.id).id %>
+<div class="form-group">
+  <%= f.text_area :text, :size => "130x8", placeholder: "Текст вашего сообщения пользователю #{@user.username}" %>
+</div>
+<%= f.submit :value => "Отправить сообщение", :class => "btn btn-primary" %>
 <% end %>
 
-<h3>Cancel my account</h3>
+<% elsif @user.speaking?(current_user) %>
 
-<p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), :data => { :confirm => "Are you sure?" }, :method => :delete %></p>
+    <%= form_for @message, :url => {:controller => "discussions", :action => "newmessage"} do |f| %>
+<%= f.hidden_field :user_id, :value => current_user.id %>
+<%= f.hidden_field :whom, :value => @user.id %>
+<%= f.hidden_field :discussion_id, :value => @user.discussions.find_by_whom_id(current_user.id).id %>
+<div class="form-group">
+  <%= f.text_area :text, :size => "130x8", placeholder: "Текст вашего сообщения пользователю #{@user.username}" %>
+</div>
+<%= f.submit :value => "Отправить сообщение", :class => "btn btn-primary" %>
+<% end %>
 
-<%= link_to "Back", :back %>
+  <% else %>
+    <%= render 'follow' %>
+
+  <% end %>
+  </div>
+<br>
+
+  </div>
+</div>
+<% end %>
+<br>
+
+
+
+
+                  </div>
+                </div>
+
+
+              </div>
+
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
