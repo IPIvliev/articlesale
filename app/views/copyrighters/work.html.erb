@@ -20,6 +20,7 @@
             <h1>Заказы в работе</h1>
             <div class="thumbnail info-thumbnail padding1 background-clouds color-black">
               <div class="caption background-white">
+                <% if @posts.count > 0 %>
                 <table class="table table-hover">
                   <thead>
                     <tr>
@@ -31,17 +32,34 @@
                     </tr>
                   </thead>
                   <tbody>
+                  
                     <% @posts.each do |post| %>
                       <tr>
+                        <% if post.order %>
+
                         <td><%= post.id %></td>
                         <td><%= link_to post.order.name, project_order_path(post.order.project, post.order) %></td>
                         <td><%= Russian::strftime(post.order.finish_date, "%d %B %Y") %></td>
                         <td><%= price_is(post.order.amount) %> руб.</td>
-                        <td><%= percentage(post) %></td>
+                        <td><%= percentage(post) %>%</td>
+
+                        <% else %>
+
+                        <td><%= post.id %></td>
+                        <td><%= link_to post.name, post_path(post) %></td>
+                        <td><%= Russian::strftime(post.created_at, "%d %B %Y") %></td>
+                        <td><%= post.sale %> руб.</td>
+                        <td><%= post.complite? %></td>
+
+                        <% end %>
                       </tr>
                     <% end %>
                   </tbody>
                 </table>
+                <% else %>
+                <strong>У Вас нет заказов в работе.</strong>
+                <% end %>
+
               </div>
             </div>
           </div>

@@ -20,7 +20,7 @@
                 <h1>Заказы на корректировке</h1>
                 <div class="thumbnail info-thumbnail padding1 background-clouds color-black">
                   <div class="caption background-white">
-
+                    <% if @posts.count > 0 %>
                <table class="table table-hover">
                   <thead>
                     <tr>
@@ -43,7 +43,9 @@
                     <% end %>
                   </tbody>
                 </table>
-
+                <% else %>
+                <strong>У Вас нет заказов на корректировке.</strong>
+                <% end %>
                   </div>
                 </div>
               </div>

@@ -11,7 +11,9 @@ gem 'sqlite3'
 gem 'bcrypt-ruby', '3.0.1'
 gem 'russian'
 gem 'thin'
-gem 'robokassa'
+
+# Money
+gem 'activemerchant'
 
 # Users
 gem 'devise'

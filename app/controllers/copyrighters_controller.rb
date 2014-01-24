@@ -23,4 +23,12 @@ class CopyrightersController < ApplicationController
     @newpost = Post.new
   end
 
+  def pay
+    @credit_card = ActiveMerchant::Billing::CreditCard.new
+  end
+
+  def newpaycredit
+    @credit_card = ActiveMerchant::Billing::CreditCard.new(params[:credit_card])
+  end
+
 end

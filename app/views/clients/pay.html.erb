@@ -17,12 +17,19 @@
           <div class="col-md-9">
             <div class="row">
               <div class="col-md-12">
-                <h1>Список копирайтеров</h1>
+                <h1>Информация о Вашем счётех</h1>
+                <div class="thumbnail info-thumbnail padding1 background-clouds color-black">
+                  <div class="caption background-white">
+                    <p>На вашем счёте 12 456 руб.</p>
+                  </div>
+                </div>
+<br><br>
+
+                <h1>Положить деньги на счёт</h1>
                 <div class="thumbnail info-thumbnail padding1 background-clouds color-black">
                   <div class="caption background-white">
 
-<% pay_url = Robokassa.client.init_payment_url(order.id, order.amount, "Order #{order}", '', 'ru', order.user.email, {}) %>
-<%= link_to "Оплатить через сервис ROBOX", pay_url %>
+
 
 
                   </div>

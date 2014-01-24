@@ -23,8 +23,8 @@ class PostsController < ApplicationController
 
   def edit_post_status
   	@post = Post.find(params[:id])
-    @post.update_attribute(:finish, true)
-    redirect_to "projects/articles.html"
+    @post.toggle!(:finish)
+    redirect_to @post
   end
 
 end

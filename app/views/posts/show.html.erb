@@ -35,7 +35,7 @@
           <tr>
             <td><%= @post.text.gsub(/\s+/, '').length if !@post.text.nil? %></td>
             <td><%= link_to @post.user.username, @post.user %></td>
-            <td><%= @post.price %></td>
+            <td><%= @post.sale %> руб.</td>
             <td><%= Russian::strftime(@post.updated_at, "%d %B %Y %H:%M") %></td>
           </tr>
         </tbody>
@@ -48,7 +48,9 @@
 
 <% if @post.user == current_user %>
       <div class="col-md-12">
+                  <% if @post.finish == false %>
         <h1>
+
           <% if !@post.text.nil? %>
             <%= "Редактировать статью" %>
           <% else %>
@@ -68,6 +70,7 @@
               <%= f.submit :value => "Сохранить", :class => "btn btn-primary" %>
             <% end %>
           </div>
+          <% end %>
 
           <div class="caption background-white">
             <blockquote>
@@ -75,7 +78,7 @@
               <small>Администратор <cite title="Source Title">Биржи текстов</cite></small>
             </blockquote>
           </div>
-
+          <% if @post.finish == false %>
           <% if !@post.text.nil? %>
             <div class="caption background-white">
               <%= form_for @post, :url => {:controller => "posts", :action => "edit_post_status"} do |f| %>
@@ -85,6 +88,13 @@
           <% else %>
             <div class="caption background-white">
               <strong>Вы пока не можете отправить статью.</strong>
+            </div>
+          <% end %>
+          <% else %>
+            <div class="caption background-white">
+              <%= form_for @post, :url => {:controller => "posts", :action => "edit_post_status"} do |f| %>
+                <%= f.submit :value => "Изьять статью из продажи и изменить", :class => "btn btn-primary" %>
+              <% end %>
             </div>
           <% end %>
         </div>
