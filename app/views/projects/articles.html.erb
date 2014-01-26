@@ -40,7 +40,7 @@
                   </div>
                 </div> -->
                 <br>
-
+<% if !@posts.empty? %>
                 <% @posts.each do |post| %>
                 <div class="thumbnail info-thumbnail padding1 background-clouds color-black">
                   <div class="caption background-white">
@@ -64,6 +64,14 @@
                 </div>
                 <div class="space-20"></div>
                 <% end %>
+<% else %>
+                <div class="thumbnail info-thumbnail padding1 background-clouds color-black">
+                  <div class="caption background-white">
+                    <strong>Пока не опубликовано ни одной статьи.</strong>
+                  </div>
+                </div>
+<% end %>
+
 
 
 

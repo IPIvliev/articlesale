@@ -26,4 +26,15 @@ class ClientsController < ApplicationController
   def check
   	@orders = current_user.orders.where(:status => 3)
   end
+
+  def pay
+    @credit_card = ActiveMerchant::Billing::CreditCard.new(
+    :first_name => 'Steve',
+    :last_name  => 'Smith',
+    :month      => '9',
+    :year       => '2010',
+    :type       => 'visa',
+    :number     => '4242424242424242'
+           )
+  end
 end

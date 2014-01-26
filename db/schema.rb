@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140108101857) do
+ActiveRecord::Schema.define(:version => 20140126103520) do
 
   create_table "articles", :force => true do |t|
     t.string   "name"
@@ -44,9 +44,9 @@ ActiveRecord::Schema.define(:version => 20140108101857) do
     t.integer  "user_id"
     t.integer  "whom"
     t.string   "text"
-    t.boolean  "read",          :default => false
-    t.datetime "created_at",                       :null => false
-    t.datetime "updated_at",                       :null => false
+    t.boolean  "read"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
     t.integer  "discussion_id"
   end
 
@@ -67,6 +67,15 @@ ActiveRecord::Schema.define(:version => 20140108101857) do
   end
 
   add_index "orders", ["project_id", "created_at"], :name => "index_orders_on_project_id_and_created_at"
+
+  create_table "payments", :force => true do |t|
+    t.integer  "sender"
+    t.integer  "receiver"
+    t.decimal  "amount",     :precision => 6, :scale => 2
+    t.integer  "type"
+    t.datetime "created_at",                               :null => false
+    t.datetime "updated_at",                               :null => false
+  end
 
   create_table "posts", :force => true do |t|
     t.string   "name"
@@ -95,19 +104,21 @@ ActiveRecord::Schema.define(:version => 20140108101857) do
     t.string   "nickname"
     t.string   "provider"
     t.string   "url"
-    t.datetime "created_at",                             :null => false
-    t.datetime "updated_at",                             :null => false
-    t.string   "email",                  :default => "", :null => false
-    t.string   "encrypted_password",     :default => "", :null => false
+    t.datetime "created_at",                                                           :null => false
+    t.datetime "updated_at",                                                           :null => false
+    t.string   "email",                                                :default => "", :null => false
+    t.string   "encrypted_password",                                   :default => "", :null => false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          :default => 0,  :null => false
+    t.integer  "sign_in_count",                                        :default => 0,  :null => false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
     t.string   "role"
+    t.integer  "level"
+    t.decimal  "pocket",                 :precision => 6, :scale => 2
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

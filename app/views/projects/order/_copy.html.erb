@@ -42,7 +42,7 @@
 </div>
 <% end %>
 
-<% if @post.user == current_user %>
+<% if @post.user == current_user && @post.finish == false %>
       <div class="col-md-12">
         <h1>
           <% if !@post.text.nil? %>
@@ -79,6 +79,7 @@
                 <%= f.submit :value => "Отправить заказчику", :class => "btn btn-primary" %>
               <% end %>
             </div>
+         
           <% else %>
             <div class="caption background-white">
               <strong>Размер текста меньше необходимого. Вы пока не можете отправить статью заказчику.</strong>
@@ -86,4 +87,14 @@
           <% end %>
         </div>
       </div>
+
+
+<% else  @post.finish == true %>
+  <div class="col-md-12">
+    <div class="thumbnail info-thumbnail padding1 background-clouds color-black">
+      <div class="caption background-white">
+        <strong>Статья отправленна заказчику.</strong>
+      </div>
+    </div>
+  </div>
 <% end %>

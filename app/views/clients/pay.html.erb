@@ -29,8 +29,22 @@
                 <div class="thumbnail info-thumbnail padding1 background-clouds color-black">
                   <div class="caption background-white">
 
+                    <%= form_for @gateway do |card| %>
 
 
+                    <% end %>
+
+
+
+<%   gateway = ActiveMerchant::Billing::CreditCard.new(
+    :first_name => 'Steve',
+    :last_name  => 'Smith',
+    :month      => '9',
+    :year       => '2010',
+    :type       => 'visa',
+    :number     => '4242424242424242'
+           )
+%>
 
                   </div>
                 </div>

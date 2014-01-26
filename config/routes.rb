@@ -44,7 +44,7 @@ get "/clients/projects.html" => "clients#projects"
 match "clients/projects", to: 'clients#new_project'
 
 get "/clients/articles.html" => "projects#articles"
-get "/clients/pay.html" => "clients#pay"
+get "/clients/pay.html" => "payments#index"
 get "/clients/check.html" => "clients#check"
 get "/clients/wait.html" => "clients#wait"
 get "/clients/correct.html" => "clients#correct"
