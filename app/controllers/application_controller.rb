@@ -6,7 +6,11 @@ class ApplicationController < ActionController::Base
   end
 
   def after_sign_in_path_for(resource)
-    request.env['omniauth.origin'] || stored_location_for(resource) || "/users/#{current_user.id}"
+    # if current_user.role == "client" || current_user.role == "copy"
+    	request.env['omniauth.origin'] || stored_location_for(resource) || "/users/#{current_user.id}"
+	# else
+		#"/admins/index"
+	# end
   end
 
 end

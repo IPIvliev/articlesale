@@ -40,9 +40,9 @@ end
 
 get "index.html" => "static_pages#index"
 
+# Личный кабинет заказчиков
 get "/clients/projects.html" => "clients#projects"
 match "clients/projects", to: 'clients#new_project'
-
 get "/clients/articles.html" => "projects#articles"
 get "/clients/pay.html" => "payments#index"
 get "/clients/check.html" => "clients#check"
@@ -51,6 +51,7 @@ get "/clients/correct.html" => "clients#correct"
 get "/clients/work.html" => "clients#work"
 get "/clients/complite.html" => "clients#complite"
 
+# Личный кабинет копирайтеров
 get "/copyrighters/complite.html" => "copyrighters#complite"
 get "/copyrighters/correct.html" => "copyrighters#correct"
 get "/copyrighters/newpost.html" => "copyrighters#newpost"
@@ -59,14 +60,15 @@ get "/copyrighters/wait.html" => "copyrighters#wait"
 get "/copyrighters/work.html" => "copyrighters#work"
 get "/copyrighters/articles.html" => "projects#articles"
 
+#Статические страницы для гостей
 match "/about.html", to: 'static_pages#about'
 match "/articles.html", to: 'articles#index'
 match "/help.html", to: 'static_pages#help'
 match "/services/copyrighters.html", to: 'static_pages#copyrighters'
 match "/services/clients.html", to: 'static_pages#clients'
 
-
-  get "/admins/index"
+# Личный кабинет администратора
+get "/admins/index"
  
 root :to => 'static_pages#index'
 end
