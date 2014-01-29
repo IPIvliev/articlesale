@@ -1,0 +1,83 @@
+<% provide(:title, 'Выполненные заказы') %>
+
+<!-- Breadcrumbs - START -->
+<div class="background-clouds breadcrumbs-container">
+  <div class="container">
+    <ol class="breadcrumb">
+      <li class="active">Выполненные заказы</li>
+    </ol>
+  </div>
+</div>
+<!-- Breadcrumbs - END -->
+
+    <script type="text/javascript">
+  $(document).ready(function(){
+
+    $('.wysihtml5').each(function(i, elem) {
+      $(elem).wysihtml5();
+    });
+
+  })
+</script>
+
+  <section>
+      <div class="container">
+        <div class="row">
+<%= render "/shared/whatmenu" %>
+          <div class="col-md-9">
+            <div class="row">
+              <div class="col-md-12">
+
+                <h1>Добавить статью</h1>
+                <div class="thumbnail info-thumbnail padding1 background-clouds color-black">
+                  <div class="caption background-white">
+                    <%= form_for @newarticle do |f| %>
+                      <div class="form-group">
+                        <%= f.text_field :name, :size => "120", :placeholder => "Название статьи" %>
+                      </div>
+                      <div class="form-group">
+                      <%= f.file_field :image %>
+                      </div>
+                      <div class="form-group">
+                        <%= f.text_area :text, :size => "120*180", :placeholder => "Текст статьи", :class => 'wysihtml5' %>
+                      </div>
+                        <%= f.submit :value => "Разместить", :class => "btn btn-primary"  %>
+                    <% end %>
+                  </div>
+                </div>
+<br><br>
+                <h1>Размещённые статьи</h1>
+                <div class="thumbnail info-thumbnail padding1 background-clouds color-black">
+                  <div class="caption background-white">
+                    <% if @articles.count > 0 %>
+
+                      <% @articles.each do |article| %>
+                      <div class="row">
+                        <div class="col-md-3">
+                          <% if article.image.blank? %>
+                            <%= image_tag("/noimage.png", height: '120', width: '150') %>
+                          <% else %>
+                            <%= image_tag (article.image.thumb.url) %>
+                          <% end %>
+                        </div>
+                        <div class="col-md-9">
+                          <strong><%= article.name %></strong>
+                          <p><%= (truncate( raw( sanitize(article.text, :tags => %w(table tr td), :attributes => %w(id class style) ) ), :length => 165, :omission => "...")) %></p>
+                        </div>
+                      </div>
+                        <br>
+                      <% end %>
+                    <% else %>
+                      <strong>У Вас нет новостей.</strong>
+                    <% end %>
+                  </div>
+                </div>
+              </div>
+
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+

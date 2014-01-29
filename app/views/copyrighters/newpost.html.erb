@@ -13,7 +13,7 @@
   <section>
       <div class="container">
         <div class="row">
-          <%= render "leftmenu" %>
+          <%= render "/shared/whatmenu" %>
           <div class="col-md-9">
             <div class="row">
               <div class="col-md-12">
@@ -72,7 +72,7 @@
                 <%= f.text_field :name, :size => "120", :placeholder => "Название статьи" %>
               </div>
               <div class="form-group">
-                <%= f.text_area :text, :size => "120x8", :placeholder => "Текст статьи" %>
+                <%= f.text_area :text, :size => "120x8", :placeholder => "Текст статьи", :class => "wysihtml5" %>
               </div>
               <%= f.submit :value => "Сохранить", :class => "btn btn-primary" %>
     <% end %>
@@ -85,3 +85,14 @@
         </div>
       </div>
     </section>
+
+    
+    <script type="text/javascript">
+  $(document).ready(function(){
+
+    $('.wysihtml5').each(function(i, elem) {
+      $(elem).wysihtml5();
+    });
+
+  })
+</script>

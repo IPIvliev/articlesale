@@ -1,7 +1,8 @@
 class AdminsController < ApplicationController
 	before_filter :authenticate_user!
 
-	layout "admin"
-
-
+  def news
+    @articles = Article.paginate(page: params[:page], :per_page => 20).order("created_at DESC")
+    @newarticle = Article.new
+  end
 end

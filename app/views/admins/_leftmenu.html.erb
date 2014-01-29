@@ -2,9 +2,10 @@
 
 
             <div class="list-group bright background-clouds color-text">
-              <div class="list-group-item"><h3>Меню копирайтера</h3></div>
+              <div class="list-group-item"><h3>Администратор</h3></div>
               <%= link_to "Личный кабинет", current_user, :class => "list-group-item" %>
-              
+              <%= link_to "Статистика", "/admins/statistics.html", :class => "list-group-item" %>    
+              <%= link_to "Новости", "/admins/news.html", :class => "list-group-item" %>              
               <%= link_to "Сообщения", discussions_path, :class => "list-group-item" %>
               <a href="/copyrighters/push.html" class="list-group-item">Вывести средства</a>
               <%= link_to "Список копирайтеров", users_path, :class => "list-group-item" %>
@@ -35,4 +36,31 @@
                 <a href="/copyrighters/correct.html">Заказы на корректировке</a>
               </li>
             </ul>
+
+              <ul class="list-group background-lead color-white">
+    <li class="list-group-item">
+      <%= "<span class='badge background-white color-lead'>#{current_user.projects.count}</span>".html_safe if !current_user.projects.empty? %></span>
+      <a href="/projects">Ваши проекты</a>
+    </li>
+    <li class="list-group-item">
+      <%= "<span class='badge background-white color-lead'>#{current_user.orders.where(:status => 4).count}</span>".html_safe if !current_user.orders.where(:status => 4).empty? %>
+      <a href="/clients/complite.html">Выполненные заказы</a>
+    </li>
+    <li class="list-group-item">
+      <%= "<span class='badge background-white color-lead'>#{current_user.orders.where(:status => 3).count}</span>".html_safe if !current_user.orders.where(:status => 3).empty? %>
+      <a href="/clients/check.html">На проверку </a>
+    </li>
+    <li class="list-group-item">
+      <%= "<span class='badge background-white color-lead'>#{current_user.orders.where(:status => 2).count}</span>".html_safe if !current_user.orders.where(:status => 2).empty? %>
+      <a href="/clients/work.html">Заказы в работе </a>
+    </li>
+    <li class="list-group-item">
+      <%= "<span class='badge background-white color-lead'>#{current_user.orders.where(:status => 0).count}</span>".html_safe if !current_user.orders.where(:status => 0).empty? %>
+      <a href="/clients/wait.html">Заказы в ожидании</a>
+    </li>
+    <li class="list-group-item">
+      <%= "<span class='badge background-white color-lead'>#{current_user.orders.where(:status => 1).count}</span>".html_safe if !current_user.orders.where(:status => 1).empty? %>
+      <a href="/clients/correct.html">Заказы на корректировке</a>
+    </li>
+  </ul>
           </div>

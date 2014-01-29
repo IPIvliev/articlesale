@@ -40,6 +40,10 @@ end
 
 get "index.html" => "static_pages#index"
 
+# Личный кабинет администратора
+get "/admins/statistics.html" => "admins#statistics"
+match "/admins/news", to: 'admins#news'
+
 # Личный кабинет заказчиков
 get "/clients/projects.html" => "clients#projects"
 match "clients/projects", to: 'clients#new_project'

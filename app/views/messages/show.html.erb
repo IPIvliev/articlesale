@@ -35,7 +35,7 @@
               </li>
               <li class="media blog-entry">
                 <div class="pull-left">
-                  <img class="media-object" src="img/author.jpg" alt="...">
+                  <%= image_tag (article.image.thumb.url, :class => "media-object", :alt => article.name) if !article.image.blank? %> 
                 </div>
                 <div class="media-body">
                   <div class="blog-entry-content">
