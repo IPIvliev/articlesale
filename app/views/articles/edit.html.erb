@@ -1,6 +1,41 @@
-<h1>Editing article</h1>
+<% provide(:title, 'Изменить статью') %>
 
-<%= render 'form' %>
+<!-- Breadcrumbs - START -->
+<div class="background-clouds breadcrumbs-container">
+  <div class="container">
+    <ol class="breadcrumb">
+      <li class="active">Изменить статью</li>
+    </ol>
+  </div>
+</div>
+<!-- Breadcrumbs - END -->
 
-<%= link_to 'Show', @article %> |
-<%= link_to 'Back', articles_path %>
+<script type="text/javascript">
+  $(document).ready(function(){
+
+    $('.wysihtml5').each(function(i, elem) {
+      $(elem).wysihtml5();
+    });
+
+  })
+</script>
+
+<section>
+	<div class="container">
+		<div class="row">
+			<%= render "/shared/whatmenu" %>
+		  <div class="col-md-9">
+		    <div class="row">
+		      <div class="col-md-12">
+		        <h1>Добавить статью</h1>
+		        <div class="thumbnail info-thumbnail padding1 background-clouds color-black">
+		          <div class="caption background-white">
+		          	<%= render "form" %>
+		          </div>
+		      	</div>
+		 	  </div>
+			</div>
+		  </div>
+		</div>
+	</div>
+</section>

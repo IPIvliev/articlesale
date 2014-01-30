@@ -1,5 +1,7 @@
 class DiscussionsController < ApplicationController
 
+  before_filter :authenticate_user!
+
 	def index
 		@discussions = Discussion.where("user_id = ? OR whom_id = ?", current_user, current_user)
     @lastmessage = Message.where(:whom => current_user.id).last

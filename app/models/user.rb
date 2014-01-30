@@ -26,6 +26,9 @@ class User < ActiveRecord::Base
   has_many :orders, :through => :projects
   has_many :posts
 
+  has_many :articles
+
+  mount_uploader :avatar, AvatarUploader
 
   def speaking?(other_user)
     discussions.find_by_whom_id(other_user.id)

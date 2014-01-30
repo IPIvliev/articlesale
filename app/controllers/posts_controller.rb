@@ -1,5 +1,7 @@
 class PostsController < ApplicationController
 
+  before_filter :authenticate_user!
+  
 	def createpost
 		@post = current_user.posts.build(params[:post])
 		@post.save

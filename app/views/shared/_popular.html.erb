@@ -3,36 +3,15 @@
         <div class="reduce-top-margin">
           <h1 class="no-border">Популярные копирайтеры</h1>
           <div class="row">
-            <div class="col-xs-6 col-sm-4 col-md-2">
-              <a href="http://w3widget.com" class="thumbnail gallery-thumbnail">
-                <img class="img-circle" src="/img/w3w-logo.png" alt="...">
-              </a>
-            </div>
-            <div class="col-xs-6 col-sm-4 col-md-2">
-              <a href="http://w3widget.com" class="thumbnail gallery-thumbnail">
-                <img class="img-circle" src="/img/w3w-logo-2.png" alt="...">
-              </a>
-            </div>
-            <div class="col-xs-6 col-sm-4 col-md-2">
-              <a href="http://w3widget.com" class="thumbnail gallery-thumbnail">
-                <img class="img-circle" src="/img/w3w-logo-3.png" alt="...">
-              </a>
-            </div>
-            <div class="col-xs-6 col-sm-4 col-md-2">
-              <a href="http://w3widget.com" class="thumbnail gallery-thumbnail">
-                <img class="img-circle" src="/img/2.jpg" alt="...">
-              </a>
-            </div>
-            <div class="col-xs-6 col-sm-4 col-md-2">
-              <a href="http://w3widget.com" class="thumbnail gallery-thumbnail">
-                <img class="img-circle" src="/img/w3w-logo.png" alt="...">
-              </a>
-            </div>
-            <div class="col-xs-6 col-sm-4 col-md-2">
-              <a href="http://w3widget.com" class="thumbnail gallery-thumbnail">
-                <img class="img-circle" src="/img/w3w-logo-3.png" alt="...">
-              </a>
-            </div>
+            <% User.where(:role => "copy").limit(6).each do |copy| %>
+              <div class="col-xs-6 col-sm-4 col-md-2">
+                <% if copy.avatar.blank? %>
+                  <%= link_to image_tag("/unnamed.jpg", :alt => copy.username), copy, :class => "thumbnail gallery-thumbnail" %>
+                <% else %>
+                  <%= link_to image_tag(copy.avatar.url, :alt => copy.username), copy, :class => "thumbnail gallery-thumbnail" %>
+                <% end %>
+              </div>
+            <% end %>
           </div>
         </div>
       </div>

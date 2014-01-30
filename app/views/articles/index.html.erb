@@ -14,12 +14,13 @@
  <section>
       <div class="container">
         <div class="row">
+<%= render "/shared/whatmenu" if current_user %>
           <div class="col-md-9">
 
 <%= render @articles %>
 
           </div>
-<%= render '/shared/rightcolumn' %>
+<%= render '/shared/rightcolumn' if !current_user %>
         </div>
       </div>
     </section>

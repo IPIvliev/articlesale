@@ -4,40 +4,43 @@
           <div class="col-md-3">
             <h3>Меню</h3>
             <ul class="nav-footer">
-              <li class="active"><a href="#">Главная</a></li>
-              <li><a href="#">О бирже</a></li>
-              <li><a href="#">Для копирайтеров</a></li>
-              <li><a href="#">Для заказчиков</a></li>
-              <li><a href="#">Статьи</a></li>
-              <li><a href="#">Контакты</a></li>
+              <li><a href="/index.html">Главная</a></li>
+              <li><a href="/about.html">О бирже</a></li>
+              <li><a href="/copyrighters.html">Для копирайтеров</a></li>
+              <li><a href="/clients.html">Для заказчиков</a></li>
+              <li><a href="/articles.html">Статьи</a></li>
+              <li><a href="/help.html">Справка</a></li>
             </ul>
           </div>
           <div class="col-md-4">
             <h3>Новости</h3>
-            <p class="testimonial">Текст первой новости. Текст первой новости и второе предложение этого текста. Было бы здорово новости закончить.</p>
-            <p class="author">Дмитрий Иванов</p>
-            <p class="testimonial">Краткое описание второй новости на сайте. Новости берутся из раздела .</p>
-            <p class="author">Игорь Васильев</p>
+              <% Article.order("created_at DESC").limit(3).each do |article| %>
+            <p class="testimonial">
+              <%= link_to truncate( raw( sanitize(article.text, :tags => %w(table tr td), :attributes => %w(id class style) ) ), :length => 120, :omission => "..."), article %>
+            </p>
+            <%= link_to "<p class='author'> #{article.user.username}</p>".html_safe, article.user if !article.user.nil? %>
+              <% end %>
           </div>
           <div class="col-md-5">
             <h3>Задать вопрос</h3>
-            <form class="form-horizontal" role="form">
+            <%= form_for Question.new, :url => {:controller => "admins", :action => "new_question"}, :class => "form-horizontal", :role => "form" do |f| %>
               <div class="form-group">
                 <label for="inputName1" class="col-lg-3 control-label">Имя</label>
                 <div class="col-lg-9">
-                  <input type="text" class="form-control input-lg" id="inputName1" placeholder="Ваше имя">
+                  <%= f.text_field :name, :class => "form-control input-lg", :placeholder => "Ваше имя" %>
                 </div>
               </div>
               <div class="form-group">
                 <label for="inputEmail1" class="col-lg-3 control-label">Email</label>
                 <div class="col-lg-9">
-                  <input type="email" class="form-control input-lg" id="inputEmail1" placeholder="Email">
+                  <%= f.email_field :email, :class => "form-control input-lg", :placeholder => "Email" %> 
                 </div>
               </div>
+              <br><br>
               <div class="form-group">
                 <label for="inputContent1" class="col-lg-3 control-label">Текст</label>
                 <div class="col-lg-9">
-                  <textarea id="inputContent1" class="form-control" rows="3" placeholder="Текст вопроса"></textarea>
+                  <%= f.text_area :text, :class => "form-control", :rows => 3, :placeholder => "Текст вопроса" %> 
                 </div>
               </div>
               <div class="form-group">
@@ -45,7 +48,7 @@
                   <button type="submit" class="btn btn-lead btn-lg">Отправить</button>
                 </div>
               </div>
-            </form>
+            <% end %>
           </div>
         </div>
         <div class="row">

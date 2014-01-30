@@ -41,7 +41,7 @@
                       <div class="form-group">
                         <%= f.text_area :text, :size => "120*180", :placeholder => "Текст статьи", :class => 'wysihtml5' %>
                       </div>
-                        <%= f.submit :value => "Разместить", :class => "btn btn-primary"  %>
+                        <%= f.submit :value => "Разместить", :class => "btn btn-primary" %>
                     <% end %>
                   </div>
                 </div>
@@ -55,13 +55,15 @@
                       <div class="row">
                         <div class="col-md-3">
                           <% if article.image.blank? %>
-                            <%= image_tag("/noimage.png", height: '120', width: '150') %>
+                            <%= image_tag("/noimage.png", height: '200', width: '150') %>
                           <% else %>
-                            <%= image_tag (article.image.thumb.url) %>
+                            <%= link_to(image_tag(article.image.thumb.url), article) %>
                           <% end %>
                         </div>
                         <div class="col-md-9">
-                          <strong><%= article.name %></strong>
+                          <strong><%= link_to article.name, article_path(article) %></strong>
+                          | <strong><%= link_to "Изменить", edit_article_path(article), :class => "yellow" %></strong>
+                          | <strong><%= link_to "Удалить", article_path(article), method: :delete, :class => "red", data: { confirm: "Вы уверены?" } %></strong>
                           <p><%= (truncate( raw( sanitize(article.text, :tags => %w(table tr td), :attributes => %w(id class style) ) ), :length => 165, :omission => "...")) %></p>
                         </div>
                       </div>

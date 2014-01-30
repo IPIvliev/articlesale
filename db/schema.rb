@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140126103520) do
+ActiveRecord::Schema.define(:version => 20140130120702) do
 
   create_table "articles", :force => true do |t|
     t.string   "name"
@@ -99,6 +99,14 @@ ActiveRecord::Schema.define(:version => 20140126103520) do
     t.datetime "updated_at", :null => false
   end
 
+  create_table "questions", :force => true do |t|
+    t.string   "name"
+    t.string   "text"
+    t.string   "email"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
   create_table "users", :force => true do |t|
     t.string   "username"
     t.string   "nickname"
@@ -119,6 +127,7 @@ ActiveRecord::Schema.define(:version => 20140126103520) do
     t.string   "role"
     t.integer  "level"
     t.decimal  "pocket",                 :precision => 6, :scale => 2
+    t.string   "avatar"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

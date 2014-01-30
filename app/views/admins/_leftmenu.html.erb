@@ -4,8 +4,9 @@
             <div class="list-group bright background-clouds color-text">
               <div class="list-group-item"><h3>Администратор</h3></div>
               <%= link_to "Личный кабинет", current_user, :class => "list-group-item" %>
-              <%= link_to "Статистика", "/admins/statistics.html", :class => "list-group-item" %>    
-              <%= link_to "Новости", "/admins/news.html", :class => "list-group-item" %>              
+              <%= link_to "Статистика", "/admins/statistics.html", :class => "list-group-item" %> 
+              <%= link_to "Новости", "/admins/news.html", :class => "list-group-item" %>  
+              <%= link_to "Вопросы <span class='badge background-white color-lead'>#{Question.all.count}</span>".html_safe, "/admins/questions.html", :class => "list-group-item" if Question.all %>             
               <%= link_to "Сообщения", discussions_path, :class => "list-group-item" %>
               <a href="/copyrighters/push.html" class="list-group-item">Вывести средства</a>
               <%= link_to "Список копирайтеров", users_path, :class => "list-group-item" %>
