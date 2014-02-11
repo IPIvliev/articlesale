@@ -42,11 +42,19 @@ get "index.html" => "static_pages#index"
 
 # Вопросы пользователей
 match "/admins/new_question", :to => 'admins#new_question'
+match "/devise/admins/new_question", :to => 'admins#new_question'
 
 # Личный кабинет администратора
 get "/admins/statistics.html" => "admins#statistics"
 get "/admins/news.html", to: "admins#news"
 get "/admins/questions.html", to: "admins#questions"
+
+  scope 'robokassa' do
+    match 'paid'    => 'robokassa#paid',    :as => :robokassa_paid # to handle Robokassa push request
+
+    match 'success' => 'robokassa#success', :as => :robokassa_success # to handle Robokassa success redirect
+    match 'fail'    => 'robokassa#fail',    :as => :robokassa_fail # to handle Robokassa fail redirect
+  end
 
 # Личный кабинет заказчиков
 get "/clients/projects.html" => "clients#projects"

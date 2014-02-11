@@ -20,7 +20,8 @@
                 <h1>Статистика сайта</h1>
                 <div class="thumbnail info-thumbnail padding1 background-clouds color-black">
                   <div class="caption background-white">
-
+                    <strong>Всего пользователей: </strong><%= User.all.count %><br>
+                    <strong>Всего средств на счетах: </strong><%= number_to_currency( User.sum("pocket"), unit: "руб.", separator: ",", delimiter: "", format: "%n %u") %>
                   </div>
                 </div>
               </div>

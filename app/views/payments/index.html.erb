@@ -1,0 +1,74 @@
+<% provide(:title, 'Спиосок копирайтеров') %>
+
+<!-- Breadcrumbs - START -->
+<div class="background-clouds breadcrumbs-container">
+  <div class="container">
+    <ol class="breadcrumb">
+      <li class="active">Список копирайтеров</li>
+    </ol>
+  </div>
+</div>
+<!-- Breadcrumbs - END -->
+
+  <section>
+      <div class="container">
+        <div class="row">
+<%= render "/shared/whatmenu" %>
+          <div class="col-md-9">
+            <div class="row">
+              <div class="col-md-12">
+                <h1>Информация о Вашем счётех</h1>
+                <div class="thumbnail info-thumbnail padding1 background-clouds color-black">
+                  <div class="caption background-white">
+                    <p>На вашем счёте 
+                    	<% if current_user.pocket.blank? %>
+                    		0 руб.
+                    	<% else %>
+                    		<%= number_to_currency( current_user.pocket, unit: "руб.", separator: ",", delimiter: "", format: "%n %u") %></p>
+                    	<% end %>
+                  </div>
+                </div>
+<br><br>
+
+                <h1>Положить деньги на счёт</h1>
+                <div class="thumbnail info-thumbnail padding1 background-clouds color-black">
+                  <div class="caption background-white">
+
+<% payment_service_for 1000, 'paypalemail@mystore.com',
+                             :amount => 50.00, 
+                             :currency => 'CAD', 
+                             :service => :paypal, 
+                             :html => { :id => 'payment-form' } do |service| %>
+
+  <% service.customer :first_name => 'Cody',
+                     :last_name => 'Fauser',
+                     :phone => '(555)555-5555',
+                     :email => 'codyfauser@gmail.com' %>
+
+  <% service.billing_address :city => 'Ottawa',
+                            :address1 => '21 Snowy Brook Lane',
+                            :address2 => 'Apt. 36',
+                            :state => 'ON',
+                            :country => 'CA',
+                            :zip => 'K1J1E5' %>
+
+  <% service.invoice '#1000' %>
+  <% service.shipping '0.00' %>
+  <% service.tax '0.00' %>
+
+  <% service.notify_url url_for(:only_path => false, :action => 'notify') %>
+  <% service.return_url url_for(:only_path => false, :action => 'done') %>
+  <% service.cancel_return_url 'http://mystore.com' %>
+<% end %>
+
+                  </div>
+                </div>
+
+              </div>
+
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>

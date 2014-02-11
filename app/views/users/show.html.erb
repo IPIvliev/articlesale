@@ -191,7 +191,11 @@
                         <div class="profile-info-name"> На счёте </div>
 
                         <div class="profile-info-value">
-                          <span class="editable" id="username">10 203 руб.</span>
+                          <% if @user.pocket.blank? %>
+                          <span>0,00 руб.</span>
+                          <% else %>
+                          <span><%= number_to_currency( @user.pocket, unit: "руб.", separator: ",", delimiter: "", format: "%n %u") %></span>
+                          <% end %>
                         </div>
                       </div>
 

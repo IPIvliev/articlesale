@@ -20,7 +20,12 @@
                 <h1>Информация о Вашем счётех</h1>
                 <div class="thumbnail info-thumbnail padding1 background-clouds color-black">
                   <div class="caption background-white">
-                    <p>На вашем счёте 12 456 руб.</p>
+                    <p>На вашем счёте 
+                      <% if current_user.pocket.blank? %>
+                        0 руб.
+                      <% else %>
+                        <%= number_to_currency( current_user.pocket, unit: "руб.", separator: ",", delimiter: "", format: "%n %u") %></p>
+                      <% end %>
                   </div>
                 </div>
 <br><br>
@@ -28,23 +33,13 @@
                 <h1>Положить деньги на счёт</h1>
                 <div class="thumbnail info-thumbnail padding1 background-clouds color-black">
                   <div class="caption background-white">
-
-                    <%= form_for @gateway do |card| %>
-
-
-                    <% end %>
-
-
-
-<%   gateway = ActiveMerchant::Billing::CreditCard.new(
-    :first_name => 'Steve',
-    :last_name  => 'Smith',
-    :month      => '9',
-    :year       => '2010',
-    :type       => 'visa',
-    :number     => '4242424242424242'
-           )
-%>
+asd
+<%= payment_sdasdservice_for @payment.id, AppConfig.robokassa_login,
+                        :amount =>  @payment.amount,
+                        :service => :robokassa,
+                        :secret => AppConfig.robokassa_secret do |s| %>
+  <%= submit_tag "Submit" %>
+<% end %>
 
                   </div>
                 </div>
