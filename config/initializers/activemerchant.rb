@@ -1,8 +1,6 @@
 require 'active_merchant'
 require 'active_merchant/billing/integrations/action_view_helper'
 
-ActiveMerchant::Billing::Base.mode = :test
+ActionView::Base.send(:include, ActiveMerchant::Billing::Integrations::ActionViewHelper)
 
-gateway = ActiveMerchant::Billing::TrustCommerceGateway.new(
-            :login => 'TestMerchant',
-            :password => 'password')
+ActiveMerchant::Billing::Base.integration_mode = :test # :test for sandbox

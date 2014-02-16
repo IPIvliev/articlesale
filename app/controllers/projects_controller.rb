@@ -76,6 +76,6 @@ class ProjectsController < ApplicationController
   end
 
   def articles
-    @posts = Post.where(:order_id => nil).where(:finish => true)
+    @posts = Post.paginate(page: params[:page], :per_page => 10).where(:order_id => nil).where(:finish => true).order("created_at DESC")
   end
 end

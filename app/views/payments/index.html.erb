@@ -34,38 +34,27 @@
                 <div class="thumbnail info-thumbnail padding1 background-clouds color-black">
                   <div class="caption background-white">
 
-<% payment_service_for 1000, 'paypalemail@mystore.com',
-                             :amount => 50.00, 
-                             :currency => 'CAD', 
-                             :service => :paypal, 
-                             :html => { :id => 'payment-form' } do |service| %>
+<% if params[:amount] %>
+  <h3>Проверьте реквизиты платежа:</h3>
+  <strong>Ваш аккаунт:</strong> <%= current_user.username %></p>
+  <strong>Оператор платежа:</strong> Робокасса</p>
+  <strong>Сумма платёжа:</strong> <%= params[:amount] %> руб.</p>
 
-  <% service.customer :first_name => 'Cody',
-                     :last_name => 'Fauser',
-                     :phone => '(555)555-5555',
-                     :email => 'codyfauser@gmail.com' %>
+  <%= payment_service_for 1, "articlesale",
+                          :amount => params[:amount],
+                          :service => :robokassa,
+                          :secret => "Odergies52" do |s| %>
+    <%= submit_tag "Оплатить" %>
+  <% end %>
 
-  <% service.billing_address :city => 'Ottawa',
-                            :address1 => '21 Snowy Brook Lane',
-                            :address2 => 'Apt. 36',
-                            :state => 'ON',
-                            :country => 'CA',
-                            :zip => 'K1J1E5' %>
+<% else %>
 
-  <% service.invoice '#1000' %>
-  <% service.shipping '0.00' %>
-  <% service.tax '0.00' %>
+  <form method="post">
+    <input name="amount" type="text" value="100">
+    <input type="submit">
+  </form>
 
-  <% service.notify_url url_for(:only_path => false, :action => 'notify') %>
-  <% service.return_url url_for(:only_path => false, :action => 'done') %>
-  <% service.cancel_return_url 'http://mystore.com' %>
 <% end %>
-
-                  </div>
-                </div>
-
-              </div>
-
 
             </div>
           </div>

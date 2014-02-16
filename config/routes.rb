@@ -56,6 +56,7 @@ get "/admins/questions.html", to: "admins#questions"
     match 'fail'    => 'robokassa#fail',    :as => :robokassa_fail # to handle Robokassa fail redirect
   end
 
+
 # Личный кабинет заказчиков
 get "/clients/projects.html" => "clients#projects"
 match "clients/projects", to: 'clients#new_project'

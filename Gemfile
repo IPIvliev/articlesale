@@ -13,7 +13,8 @@ gem 'russian'
 gem 'thin'
 
 # Money
-gem 'activemerchant'
+gem 'robokassa'
+gem 'activemerchant', :require => 'active_merchant'
 
 # Users
 gem 'devise'
