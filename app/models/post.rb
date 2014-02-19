@@ -23,4 +23,9 @@ class Post < ActiveRecord::Base
     return "Статья выставлена на продажу" if finish == true
   end
 
+
+  def proverka
+    hash = RestClient.post("http://www.content-watch.ru/public/api/", :action => 'CHECK_TEXT', :key => "gthFFbiIqkBYvRh", :text => "#{text}", :test => 1)
+    JSON.parse(hash)
+  end
 end

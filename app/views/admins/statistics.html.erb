@@ -21,7 +21,10 @@
                 <div class="thumbnail info-thumbnail padding1 background-clouds color-black">
                   <div class="caption background-white">
                     <strong>Всего пользователей: </strong><%= User.all.count %><br>
-                    <strong>Всего средств на счетах: </strong><%= number_to_currency( User.sum("pocket"), unit: "руб.", separator: ",", delimiter: "", format: "%n %u") %>
+                    <strong>Всего средств на счетах: </strong><%= number_to_currency( User.sum("pocket"), unit: "руб.", separator: ",", delimiter: " ", format: "%n %u") %><br><br>
+                    <strong>Средств в системе проверки оригинальности:</strong> <%= number_to_currency( @plagiat["balance"], unit: "руб.", separator: ",", delimiter: " ", format: "%n %u")  %><br>
+                    <strong>Цена за проверку статьи:</strong> <%= number_to_currency( @plagiat["tariff"], unit: "руб.", separator: ",", delimiter: " ", format: "%n %u")  %><br>
+                    <strong>Кол-во проверок оригинальности:</strong> <%= @result.to_i %> шт.
                   </div>
                 </div>
               </div>

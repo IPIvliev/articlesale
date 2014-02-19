@@ -42,7 +42,7 @@
                           <td><%= post.order.complite? %></td>
                         <% else %>
                           <td><%= post.id %></td>
-                          <td><%= link_to post.name, posts_path(post) %></td>
+                          <td><%= link_to post.name, post_path(post) %></td>
                           <td><%= Russian::strftime(post.created_at, "%d %B %Y") %></td>
                           <td><%= post.sale %> руб.</td>
                           <td><%= post.complite? %></td>

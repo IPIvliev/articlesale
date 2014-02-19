@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140130120702) do
+ActiveRecord::Schema.define(:version => 20140219131430) do
 
   create_table "articles", :force => true do |t|
     t.string   "name"
@@ -44,9 +44,9 @@ ActiveRecord::Schema.define(:version => 20140130120702) do
     t.integer  "user_id"
     t.integer  "whom"
     t.string   "text"
-    t.boolean  "read"
-    t.datetime "created_at",    :null => false
-    t.datetime "updated_at",    :null => false
+    t.boolean  "read",          :default => false
+    t.datetime "created_at",                       :null => false
+    t.datetime "updated_at",                       :null => false
     t.integer  "discussion_id"
   end
 
@@ -81,6 +81,7 @@ ActiveRecord::Schema.define(:version => 20140130120702) do
     t.string   "name"
     t.string   "text"
     t.boolean  "finish",                                    :default => false
+    t.boolean  "correct",                                   :default => false
     t.string   "category_id"
     t.integer  "user_id"
     t.integer  "amount"
@@ -89,6 +90,7 @@ ActiveRecord::Schema.define(:version => 20140130120702) do
     t.integer  "order_id"
     t.datetime "created_at",                                                   :null => false
     t.datetime "updated_at",                                                   :null => false
+    t.integer  "origin",                                    :default => 100
   end
 
   create_table "projects", :force => true do |t|

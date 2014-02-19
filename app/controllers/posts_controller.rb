@@ -25,7 +25,13 @@ class PostsController < ApplicationController
 
   def edit_post_status
   	@post = Post.find(params[:id])
-    @post.toggle!(:finish)
+
+    if @post.finish == false
+        origin = @post.proverka
+        @post.update_attribute(:origin, origin["percent"])
+    end
+
+    @post.toggle!(:finish) if @post.origin > 75
     redirect_to @post
   end
 

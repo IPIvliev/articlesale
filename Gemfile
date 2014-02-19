@@ -27,6 +27,9 @@ gem 'omniauth-vkontakte'
 gem 'carrierwave'
 gem 'rmagick', '2.13.2'
 
+# Work with API
+gem  'rest-client'
+
 # Text 
 gem 'bootstrap-wysihtml5-rails'
 

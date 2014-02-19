@@ -18,4 +18,11 @@ class AdminsController < ApplicationController
   		redirect_to root_path
   	end
   end
+
+  def statistics
+    hash = RestClient.get("http://www.content-watch.ru/public/api/", , :action => 'GET_BALANCE', :key => "gthFFbiIqkBYvRh")
+
+    @plagiat = JSON.parse(hash)
+    @result = @plagiat["balance"].to_f/@plagiat["tariff"].to_f
+  end
 end

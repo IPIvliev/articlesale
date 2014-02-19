@@ -54,7 +54,7 @@
                           <td><%= post.text.gsub(/\s+/, '').length %> символов</td>
                           <td><%= link_to post.user.username, post.user %></td>
                           <td><%= post.sale %> рублей</td>
-                          <td><%= post.category %></td>
+                          <td>Оригинальность: <%= post.origin %>%</td>
                         </tr>
                       </tbody>
                     </table>

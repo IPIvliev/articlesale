@@ -8,7 +8,12 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="/index.html"><img src="/logo.png" alt="logo">Биржа текстов</a>
+          <% if !current_user %>
+            <%= link_to "<img src='/logo.png' alt='logo'>Биржа текстов".html_safe, root_path, :class => "navbar-brand" %>
+          <% else %>
+            <%= link_to "<img src='/logo.png' alt='logo'>Биржа текстов".html_safe, current_user, :class => "navbar-brand" %>
+          <% end %>
+          
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
