@@ -30,6 +30,7 @@
             <th>Стоимость</th>
             <th>Автор</th>
             <th>Статус</th>
+            <th>Оригинальность</th>
           </tr>
         </thead>
         <tbody>
@@ -38,9 +39,10 @@
             <td><%= order.id %></td>
             <td><%= link_to order.name, project_order_url(order.project, order) %></td>
             <td><%= link_to order.project.name, order.project %></td>
-            <td>Column content</td>
-            <td>Column content</td>
+            <td><%= price_is(@order.amount) %> руб.</td>
+            <td><%= link_to order.post.user.username, order.post.user %></td>
             <td><%= order.complite? %></td>
+            <td><%= order.post.origin %>%</td>
           </tr>
           <% end %>
         </tbody>

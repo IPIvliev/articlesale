@@ -17,14 +17,16 @@
             <th>Автор</th>
             <th>Стоимость</th>
             <th>Дата написания</th>
+            <th>Оригинал</th>
           </tr>
         </thead>
         <tbody>
           <tr>
             <td><%= @post.text.gsub(/\s+/, '').length if !@post.text.nil? %></td>
             <td><%= link_to @post.user.username, @post.user %></td>
-            <td><%= @post.price %></td>
+            <td><%= price_is(@order.amount) %> руб.</td>
             <td><%= Russian::strftime(@post.updated_at, "%d %B %Y %H:%M") %></td>
+            <td><%= @order.post.origin %>%</td>
           </tr>
         </tbody>
       </table>

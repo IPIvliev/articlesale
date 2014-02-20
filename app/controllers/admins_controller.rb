@@ -20,7 +20,7 @@ class AdminsController < ApplicationController
   end
 
   def statistics
-    hash = RestClient.get("http://www.content-watch.ru/public/api/", , :action => 'GET_BALANCE', :key => "gthFFbiIqkBYvRh")
+    hash = RestClient.post("http://www.content-watch.ru/public/api/", :action => 'GET_BALANCE', :key => "gthFFbiIqkBYvRh")
 
     @plagiat = JSON.parse(hash)
     @result = @plagiat["balance"].to_f/@plagiat["tariff"].to_f

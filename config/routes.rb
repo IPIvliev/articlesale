@@ -42,7 +42,6 @@ get "index.html" => "static_pages#index"
 
 # Вопросы пользователей
 match "/admins/new_question", :to => 'admins#new_question'
-match "/devise/admins/new_question", :to => 'admins#new_question'
 
 # Личный кабинет администратора
 get "/admins/statistics.html" => "admins#statistics"

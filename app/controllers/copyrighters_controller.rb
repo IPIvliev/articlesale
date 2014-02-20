@@ -11,7 +11,7 @@ class CopyrightersController < ApplicationController
   end
 
   def complite
-  	@posts = current_user.posts.where(:finish => true)
+  	@posts = current_user.posts.where(:finish => true).order("created_at DESC")
   end
 
   def correct

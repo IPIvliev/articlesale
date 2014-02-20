@@ -1,11 +1,12 @@
-<% provide(:title, 'Регистрация для заказчиков контента') %>
+<% provide(:title, 'Регистрация на сервисе') %>
 
 <!-- Breadcrumbs - START -->
 <div class="background-clouds breadcrumbs-container">
   <div class="container">
     <ol class="breadcrumb">
       <li><a href="/index.html">Главная</a></li>
-      <li class="active">Регистрация для заказчиков</li>
+      <%= "<li class='active'>Регистрация для копирайтеров</li>".html_safe if params[:status] == "copy" %>
+      <%= "<li class='active'>Регистрация для заказчиков</li>".html_safe if params[:status] == "client" %>
     </ol>
   </div>
 </div>
@@ -32,14 +33,42 @@
 
                   <div class="form-group">
                     <label for="exampleInputPassword13">Вы заказчик или копирайтер?</label>
+
+                    <% if params[:status] == "client" %>
+
                     <div class="radio">
-                      <%= f.radio_button(:role, "client") %>
+                      <%= f.radio_button(:role, "client", :checked => true) %>
                       <%= f.label(:role, "Заказчик") %>
                     </div>
                     <div class="radio">
                       <%= f.radio_button(:role, "copy") %>
                       <%= f.label(:role, "Копирайтер") %>
                     </div>
+
+                    <% elsif params[:status] == "copy" %>
+
+                    <div class="radio">
+                      <%= f.radio_button(:role, "client") %>
+                      <%= f.label(:role, "Заказчик") %>
+                    </div>
+                    <div class="radio">
+                      <%= f.radio_button(:role, "copy", :checked => true) %>
+                      <%= f.label(:role, "Копирайтер") %>
+                    </div>
+
+                    <% else %>
+
+                    <div class="radio">
+                      <%= f.radio_button(:role, "client", :checked => true) %>
+                      <%= f.label(:role, "Заказчик") %>
+                    </div>
+                    <div class="radio">
+                      <%= f.radio_button(:role, "copy") %>
+                      <%= f.label(:role, "Копирайтер") %>
+                    </div>
+
+                    <% end %>
+                    
                   </div>
 
                   <div class="form-group">

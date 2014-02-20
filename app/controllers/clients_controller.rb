@@ -8,7 +8,7 @@ class ClientsController < ApplicationController
   end  
 
   def complite
-  	@orders = current_user.orders.where(:status => 4)
+  	@orders = current_user.orders.where(:status => 4).order("created_at DESC")
   end
 
   def wait

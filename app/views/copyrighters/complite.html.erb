@@ -29,6 +29,7 @@
                       <th>Дата заказа</th>
                       <th>Стоимость</th>
                       <th>Статус</th>
+                      <th>Оригинальность</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -36,16 +37,18 @@
                       <tr>
                         <% if post.order %>
                           <td><%= post.id %></td>
-                          <td><%= link_to post.name, project_order_path(post.order.project, post.order) %></td>
+                          <td><%= link_to "#{post.name} <p class='red'>(на заказ)</p>".html_safe, project_order_path(post.order.project, post.order) %></td>
                           <td><%= Russian::strftime(post.order.finish_date, "%d %B %Y") %></td>
                           <td><%= price_is(post.order.amount) %> руб.</td>
                           <td><%= post.order.complite? %></td>
+                          <td><%= post.origin %>%</td>
                         <% else %>
                           <td><%= post.id %></td>
-                          <td><%= link_to post.name, post_path(post) %></td>
+                          <td><%= link_to "#{post.name} <p class='yellow'>(на продажу)</p>".html_safe, post_path(post) %></td>
                           <td><%= Russian::strftime(post.created_at, "%d %B %Y") %></td>
                           <td><%= post.sale %> руб.</td>
                           <td><%= post.complite? %></td>
+                          <td><%= post.origin %>%</td>
                         <% end %>                        
                       </tr>
                     <% end %>

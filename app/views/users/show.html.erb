@@ -90,7 +90,7 @@
 
                         <a class="btn btn-link" href="#">
                           <i class="icon-globe bigger-125 blue"></i>
-                          www.alexdoe.com
+                          www.articlesale.ru
                         </a>
                             <%= link_to "<i class='icon-cogs bigger-125 red'></i> Изменить профайл".html_safe, edit_user_registration_url, :class => "btn red btn-link" if current_user == @user %>
                       </div>
@@ -115,15 +115,17 @@
 
                     <div class="hr hr12 dotted"></div>
 
-                    <div class="clearfix">
-                      <div class="grid2">
-                        <span class="bigger-175 blue">25</span>
+                    <% if @user.role == "copy" %>
+                      <div class="clearfix">
+                        <div class="grid2">
+                          <span class="bigger-175 blue"><%= @user.level %></span>
 
-                        <br />
-                        Рейтинг
+                          <br />
+                          Рейтинг
+                        </div>
+
                       </div>
-
-                    </div>
+                    <% end %>
 
                     <div class="hr hr12 dotted"></div>
                   </div>

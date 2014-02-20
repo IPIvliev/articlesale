@@ -70,8 +70,20 @@ class ProjectsController < ApplicationController
 
   def edit_post_status
     @order = Order.find(params[:id])
-    @order.update_attribute(:status, 3)
-    @order.post.update_attribute(:finish, true)
+    post = @order.post
+
+    if post.finish == false
+        origin = post.proverka
+        post.update_attribute(:origin, origin["percent"])
+    end
+
+    if post.origin > 75
+
+      @order.update_attribute(:status, 3)
+      post.update_attribute(:finish, true)
+
+    end
+
     redirect_to project_order_path(@order)
   end
 

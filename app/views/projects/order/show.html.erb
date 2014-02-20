@@ -55,7 +55,7 @@
       <!-- Окончание. Если пользователь - клиент -->
 
       <!-- Если пользователь - клиент -->
-      <% if current_user.role == "copy" %>
+      <% if current_user.role == "copy" || current_user.role == "admin" %>
         <%= render "projects/order/copy" %>
       <% end %>
       <!-- Окончание. Если пользователь - клиент -->

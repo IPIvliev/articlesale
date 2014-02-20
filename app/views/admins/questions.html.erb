@@ -20,12 +20,27 @@
                 <h1>Вопросы пользователей</h1>
                 <div class="thumbnail info-thumbnail padding1 background-clouds color-black">
                   <div class="caption background-white">
-                    <% @questions.each do |question| %>
-                      <%= question.name %>
-                      <%= question.text %>
-                      <%= question.email %>
-                      <%= question.created_at %>
-                    <% end %>
+                    <table class="table table-bordered">
+                      <thead>
+
+                        <tr>
+                          <th>Имя</th>
+                          <th>Текст</th>
+                          <th>E-mail</th>
+                          <th>Дата</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <% @questions.each do |question| %>
+                          <tr>
+                          <td><%= question.name %></td>
+                          <td><%= question.text %></td>
+                          <td><%= question.email %></td>
+                          <td><%= Russian::strftime(question.created_at, "%d %B %Y %H:%M") %></td>
+                          </tr>
+                        <% end %>
+                      <tbody>
+                    </table>
                   </div>
                 </div>
               </div>
