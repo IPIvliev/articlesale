@@ -39,6 +39,13 @@ class ProjectsController < ApplicationController
   def edit_status
     @order = Order.find(params[:id])
     @order.update_attribute(:status, params[:order][:status])
+
+      user = @order.post.user
+      level = user.level + 1 if @order.status == 4
+      level = user.level - 0.5 if @order.status == 1
+
+      user.update_attribute(:level, level)
+
     render "projects/order/show"
   end
 

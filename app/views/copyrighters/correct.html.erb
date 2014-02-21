@@ -33,6 +33,7 @@
                   </thead>
                   <tbody>
                     <% @posts.each do |post| %>
+                      <% #if post.order.status == 1 %>
                       <tr>
                         <td><%= post.id %></td>
                         <td><%= link_to post.order.name, project_order_path(post.order.project, post.order) %></td>
@@ -40,6 +41,7 @@
                         <td><%= price_is(post.order.amount) %> руб.</td>
                         <td><%= percentage(post) %></td>
                       </tr>
+                      <% #end %>
                     <% end %>
                   </tbody>
                 </table>

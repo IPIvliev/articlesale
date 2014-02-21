@@ -44,7 +44,7 @@
 </div>
 <% end %>
 
-<% if @post.user == current_user && @post.finish == false %>
+<% if @post.user == current_user && (@post.order.status == 1 || @post.order.status == 2) %>
       <div class="col-md-12">
         <h1>
           <% if !@post.text.nil? %>
@@ -91,7 +91,7 @@
       </div>
 
 
-<% else  @post.finish == true %>
+<% else  @post.order.status == 4 || @post.order.status == 3 %>
   <div class="col-md-12">
     <div class="thumbnail info-thumbnail padding1 background-clouds color-black">
       <div class="caption background-white">

@@ -15,7 +15,7 @@ class CopyrightersController < ApplicationController
   end
 
   def correct
-    @posts = current_user.posts.where(:finish => true).orders
+    @posts = current_user.posts.where(:order_id => !nil)
   end
 
   def newpost

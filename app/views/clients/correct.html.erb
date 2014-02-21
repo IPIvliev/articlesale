@@ -26,21 +26,25 @@
           <tr>
             <th>ID</th>
             <th>Наименование</th>
+            <th>Автор</th>
             <th>Дата заказа</th>
             <th>Стоимость</th>
-            <th>Автор</th>
-            <th>Статус</th>
+            <th>Выполнение</th>
+            <th>Оригинальность</th>
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>1</td>
-            <td>Column content</td>
-            <td>Column content</td>
-            <td>Column content</td>
-            <td>Column content</td>
-            <td>Column content</td>
-          </tr>
+          <% @orders.each do |order| %>
+            <tr>
+              <td><%= order.id %></td>
+              <td><%= link_to "<strong>Статья:</strong> #{order.post.name}".html_safe, project_order_path(order.project, order) %><p><strong>Заказ:</strong> <%= order.name %></p></td>
+              <td><%= link_to order.post.user.username, order.post.user %>
+              <td><%= Russian::strftime(order.finish_date, "%d %B %Y") %></td>
+              <td><%= price_is(order.amount) %> руб.</td>
+              <td><%= percentage(order.post) %></td>
+              <td><%= order.post.origin %>%</td>
+            </tr>
+          <% end %>
         </tbody>
       </table>
 
