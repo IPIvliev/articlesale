@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 class UsersController < ApplicationController
   before_filter :authenticate_user!
 
@@ -19,6 +21,16 @@ class UsersController < ApplicationController
   end
 
   def index
-    @copies = User.where(:role => "copy") 
+    if current_user.role == "admin"
+      @copies = User.all
+    else
+      @copies = User.where(:role => "copy") 
+    end
+  end
+
+  def destroy
+    User.find(params[:id]).destroy
+    flash[:success] = "Пользователь удалён."
+    redirect_to users_path
   end
 end

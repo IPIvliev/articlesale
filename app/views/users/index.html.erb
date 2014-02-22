@@ -48,8 +48,13 @@
           <tr>
             <th>Аватар</th>
             <th>Имя</th>
-            <th>Выполненные заказы</th>
+            <th>Статус</th>
+            <th>Заказы</th>
             <th>Уровень</th>
+            <% if current_user.role == "admin" %>
+              <%= "<th>Средства</th>".html_safe %>
+              <%= "<th>Действие</th>".html_safe %>
+            <% end %>
           </tr>
         </thead>
         <tbody>
@@ -57,8 +62,19 @@
           <tr>
             <td>1</td>
             <td><%= link_to copy.username, copy %></td>
-            <td><%= copy.posts.where(:finish => true).count %></td>
-            <td>Column content</td>
+            <td><%= copy.role? %></td>
+            <td>
+              <p><strong>В работе:</strong> <%= copy.posts.where(:finish => false).count %></p>
+              <p><strong>Выполненные:</strong> <%= copy.posts.where(:finish => true).count %></p>
+              <p><strong>Всего:</strong> <%= copy.posts.count %></p>
+            </td>
+            <td><%= copy.level %></td>
+            <% if current_user.role == "admin" %>
+              <td><%= copy.money? %></td>
+              <td>
+                <%= link_to "<i class=icon-trash></i>Удалить".html_safe, copy, method: :delete, :class => "red", data: { confirm: "Вы уверены?" } %>
+              </td>
+            <% end %>
           </tr>
           <% end %>
         </tbody>

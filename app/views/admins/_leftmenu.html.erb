@@ -9,7 +9,7 @@
               <%= link_to "Вопросы <span class='badge background-white color-lead'>#{Question.all.count}</span>".html_safe, "/admins/questions.html", :class => "list-group-item" if Question.all %>             
               <%= link_to "Сообщения", discussions_path, :class => "list-group-item" %>
               <a href="/copyrighters/push.html" class="list-group-item">Вывести средства</a>
-              <%= link_to "Список копирайтеров", users_path, :class => "list-group-item" %>
+              <%= link_to "Список пользователей", users_path, :class => "list-group-item" %>
               <a href="/copyrighters/articles.html" class="list-group-item">Готовые тексты по категориям</a>
             </div>
 

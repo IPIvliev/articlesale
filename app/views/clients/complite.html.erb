@@ -20,7 +20,7 @@
                 <h1>Выполненные заказы</h1>
                 <div class="thumbnail info-thumbnail padding1 background-clouds color-black">
                   <div class="caption background-white">
-
+<% if !@orders.empty? %>
       <table class="table table-hover">
         <thead>
           <tr>
@@ -47,7 +47,9 @@
           <% end %>
         </tbody>
       </table>
-
+<% else %>
+  <strong>У вас пока нет выполненных заказов.</strong>
+<% end %>
                   </div>
                 </div>
               </div>

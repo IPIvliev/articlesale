@@ -1,6 +1,8 @@
 # encoding: utf-8
 
 class User < ActiveRecord::Base
+
+  include ActionView::Helpers::NumberHelper
   # Include default devise modules. Others available are:
   # :token_authenticatable, :encryptable, :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -43,9 +45,22 @@ class User < ActiveRecord::Base
   end
 
   def role?
-    return "Заказчик" if role == "client"
-    return "Копирайтер" if role == "copy"
-    return "Администратор" if role == "admin"
+    case role
+      when "admin"
+        "<strong class='red'>Администратор</strong>".html_safe
+      when "copy"
+        "<strong class='blue'>Копирайтер</strong>".html_safe
+      when "client"
+        "<strong class='yellow'>Заказчик</strong>".html_safe
+    end
+  end
+
+  def money?
+    if pocket.blank?
+      return "0,00 руб."
+    else
+      number_to_currency( pocket, unit: "руб.", separator: ",", delimiter: "", format: "%n %u")
+    end
   end
 
   #Все сообщения, где current_user отправитель или получатель
