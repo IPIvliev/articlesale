@@ -72,7 +72,7 @@ class ProjectsController < ApplicationController
     @post = Post.find(params[:post][:id])
     @post.update_attributes(params[:post])
     @post.save
-    redirect_to project_order_path(params[:post][:order_id])
+    redirect_to project_order_path(params[:post][:order_id]), :notice => "Привет!"
   end
 
   def edit_post_status
@@ -88,10 +88,11 @@ class ProjectsController < ApplicationController
 
       @order.update_attribute(:status, 3)
       post.update_attribute(:finish, true)
-
+      redirect_to project_order_path(@order), :notice => "Статья отправленна успешно!"
+    else
+      redirect_to project_order_path(@order), :notice => "Оригинальность подкачала"
     end
 
-    redirect_to project_order_path(@order)
   end
 
   def articles

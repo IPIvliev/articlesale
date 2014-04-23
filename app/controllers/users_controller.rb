@@ -15,6 +15,16 @@ class UsersController < ApplicationController
   def vkontakte
   end
 
+  def edit_avatar
+
+      @user = User.find(params[:id])
+    if !params[:user].blank?
+      @user.update_attribute(:avatar, params[:user][:avatar])
+    end
+
+    redirect_to :back
+  end
+
   def show
   	@user = User.find(params[:id])
     @message = Message.new

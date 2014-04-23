@@ -2,6 +2,9 @@ Articlesale::Application.routes.draw do
 resources :posts
 match "posts/:id/edit_post_status", :to => 'posts#edit_post_status'
 
+# Изменить аватар
+match "users/:id/edit_avatar", :to => "users#edit_avatar"
+
 resources :projects do
 	post :create_order, :on => :member
 

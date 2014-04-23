@@ -30,7 +30,7 @@ gem 'rmagick', '2.13.2'
 gem  'rest-client'
 
 # Text 
-gem 'bootstrap-wysihtml5-rails'
+gem 'ckeditor'
 
 # Gems used only for assets and not required
 # in production environments by default.

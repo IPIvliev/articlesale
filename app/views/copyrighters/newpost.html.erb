@@ -72,7 +72,7 @@
                 <%= f.text_field :name, :size => "120", :placeholder => "Название статьи" %>
               </div>
               <div class="form-group">
-                <%= f.text_area :text, :size => "120x8", :placeholder => "Текст статьи", :class => "wysihtml5" %>
+                <%= f.cktext_area :text, :size => "120x8", :placeholder => "Текст статьи" %>
               </div>
               <%= f.submit :value => "Сохранить", :class => "btn btn-primary" %>
     <% end %>

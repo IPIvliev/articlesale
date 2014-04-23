@@ -5,39 +5,39 @@
       <li><a href="/index.html">Главная</a></li>
       <li><%= link_to "Пользователи", users_path %></a></li>
       <li class="active"><%= @user.username %></li>
-                  <li class="navbar-right">
-              <% if !Message.where("read == ? AND whom == ?", false, current_user).empty? %>
-                <%= link_to "Новые сообщения (#{Message.where("read == ? AND whom == ?", false, current_user).count})", Message.where("read == ? AND whom == ?", false, current_user).first.discussion %>
-              <% else %>
-                <%= "У Вас нет новых сообщений" %>
-              <% end %>
+      <li class="navbar-right">
+        <% if !Message.where("read == ? AND whom == ?", false, current_user).empty? %>
+        <%= link_to "Новые сообщения (#{Message.where("read == ? AND whom == ?", false, current_user).count})", Message.where("read == ? AND whom == ?", false, current_user).first.discussion %>
+        <% else %>
+        <%= "У Вас нет новых сообщений" %>
+        <% end %>
 
-            </li>
+      </li>
     </ol>
   </div>
 </div>
 <!-- Breadcrumbs - END -->
 
- <section>
-      <div class="container">
+<section>
+  <div class="container">
+    <div class="row">
+      <%= render "shared/whatmenu" %>
+      <div class="col-md-9">
         <div class="row">
-          <%= render "shared/whatmenu" %>
-          <div class="col-md-9">
-            <div class="row">
-              <div class="col-md-12">
+          <div class="col-md-12">
 
 
-                <h1>Личный кабинет</h1>
+            <h1>Личный кабинет</h1>
 
-    <link rel="stylesheet" href="/css/font-awesome.min.css" />
+            <link rel="stylesheet" href="/css/font-awesome.min.css" />
 
-      <div class="thumbnail info-thumbnail padding1 background-clouds color-black">
-        <div class="caption background-white">
+            <div class="thumbnail info-thumbnail padding1 background-clouds color-black">
+              <div class="caption background-white">
 
 
-              <!--PAGE CONTENT BEGINS-->
-                  <div class="row">
-                    <div class="col-md-3 center">
+                <!--PAGE CONTENT BEGINS-->
+                <div class="row">
+                  <div class="col-md-3 center">
 
 
                     <div>
@@ -123,8 +123,8 @@
 
 
                     <div class="profile-user-info profile-user-info-striped">
-          <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f| %>
-  <%= devise_error_messages! %>
+                      <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f| %>
+                      <%= devise_error_messages! %>
                       <div class="profile-info-row">
                         <div class="profile-info-name"> Имя </div>
 
@@ -140,9 +140,9 @@
                           <span id="email">  <%= f.email_field :email %></span>
                         </div>
                       </div>
- <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-  <% end %>
+                      <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+                      <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+                      <% end %>
                       <div class="profile-info-row">
                         <div class="profile-info-name"> Место работы </div>
 
@@ -158,17 +158,17 @@
                         <div class="profile-info-name"> Статус </div>
 
                         <div class="profile-info-value">
-                                            <div class="form-group">
-                    <label for="exampleInputPassword13">Вы заказчик или копирайтер?</label>
-                    <div class="radio">
-                      <%= f.radio_button(:role, "client") %>
-                      <%= f.label(:role, "Заказчик") %>
-                    </div>
-                    <div class="radio">
-                      <%= f.radio_button(:role, "copy") %>
-                      <%= f.label(:role, "Копирайтер") %>
-                    </div>
-                  </div>
+                          <div class="form-group">
+                            <label for="exampleInputPassword13">Вы заказчик или копирайтер?</label>
+                            <div class="radio">
+                              <%= f.radio_button(:role, "client") %>
+                              <%= f.label(:role, "Заказчик") %>
+                            </div>
+                            <div class="radio">
+                              <%= f.radio_button(:role, "copy") %>
+                              <%= f.label(:role, "Копирайтер") %>
+                            </div>
+                          </div>
                         </div>
                       </div>
 
@@ -195,73 +195,73 @@
                           <span> <%= f.password_field :current_password %></span><br>(нужен для подтверждения изменений)
                         </div>
                       </div>
-                    <%= f.submit :value => "Сохранить" %>
-     <% end %>
+                      <%= f.submit :value => "Сохранить" %>
+                      <% end %>
 
                     </div>
-               
+                    
 
 
-</div></div></div></div></div>
+                  </div></div></div></div></div>
 
 
-              <% if current_user != @user %>
-                <h1>Сообщения</h1>
-                <div class="thumbnail info-thumbnail padding1 background-clouds color-black">
-                  <div class="caption background-white">
+                  <% if current_user != @user %>
+                  <h1>Сообщения</h1>
+                  <div class="thumbnail info-thumbnail padding1 background-clouds color-black">
+                    <div class="caption background-white">
 
 
-  <div id="follow_form">
-  <% if current_user.speaking?(@user) %>
+                      <div id="follow_form">
+                        <% if current_user.speaking?(@user) %>
 
-  <%= render 'unfollow' %><br>
+                        <%= render 'unfollow' %><br>
 
-    <%= form_for @message, :url => {:controller => "discussions", :action => "newmessage"} do |f| %>
-<%= f.hidden_field :user_id, :value => current_user.id %>
-<%= f.hidden_field :whom, :value => @user.id %>
-<%= f.hidden_field :discussion_id, :value => current_user.discussions.find_by_whom_id(@user.id).id %>
-<div class="form-group">
-  <%= f.text_area :text, :size => "130x8", placeholder: "Текст вашего сообщения пользователю #{@user.username}" %>
-</div>
-<%= f.submit :value => "Отправить сообщение", :class => "btn btn-primary" %>
-<% end %>
+                        <%= form_for @message, :url => {:controller => "discussions", :action => "newmessage"} do |f| %>
+                        <%= f.hidden_field :user_id, :value => current_user.id %>
+                        <%= f.hidden_field :whom, :value => @user.id %>
+                        <%= f.hidden_field :discussion_id, :value => current_user.discussions.find_by_whom_id(@user.id).id %>
+                        <div class="form-group">
+                          <%= f.text_area :text, :size => "130x8", placeholder: "Текст вашего сообщения пользователю #{@user.username}" %>
+                        </div>
+                        <%= f.submit :value => "Отправить сообщение", :class => "btn btn-primary" %>
+                        <% end %>
 
-<% elsif @user.speaking?(current_user) %>
+                        <% elsif @user.speaking?(current_user) %>
 
-    <%= form_for @message, :url => {:controller => "discussions", :action => "newmessage"} do |f| %>
-<%= f.hidden_field :user_id, :value => current_user.id %>
-<%= f.hidden_field :whom, :value => @user.id %>
-<%= f.hidden_field :discussion_id, :value => @user.discussions.find_by_whom_id(current_user.id).id %>
-<div class="form-group">
-  <%= f.text_area :text, :size => "130x8", placeholder: "Текст вашего сообщения пользователю #{@user.username}" %>
-</div>
-<%= f.submit :value => "Отправить сообщение", :class => "btn btn-primary" %>
-<% end %>
+                        <%= form_for @message, :url => {:controller => "discussions", :action => "newmessage"} do |f| %>
+                        <%= f.hidden_field :user_id, :value => current_user.id %>
+                        <%= f.hidden_field :whom, :value => @user.id %>
+                        <%= f.hidden_field :discussion_id, :value => @user.discussions.find_by_whom_id(current_user.id).id %>
+                        <div class="form-group">
+                          <%= f.text_area :text, :size => "130x8", placeholder: "Текст вашего сообщения пользователю #{@user.username}" %>
+                        </div>
+                        <%= f.submit :value => "Отправить сообщение", :class => "btn btn-primary" %>
+                        <% end %>
 
-  <% else %>
-    <%= render 'follow' %>
+                        <% else %>
+                        <%= render 'follow' %>
 
-  <% end %>
-  </div>
-<br>
+                        <% end %>
+                      </div>
+                      <br>
 
-  </div>
-</div>
-<% end %>
-<br>
-
-
-
-
+                    </div>
                   </div>
+                  <% end %>
+                  <br>
+
+
+
+
                 </div>
-
-
               </div>
 
 
             </div>
+
+
           </div>
         </div>
       </div>
-    </section>
+    </div>
+  </section>

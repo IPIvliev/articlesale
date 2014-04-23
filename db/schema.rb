@@ -89,7 +89,7 @@ ActiveRecord::Schema.define(:version => 20140219131430) do
     t.integer  "order_id"
     t.datetime "created_at",                                                   :null => false
     t.datetime "updated_at",                                                   :null => false
-    t.integer  "origin",                                    :default => 100
+    t.integer  "origin",                                    :default => 0
   end
 
   create_table "projects", :force => true do |t|

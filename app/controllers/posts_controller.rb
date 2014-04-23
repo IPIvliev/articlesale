@@ -32,7 +32,16 @@ class PostsController < ApplicationController
     end
 
     @post.toggle!(:finish) if @post.origin > 75
-    redirect_to @post
+    redirect_to @post, notice: 'Article was successfully updated.'
+  end
+
+  # Не используется
+  def proverka
+    @order = Order.find(params[:id])
+    post = @order.post
+
+    origin = post.proverka
+    post.update_attribute(:origin, origin["percent"])
   end
 
 end

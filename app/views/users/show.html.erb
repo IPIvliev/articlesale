@@ -46,7 +46,14 @@
 
                     <div>
                       <span class="profile-picture">
-                        <img id="avatar" class="editable" alt="Alex's Avatar" src="assets/avatars/profile-pic.jpg" />
+                        <% if current_user == @user %>
+                          <a href="#" data-toggle="modal" data-target="#0">
+                            <%= show_avatar(@user) %>
+                          </a>
+                        <%= render :partial => '/users/usershow/newavatar' %>
+                        <% else %>
+                          <% show_avatar(@user) %>
+                        <% end %>
                       </span>
 
                       <div class="space-4"></div>

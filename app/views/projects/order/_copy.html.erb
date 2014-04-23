@@ -14,7 +14,9 @@
 
 <% if @post %>
 <div class="col-md-12">
+
   <h1>Текст статьи</h1>
+    <p id="notice" class="alert alert-danger"><%= notice %></p>
   <div class="thumbnail info-thumbnail padding1 background-clouds color-black">
     <div class="caption background-white">
       <table class="table table-bordered">
@@ -38,7 +40,7 @@
           </tr>
         </tbody>
       </table>
-      <p><%= @post.text %></p>
+      <p><%= @post.text.html_safe if @post.text %></p>
     </div>
   </div>
 </div>
@@ -63,7 +65,7 @@
                   <%= f.text_field :name, :size => "120", :placeholder => "Название статьи" %>
                 </div>
                 <div class="form-group">
-                  <%= f.text_area :text, :size => "120x8", :placeholder => "Текст статьи" %>
+                  <%= f.cktext_area :text, :size => "120x8", :placeholder => "Текст статьи" %>
                 </div>
                 <%= f.submit :value => "Сохранить", :class => "btn btn-primary" %>
               <% end %>
@@ -76,17 +78,24 @@
               </blockquote>
             </div>
 
-            <% if !@post.text.nil? && @post.text.gsub(/\s+/, '').length >= @post.order.amount %>
+            <% if !@post.text.nil? && @post.text.gsub(/\s+/, '').length >= @post.order.amount && @post.origin >= 75 %>
               <div class="caption background-white">
                 <%= form_for @post, :url => {:controller => "projects", :action => "edit_post_status"} do |f| %>
                   <%= f.submit :value => "Отправить заказчику", :class => "btn btn-primary" %>
                 <% end %>
               </div>
            
-            <% else %>
+            <% elsif !@post.text.nil? && @post.text.gsub(/\s+/, '').length < @post.order.amount %>
               <div class="caption background-white">
                 <strong>Размер текста меньше необходимого. Вы пока не можете отправить статью заказчику.</strong>
               </div>
+            <% elsif @post.origin < 75 %>
+              <div class="caption background-white">
+                <strong>Текст не прошёл проверку на оригинальность. Оригинальность контента составляет менее 75%</strong><br>
+                <%= form_for @post, :url => {:controller => "projects", :action => "edit_post_status"} do |f| %>
+                  <%= f.submit :value => "Проверить на оригинальность ещё раз и отправить заказчику", :class => "btn btn-primary" %>
+                <% end %>
+              </div>            
             <% end %>
           </div>
         </div>
